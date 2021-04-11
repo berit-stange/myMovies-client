@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.scss"],"names":[],"mappings":"AAEA;EACE,OAHM;EAIN","file":"src.78399e21.css","sourceRoot":"..\\src","sourcesContent":["$color: purple;\r\n\r\n.my-movies {\r\n  color: $color;\r\n  font-size: 50px;\r\n}"]}
