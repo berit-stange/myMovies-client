@@ -29624,10 +29624,7 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           onMovieClick(movieData);
         }
-      }, /*#__PURE__*/_react.default.createElement("h1", null, movieData.Title), /*#__PURE__*/_react.default.createElement("img", {
-        className: "movie-poster",
-        src: movieData.imagePath
-      }));
+      }, movieData.Title);
     }
   }]);
 
