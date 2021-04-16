@@ -29814,7 +29814,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, {
         _id: 2,
         Title: 'Parasite',
-        Description: 'desc2...',
+        Description: 'Poor family who scheme to become employed by a wealthy family and infiltrate their household by posing as unrelated, highly qualified individuals.',
         ImagePath: 'https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_FMjpg_UX1000_.jpg',
         Director: 'Bong Joon-ho',
         Genre: 'Drama'
