@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; //Hook used to add state to function components
 import PropTypes from 'prop-types';
 
 export function RegistrationView(props) {
