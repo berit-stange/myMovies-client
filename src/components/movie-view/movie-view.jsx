@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class MovieView extends React.Component {
 
     render() {
         const { movieData, onBackClick } = this.props; //extracting the props
-
 
         return (
             <div className="movie-view" style={{ width: 300 }}>
@@ -36,9 +36,18 @@ export class MovieView extends React.Component {
                     <span className="value">{movieData.Genre.Name}</span>
                 </div>
 
-                {/* <button onClick={() => { onBackClick(null); }} style={{ width: 300, padding: 10 }} >BACK</button> */}
-
             </div>
         );
     }
 }
+
+MovieView.propTypes = {
+    movieData: PropTypes.shape({
+        Title: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired,
+        ImagePath: PropTypes.string.isRequired,
+        Genre: PropTypes.shape({
+            Name: PropTypes.string.isRequired
+        })
+    }).isRequired
+};
