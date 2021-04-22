@@ -1,5 +1,7 @@
 import React from 'react'; //import React into file
 import axios from 'axios';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
@@ -50,9 +52,9 @@ export class MainView extends React.Component { //exposing the component
     render() {
         const { movies, selectedMovie, user, registration } = this.state;
 
-        if (!registration) return <RegistrationView onRegistration={registration => this.onRegistration(registration)} />;
+        // if (!registration) return <RegistrationView onRegistration={registration => this.onRegistration(registration)} />;
 
-        if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+        // if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
         if (movies.length === 0) return <div className="main-view" />;
 
@@ -60,7 +62,13 @@ export class MainView extends React.Component { //exposing the component
 
             <div className="main-view">
                 {selectedMovie
-                    ? <MovieView movieData={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+                    ? (
+                        <Row className="justify-content-md-center">
+                            <Col md={8}>
+                                <MovieView movieData={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+                            </Col>
+                        </Row>
+                    )
                     : movies.map(movie => (
                         <MovieCard key={movie._id} movieData={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }} />
                     ))
