@@ -9,29 +9,29 @@ export class MovieView extends React.Component {
         return (
             <div className="movie-view" style={{ width: 300 }}>
 
-                <button onClick={() => { onBackClick(null); }} style={{ margin: 10, width: 300, padding: 10, backgroundColor: 'lightblue', border: 'none' }} >BACK</button>
+                <button onClick={() => { onBackClick(null); }} >BACK</button>
 
                 <div className="movie-poster" >
-                    <img src={movieData.ImagePath} style={{ width: 300, padding: 10 }} />
+                    <img src={movieData.ImagePath} />
                 </div>
 
-                <div className="movie-title" style={{ padding: 10 }}>
+                <div className="movie-title">
                     <span className="label">Title: </span>
                     <span className="value">{movieData.Title}</span>
                 </div>
 
-                <div className="movie-description" style={{ padding: 10 }} >
+                <div className="movie-description" >
                     <span className="label">Description: </span>
                     <span className="value">{movieData.Description}</span>
                 </div>
 
-                <div className="movie-director" style={{ padding: 10 }} >
+                <div className="movie-director" >
                     <span className="label">Director: </span>
                     {/* <span className="value">{movieData.Director}</span> */}
                     <span className="value">{movieData.Director.Name}</span>
                 </div>
 
-                <div className="movie-genre" style={{ padding: 10 }}>
+                <div className="movie-genre">
                     <span className="label">Genre: </span>
                     <span className="value">{movieData.Genre.Name}</span>
                 </div>
