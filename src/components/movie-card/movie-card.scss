@@ -1,0 +1,18 @@
+$primary-color: #cca53b;
+$secondary-color: gainsboro;
+$dark-color: #002238;
+$font-sans: 'Montserrat', sans-serif;
+$font-serif: 'Abril Fatface', serif;
+$font-big: 60px;
+$font-medium: 30px;
+$font-small: 15px;
+$font-heavy: 700;
+$font-light: 400;
+
+.card {
+    background-color: $dark-color;
+}
+
+.btn-link {
+    color:$primary-color;
+}

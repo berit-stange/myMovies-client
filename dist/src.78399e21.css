@@ -1,6 +1,44 @@
-.my-movies {
-  color: purple;
-  font-size: 50px;
+.card {
+  background-color: #002238;
+}
+
+.btn-link {
+  color: #cca53b;
+}
+.page-header {
+  display: flex;
+  width: 100%;
+  padding: 20px;
+  align-items: center;
+  color: #cca53b;
+}
+
+.logo {
+  font-family: "Abril Fatface", serif;
+  font-size: 60px;
+  line-height: 1.6;
+  color: #cca53b;
+}
+
+.page-header__item {
+  flex: 0 1 200px;
+  color: #cca53b;
+}
+
+.page-header__item:last-child {
+  flex-grow: 1;
+  text-align: right;
+  color: #002238;
+  background-color: #cca53b;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  background-color: #002238;
+  color: gainsboro;
+  margin: 0;
 }
 
 /*# sourceMappingURL=/src.78399e21.css.map */

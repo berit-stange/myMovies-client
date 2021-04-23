@@ -1,6 +1,23 @@
-$color: purple;
 
-.my-movies {
-  color: $color;
-  font-size: 50px;
+$primary-color: #cca53b;
+$secondary-color: gainsboro;
+$dark-color: #002238;
+$font-sans: 'Montserrat', sans-serif;
+$font-serif: 'Abril Fatface', serif;
+$font-big: 60px;
+$font-medium: 30px;
+$font-small: 15px;
+$font-heavy: 700;
+$font-light: 400;
+
+
+body {
+  font-family: $font-sans;
+  font-weight: $font-light;
+  font-size: $font-small;
+  line-height: 1.6;
+  background-color: $dark-color;
+  color: $secondary-color;
+  margin: 0;
+  // padding: 30px;
 }
