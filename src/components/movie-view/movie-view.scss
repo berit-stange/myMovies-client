@@ -1,10 +1,63 @@
 $primary-color: #cca53b;
 $secondary-color: gainsboro;
-$dark-color: #002238;
+// $dark-color: #002238;
+$dark-color: #001625;
 $font-sans: 'Montserrat', sans-serif;
 $font-serif: 'Abril Fatface', serif;
 $font-big: 60px;
 $font-medium: 30px;
-$font-small: 15px;
+$font-small: 20px;
+$font-p: 15px;
 $font-heavy: 700;
 $font-light: 400;
+
+
+h1 {
+  font-family: $font-serif;
+  font-size:  $font-big !important;
+}
+  
+h2 {
+  font-family: $font-serif;
+  font-size:  $font-medium !important;
+}
+  
+h3 {
+  font-family: $font-sans;
+  font-size:  $font-small !important; 
+  color: $primary-color;
+}
+
+h4 {
+    font-family: $font-sans;
+    font-size:  $font-small !important; 
+    color: $primary-color;
+}
+
+h5 {
+    font-family: $font-sans;
+    font-size:  $font-small !important; 
+    color: $primary-color;
+}
+  
+p {
+  font-family: $font-sans;
+  font-size:  $font-p !important; 
+}
+
+.round {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50% !important;
+  font-weight: $font-heavy;
+}
+
+.movie-view {
+  border-top: 1px dotted $primary-color;
+  padding-top: 1rem;
+}
+
+.movie-title {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}

@@ -1,5 +1,12 @@
 import React, { useState } from 'react'; //Hook used to add state to function components
 import PropTypes from 'prop-types';
+import Row from 'react-bootstrap/Row';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button'
+import './login-view.scss';
+
 
 export function LoginView(props) {
     const [username, setUsername] = useState('');
@@ -12,15 +19,33 @@ export function LoginView(props) {
     };
 
     return (
-        <form>
-            <label>Username:</label>
-            <input type="text" value={username} onChange={e => setUsername(e.target.value)} /><br />
 
-            <label>Password:</label>
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)} /><br />
+        <div>
+            <Navbar className="page-header">
+                <Nav.Item>
+                    <Nav.Link href="#" className="logo">
+                        myMovies
+                        </Nav.Link>
+                </Nav.Item>
+            </Navbar>
+            <Row className="login">
+                <Form className="login-view">
+                    <Form.Group controlId="formGroupEmail">
+                        <Form.Label>Username:</Form.Label>
+                        <Form.Control type="email" placeholder="Enter email" value={username} onChange={e => setUsername(e.target.value)} />
+                        {/* <input type="text" value={username} onChange={e => setUsername(e.target.value)} /><br /> */}
+                    </Form.Group>
 
-            <button type="submit" onClick={handleSubmit}>Submit</button>
-        </form>
+                    <Form.Group controlId="formGroupPassword">
+                        <Form.Label>Password:</Form.Label>
+                        <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+                        {/* <input type="password" value={password} onChange={e => setPassword(e.target.value)} /><br /> */}
+                    </Form.Group>
+
+                    <Button type="submit" onClick={handleSubmit}>Submit</Button>
+                </Form>
+            </Row>
+        </div>
     );
 }
 

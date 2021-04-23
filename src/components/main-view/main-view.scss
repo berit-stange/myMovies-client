@@ -1,44 +1,52 @@
 
 $primary-color: #cca53b;
 $secondary-color: gainsboro;
-$dark-color: #002238;
+// $dark-color: #002238;
+$dark-color: #001625;
 $font-sans: 'Montserrat', sans-serif;
 $font-serif: 'Abril Fatface', serif;
 $font-big: 60px;
 $font-medium: 30px;
-$font-small: 15px;
+$font-small: 20px;
+$font-p: 15px;
 $font-heavy: 700;
 $font-light: 400;
 
+
 .page-header {
-    // background-color: $secondary-color;
     display: flex;
     width: 100%;
-    padding: 20px;
-    // border: 1px solid rgba(218, 165, 32, 0.5);
     align-items: center; 
-    // justify-content: center;
     color: $primary-color;
+    justify-content: space-between;
 }
 
 .logo{
     font-family: $font-serif;
     font-size: $font-big;
     line-height: 1.6;
-    // background-color: $dark-color;
+    color: $primary-color;
+}
+
+.logo:hover {
     color: $primary-color;
 }
 
 .page-header__item {
-    flex: 0 1 200px;
     color: $primary-color;
 }
   
 .page-header__item:last-child {
-    flex-grow: 1;
-    // flex: 0 1 200px;
-    text-align: right;
-    // border: 1px solid rgba(218, 165, 32, 0.5);
+    text-align: center;
     color: $dark-color;
     background-color: $primary-color;
+    font-weight: $font-heavy;
+}
+
+.navbar {
+    padding: 2rem 0rem;
+}
+
+.nav-link {
+    padding: 0.5rem 1rem;
 }

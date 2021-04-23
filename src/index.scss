@@ -1,12 +1,14 @@
 
 $primary-color: #cca53b;
 $secondary-color: gainsboro;
-$dark-color: #002238;
+// $dark-color: #002238;
+$dark-color: #001625;
 $font-sans: 'Montserrat', sans-serif;
 $font-serif: 'Abril Fatface', serif;
 $font-big: 60px;
 $font-medium: 30px;
-$font-small: 15px;
+$font-small: 20px;
+$font-p: 15px;
 $font-heavy: 700;
 $font-light: 400;
 
@@ -19,5 +21,8 @@ body {
   background-color: $dark-color;
   color: $secondary-color;
   margin: 0;
-  // padding: 30px;
+}
+
+p {
+  font-size: $font-small;
 }

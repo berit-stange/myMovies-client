@@ -3,6 +3,7 @@ import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
@@ -55,32 +56,32 @@ export class MainView extends React.Component { //exposing the component
     render() {
         const { movies, selectedMovie, user, registration } = this.state;
 
-        // if (!registration) return <RegistrationView onRegistration={registration => this.onRegistration(registration)} />;
+        if (!registration) return <RegistrationView onRegistration={registration => this.onRegistration(registration)} />;
 
-        // if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+        if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
         if (movies.length === 0) return <div className="main-view" />;
 
         return (
-            <div>
-                <Nav className="page-header">
-                    <Nav.Item >
+            <div className="main-view">
+                <Navbar className="page-header">
+                    <Nav.Item>
                         <Nav.Link href="#" className="logo">
                             myMovies
                         </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item className="page-header__item">
+                    <Nav.Item>
                         <Nav.Link href="#" className="page-header__item">
                             PROFILE
                         </Nav.Link>
                     </Nav.Item>
-                    {/* <Button>PROFILE</Button> */}
-                </Nav>
-                <Row className="justify-content-md-center main-view">
+                </Navbar>
+
+                <Row className="justify-content-md-center">
 
                     {selectedMovie
                         ? (
-                            <Col md={8}>
+                            <Col>
                                 <MovieView movieData={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
                             </Col>
                         )

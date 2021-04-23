@@ -1,5 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
+import Button from 'react-bootstrap/Button';
+import './movie-view.scss';
 
 export class MovieView extends React.Component {
 
@@ -7,35 +12,42 @@ export class MovieView extends React.Component {
         const { movieData, onBackClick } = this.props; //extracting the props
 
         return (
-            <div className="movie-view">
+            <Row className="movie-view">
 
-                <button onClick={() => { onBackClick(null); }} >BACK</button>
+                <Col sm={12} md={6}>
+                    <Button className="material-icons round" onClick={() => { onBackClick(null); }} ><span>arrow_back</span></Button>
 
-                <div className="movie-poster" >
-                    <img src={movieData.ImagePath} />
-                </div>
+                    <div className="movie-title">
+                        {/* <span className="label">Title: </span> */}
+                        <h2 className="value">{movieData.Title}</h2>
+                    </div>
 
-                <div className="movie-title">
-                    <span className="label">Title: </span>
-                    <span className="value">{movieData.Title}</span>
-                </div>
+                    <h3 className="movie-description">Description: </h3>
+                    <p className="value">{movieData.Description}</p>
 
-                <div className="movie-description">
-                    <span className="label">Description: </span>
-                    <span className="value">{movieData.Description}</span>
-                </div>
+                    <h3 className="movie-director">Director:</h3>
+                    <p className="value">{movieData.Director.Name}</p>
 
-                <div className="movie-director">
-                    <span className="label">Director: </span>
-                    <span className="value">{movieData.Director.Name}</span>
-                </div>
+                    <h3 className="movie-genre">Genre:</h3>
+                    <p className="value">{movieData.Genre.Name}</p>
 
-                <div className="movie-genre">
-                    <span className="label">Genre: </span>
-                    <span className="value">{movieData.Genre.Name}</span>
-                </div>
+                    <h3 className="movie-genre">Actors:</h3>
+                    <p className="value">{movieData.Actors}</p>
 
-            </div>
+                    <h3 className="movie-genre">Release Year:</h3>
+                    <p className="value">{movieData.ReleaseYear}</p>
+
+                    {/* <div className="movie-genre"> //code style from exercise
+                        <span className="label">Genre: </span>
+                        <span className="value">{movieData.Genre.Name}</span>
+                    </div> */}
+                </Col>
+                <Col sm={12} md={6}>
+                    <div className="movie-poster" >
+                        <Image src={movieData.ImagePath} fluid></Image>
+                    </div>
+                </Col>
+            </Row>
         );
     }
 }

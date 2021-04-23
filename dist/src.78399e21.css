@@ -1,16 +1,150 @@
-.card {
-  background-color: #002238;
+.register {
+  margin-right: 0px;
+  margin-left: 0px;
+  display: grid;
 }
 
-.btn-link {
+.registration-view {
+  width: 70%;
+  justify-self: center;
+  align-self: center;
+  padding-top: 30px;
+}
+
+.btn-primary {
+  color: #001625 !important;
+  background-color: #cca53b !important;
+  box-shadow: none;
+}
+
+.btn-primary:active,
+.btn-primary:hover,
+.btn-primary:focus {
+  color: #001625 !important;
+  background-color: gainsboro !important;
+  box-shadow: none;
+}
+.login {
+  margin-right: 0px;
+  margin-left: 0px;
+  display: grid;
+}
+
+.login-view {
+  width: 70%;
+  justify-self: center;
+  align-self: center;
+  padding-top: 30px;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+}
+
+.btn {
+  color: #001625;
+  background-color: #cca53b;
+  font-weight: 700;
+}
+
+.btn-primary,
+.btn-primary {
+  color: gainsboro;
+  background-color: #cca53b !important;
+  box-shadow: none;
+}
+.card {
+  background-color: #001625;
+  border: none;
+  margin-top: 1rem;
+}
+
+.card-body {
+  padding: 0.5rem;
+  align-content: space-between;
+  display: grid;
+}
+
+.h5 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px !important;
+}
+
+button {
+  justify-self: end;
+  align-self: end;
+}
+
+.btn {
+  color: #001625 !important;
+  background-color: gainsboro !important;
+  box-shadow: none;
+  border: none;
+}
+
+.btn:active,
+.btn:hover,
+.btn:focus {
+  color: #001625 !important;
+  background-color: #cca53b !important;
+  box-shadow: none;
+  text-decoration: none;
+}
+h1 {
+  font-family: "Abril Fatface", serif;
+  font-size: 60px !important;
+}
+
+h2 {
+  font-family: "Abril Fatface", serif;
+  font-size: 30px !important;
+}
+
+h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px !important;
   color: #cca53b;
+}
+
+h4 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px !important;
+  color: #cca53b;
+}
+
+h5 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px !important;
+  color: #cca53b;
+}
+
+p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px !important;
+}
+
+.round {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50% !important;
+  font-weight: 700;
+}
+
+.movie-view {
+  border-top: 1px dotted #cca53b;
+  padding-top: 1rem;
+}
+
+.movie-title {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 .page-header {
   display: flex;
   width: 100%;
-  padding: 20px;
   align-items: center;
   color: #cca53b;
+  justify-content: space-between;
 }
 
 .logo {
@@ -20,25 +154,40 @@
   color: #cca53b;
 }
 
+.logo:hover {
+  color: #cca53b;
+}
+
 .page-header__item {
-  flex: 0 1 200px;
   color: #cca53b;
 }
 
 .page-header__item:last-child {
-  flex-grow: 1;
-  text-align: right;
-  color: #002238;
+  text-align: center;
+  color: #001625;
   background-color: #cca53b;
+  font-weight: 700;
+}
+
+.navbar {
+  padding: 2rem 0rem;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
 }
 body {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 20px;
   line-height: 1.6;
-  background-color: #002238;
+  background-color: #001625;
   color: gainsboro;
   margin: 0;
+}
+
+p {
+  font-size: 20px;
 }
 
 /*# sourceMappingURL=/src.78399e21.css.map */
