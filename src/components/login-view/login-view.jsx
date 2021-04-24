@@ -30,13 +30,13 @@ export function LoginView(props) {
             </Navbar>
             <Row className="login">
                 <Form className="login-view">
-                    <Form.Group controlId="formGroupEmail">
+                    <Form.Group controlId="formEmail">
                         <Form.Label>Username:</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" value={username} onChange={e => setUsername(e.target.value)} />
+                        <Form.Control type="text" placeholder="Enter email" value={username} onChange={e => setUsername(e.target.value)} />
                         {/* <input type="text" value={username} onChange={e => setUsername(e.target.value)} /><br /> */}
                     </Form.Group>
 
-                    <Form.Group controlId="formGroupPassword">
+                    <Form.Group controlId="formPassword">
                         <Form.Label>Password:</Form.Label>
                         <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
                         {/* <input type="password" value={password} onChange={e => setPassword(e.target.value)} /><br /> */}
