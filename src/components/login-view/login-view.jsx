@@ -1,5 +1,7 @@
 import React, { useState } from 'react'; //Hook used to add state to function components
 import PropTypes from 'prop-types';
+import axios from 'axios';
+
 import Row from 'react-bootstrap/Row';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -14,8 +16,19 @@ export function LoginView(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(username, password);
-        props.onLoggedIn(username);// send request to server for authentication, then call props.onLoggedIn(username)
+        // console.log(username, password);
+        // props.onLoggedIn(username);// send request to server for authentication, then call props.onLoggedIn(username)
+        axios.post('https://movie-app-001.herokuapp.com/login', { //POST request
+            Username: username,
+            Password: password
+        })
+            .then(response => {
+                const data = response.data; //not only username but also token
+                props.onLoggedIn(data); //method called through props --- this method triggers the onLoggedIn method of “main-view.jsx”
+            })
+            .catch(e => {
+                console.log('no such user')
+            });
     };
 
     return (

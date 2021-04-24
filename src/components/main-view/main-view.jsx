@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-import { RegistrationView } from '../registration-view/registration-view';
+// import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -47,16 +47,35 @@ export class MainView extends React.Component { //exposing the component
         });
     }
 
-    onLoggedIn(user) { //When user logs in, this function updates the `user` property in state to that particular user
+    onLoggedIn(authData) { //parameter has been renamed - need to use both the user and the token
+        console.log(authData);
         this.setState({
-            user
+            user: authData.user.Username
         });
+
+        localStorage.setItem('token', authData.token);
+        localStorage.setItem('user', authData.user.Username);
+        this.getMovies(authData.token);
+    }
+
+    getMovies(token) {
+        axios.get('https://movie-app-001.herokuapp.com/movies', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(response => {
+                this.setState({ // Assign the result to the state
+                    movies: response.data
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     render() {
         const { movies, selectedMovie, user, registration } = this.state;
 
-        if (!registration) return <RegistrationView onRegistration={registration => this.onRegistration(registration)} />;
+        // if (!registration) return <RegistrationView onRegistration={registration => this.onRegistration(registration)} />;
 
         if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
@@ -78,7 +97,6 @@ export class MainView extends React.Component { //exposing the component
                 </Navbar>
 
                 <Row className="justify-content-md-center">
-
                     {selectedMovie
                         ? (
                             <Col>
@@ -86,8 +104,8 @@ export class MainView extends React.Component { //exposing the component
                             </Col>
                         )
                         : movies.map(movie => (
-                            <Col xs={6} sm={4} md={3}>
-                                <MovieCard key={movie._id} movieData={movie} onMovieClick={(newSelectedMovie) => {
+                            <Col xs={6} sm={4} md={3} key={movie._id}>
+                                <MovieCard movieData={movie} onMovieClick={(newSelectedMovie) => {
                                     this.setSelectedMovie(newSelectedMovie)
                                 }} />
                             </Col>

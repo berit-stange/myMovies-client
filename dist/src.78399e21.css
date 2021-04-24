@@ -1,29 +1,3 @@
-.register {
-  margin-right: 0px;
-  margin-left: 0px;
-  display: grid;
-}
-
-.registration-view {
-  width: 70%;
-  justify-self: center;
-  align-self: center;
-  padding-top: 30px;
-}
-
-.btn-primary {
-  color: #001625 !important;
-  background-color: #cca53b !important;
-  box-shadow: none;
-}
-
-.btn-primary:active,
-.btn-primary:hover,
-.btn-primary:focus {
-  color: #001625 !important;
-  background-color: gainsboro !important;
-  box-shadow: none;
-}
 .login {
   margin-right: 0px;
   margin-left: 0px;
