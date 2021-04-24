@@ -36793,7 +36793,7 @@ function RegistrationView(props) {
   }, /*#__PURE__*/_react.default.createElement(_Form.default, {
     className: "registration-view"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
-    controlId: "formGroupEmail"
+    controlId: "formGroupUser"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     type: "text",
     placeholder: "Enter Username",
@@ -37682,7 +37682,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52743" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54515" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

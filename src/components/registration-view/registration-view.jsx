@@ -31,7 +31,7 @@ export function RegistrationView(props) {
             </Navbar>
             <Row className="register">
                 <Form className="registration-view">
-                    <Form.Group controlId="formGroupEmail">
+                    <Form.Group controlId="formGroupUser">
                         <Form.Label>Username:</Form.Label>
                         <Form.Control type="text" placeholder="Enter Username" value={username} onChange={e => setUsername(e.target.value)} />
                     </Form.Group>
