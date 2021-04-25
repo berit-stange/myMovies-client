@@ -23,16 +23,26 @@ export class MainView extends React.Component { //exposing the component
         };
     }
 
+    // componentDidMount() {
+    //     axios.get('https://movie-app-001.herokuapp.com/movies')
+    //         .then(response => {
+    //             this.setState({
+    //                 movies: response.data
+    //             });
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // }
+
     componentDidMount() {
-        axios.get('https://movie-app-001.herokuapp.com/movies')
-            .then(response => {
-                this.setState({
-                    movies: response.data
-                });
-            })
-            .catch(error => {
-                console.log(error);
+        let accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
+            this.setState({
+                user: localStorage.getItem('user')
             });
+            this.getMovies(accessToken);
+        }
     }
 
     setSelectedMovie(movie) { //When movie is clicked, this function is invoked and updates the state of the `selectedMovie` property to that movie
@@ -72,6 +82,14 @@ export class MainView extends React.Component { //exposing the component
             });
     }
 
+    onLoggedOut() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        this.setState({
+            user: null
+        });
+    }
+
     render() {
         const { movies, selectedMovie, user, registration } = this.state;
 
@@ -83,13 +101,14 @@ export class MainView extends React.Component { //exposing the component
 
         return (
             <div className="main-view">
-                <Navbar className="page-header">
+                <Navbar >
                     <Nav.Item>
                         <Nav.Link href="#" className="logo">
                             myMovies
                         </Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
+                    <Nav.Item className="page-header">
+                        <Button className="page-header__item btn-logout" onClick={() => { this.onLoggedOut() }}>LOG OUT</Button>
                         <Nav.Link href="#" className="page-header__item">
                             PROFILE
                         </Nav.Link>

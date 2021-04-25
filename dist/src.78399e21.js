@@ -36787,7 +36787,7 @@ function LoginView(props) {
   };
 
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Navbar.default, {
-    className: "page-header"
+    className: ""
   }, /*#__PURE__*/_react.default.createElement(_Nav.default.Item, null, /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
     href: "#",
     className: "logo"
@@ -37364,20 +37364,30 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       user: null
     };
     return _this;
-  }
+  } // componentDidMount() {
+  //     axios.get('https://movie-app-001.herokuapp.com/movies')
+  //         .then(response => {
+  //             this.setState({
+  //                 movies: response.data
+  //             });
+  //         })
+  //         .catch(error => {
+  //             console.log(error);
+  //         });
+  // }
+
 
   _createClass(MainView, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
+      var accessToken = localStorage.getItem('token');
 
-      _axios.default.get('https://movie-app-001.herokuapp.com/movies').then(function (response) {
-        _this2.setState({
-          movies: response.data
+      if (accessToken !== null) {
+        this.setState({
+          user: localStorage.getItem('user')
         });
-      }).catch(function (error) {
-        console.log(error);
-      });
+        this.getMovies(accessToken);
+      }
     }
   }, {
     key: "setSelectedMovie",
@@ -37409,14 +37419,14 @@ var MainView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "getMovies",
     value: function getMovies(token) {
-      var _this3 = this;
+      var _this2 = this;
 
       _axios.default.get('https://movie-app-001.herokuapp.com/movies', {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
       }).then(function (response) {
-        _this3.setState({
+        _this2.setState({
           // Assign the result to the state
           movies: response.data
         });
@@ -37425,9 +37435,18 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "onLoggedOut",
+    value: function onLoggedOut() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      this.setState({
+        user: null
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var _this$state = this.state,
           movies = _this$state.movies,
@@ -37437,7 +37456,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
       if (!user) return /*#__PURE__*/_react.default.createElement(_loginView.LoginView, {
         onLoggedIn: function onLoggedIn(user) {
-          return _this4.onLoggedIn(user);
+          return _this3.onLoggedIn(user);
         }
       });
       if (movies.length === 0) return /*#__PURE__*/_react.default.createElement("div", {
@@ -37445,12 +37464,17 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "main-view"
-      }, /*#__PURE__*/_react.default.createElement(_Navbar.default, {
-        className: "page-header"
-      }, /*#__PURE__*/_react.default.createElement(_Nav.default.Item, null, /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
+      }, /*#__PURE__*/_react.default.createElement(_Navbar.default, null, /*#__PURE__*/_react.default.createElement(_Nav.default.Item, null, /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
         href: "#",
         className: "logo"
-      }, "myMovies")), /*#__PURE__*/_react.default.createElement(_Nav.default.Item, null, /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
+      }, "myMovies")), /*#__PURE__*/_react.default.createElement(_Nav.default.Item, {
+        className: "page-header"
+      }, /*#__PURE__*/_react.default.createElement(_Button.default, {
+        className: "page-header__item btn-logout",
+        onClick: function onClick() {
+          _this3.onLoggedOut();
+        }
+      }, "LOG OUT"), /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
         href: "#",
         className: "page-header__item"
       }, "PROFILE"))), /*#__PURE__*/_react.default.createElement(_Row.default, {
@@ -37458,7 +37482,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, selectedMovie ? /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_movieView.MovieView, {
         movieData: selectedMovie,
         onBackClick: function onBackClick(newSelectedMovie) {
-          _this4.setSelectedMovie(newSelectedMovie);
+          _this3.setSelectedMovie(newSelectedMovie);
         }
       })) : movies.map(function (movie) {
         return /*#__PURE__*/_react.default.createElement(_Col.default, {
@@ -37469,7 +37493,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
           movieData: movie,
           onMovieClick: function onMovieClick(newSelectedMovie) {
-            _this4.setSelectedMovie(newSelectedMovie);
+            _this3.setSelectedMovie(newSelectedMovie);
           }
         }));
       })));

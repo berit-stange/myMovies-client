@@ -118,7 +118,7 @@ p {
   width: 100%;
   align-items: center;
   color: #cca53b;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .logo {
@@ -132,14 +132,30 @@ p {
   color: #cca53b;
 }
 
+.btn-logout {
+  background-color: transparent !important;
+  border: 1px solid #cca53b;
+  border-radius: 0;
+  color: #cca53b !important;
+  padding: 0.75rem;
+}
+
+.btn-logout:active,
+.btn-logout:hover,
+.btn-logout:focus {
+  border: 1px solid #cca53b !important;
+  box-shadow: none !important;
+}
+
 .page-header__item {
+  background-color: #cca53b;
   color: #cca53b;
+  margin: 1rem;
 }
 
 .page-header__item:last-child {
-  text-align: center;
-  color: #001625;
   background-color: #cca53b;
+  color: #001625;
   font-weight: 700;
 }
 

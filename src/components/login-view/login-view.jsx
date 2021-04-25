@@ -34,7 +34,7 @@ export function LoginView(props) {
     return (
 
         <div>
-            <Navbar className="page-header">
+            <Navbar className="">
                 <Nav.Item>
                     <Nav.Link href="#" className="logo">
                         myMovies

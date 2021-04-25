@@ -18,7 +18,7 @@ $font-light: 400;
     width: 100%;
     align-items: center; 
     color: $primary-color;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .logo{
@@ -26,20 +26,38 @@ $font-light: 400;
     font-size: $font-big;
     line-height: 1.6;
     color: $primary-color;
+    // justify-self: start;
 }
 
 .logo:hover {
     color: $primary-color;
 }
 
-.page-header__item {
-    color: $primary-color;
+.btn-logout {
+    background-color: transparent !important;
+    border: 1px solid $primary-color;
+    border-radius: 0;
+    color: $primary-color !important;
+    padding:  0.75rem;
+}
+
+.btn-logout:active,
+.btn-logout:hover,
+.btn-logout:focus
+ {
+    border: 1px solid $primary-color !important;
+    box-shadow: none !important;
 }
   
-.page-header__item:last-child {
-    text-align: center;
-    color: $dark-color;
+.page-header__item {
     background-color: $primary-color;
+    color: $primary-color;
+    margin: 1rem;
+}
+
+.page-header__item:last-child {
+    background-color: $primary-color;
+    color: $dark-color;
     font-weight: $font-heavy;
 }
 
@@ -50,3 +68,10 @@ $font-light: 400;
 .nav-link {
     padding: 0.5rem 1rem;
 }
+
+// .nav-link:active,
+// .nav-link:hover,
+// .nav-link:focus
+//  {
+//     padding: 0.5rem 1rem;
+// }
