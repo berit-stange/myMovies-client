@@ -1,10 +1,39 @@
-.login {
+.register {
   margin-right: 0px;
   margin-left: 0px;
   display: grid;
 }
 
+.registration-view {
+  width: 70%;
+  justify-self: center;
+  align-self: center;
+  padding-top: 30px;
+}
+
+.btn-primary {
+  color: #001625 !important;
+  background-color: #cca53b !important;
+  box-shadow: none;
+}
+
+.btn-primary:active,
+.btn-primary:hover,
+.btn-primary:focus {
+  color: #001625 !important;
+  background-color: gainsboro !important;
+  box-shadow: none;
+}
 .login-view {
+  display: grid;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-top: 2rem;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.login {
   width: 70%;
   justify-self: center;
   align-self: center;
@@ -27,6 +56,25 @@
   background-color: #cca53b !important;
   box-shadow: none;
 }
+
+.btn-login {
+  background-color: #cca53b !important;
+  border: 1px solid #cca53b !important;
+  border-radius: 0;
+  color: #001625 !important;
+  padding: 0.75rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.btn-login:active,
+.btn-login:hover,
+.btn-login:focus {
+  background-color: #001625 !important;
+  border: 1px solid #cca53b !important;
+  box-shadow: none !important;
+  color: gainsboro !important;
+}
 .card {
   background-color: #001625;
   border: none;
@@ -44,14 +92,7 @@
   font-size: 15px !important;
 }
 
-button {
-  justify-self: end;
-  align-self: end;
-}
-
 .btn {
-  color: #001625 !important;
-  background-color: gainsboro !important;
   box-shadow: none;
   border: none;
 }
@@ -64,6 +105,195 @@ button {
   box-shadow: none;
   text-decoration: none;
 }
+
+.btn-card {
+  background-color: transparent !important;
+  border: 1px solid #cca53b;
+  border-radius: 0;
+  color: #cca53b !important;
+  padding: 0.4rem;
+  width: 100%;
+}
+.movie-view {
+  border-top: 1px dotted #cca53b;
+  padding-top: 2rem;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.movie-title {
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
+}
+
+h3 {
+  padding-top: 1.5rem;
+}
+
+.btn-primary {
+  box-shadow: none;
+  border: none;
+}
+
+.btn-primary:active,
+.btn-primary:hover,
+.btn-primary:focus {
+  color: #001625 !important;
+  background-color: gainsboro !important;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+.btn-link {
+  background-color: transparent !important;
+  border: 1px solid #cca53b;
+  border-radius: 0;
+  color: #cca53b !important;
+  padding: 0.4rem;
+  width: 100%;
+}
+.director-view {
+  border-top: 1px dotted #cca53b;
+  padding-top: 2rem;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.director-name {
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
+}
+
+.director-bio {
+  padding-top: 1.5rem;
+}
+
+h3 {
+  padding-top: 1.5rem;
+}
+
+.btn-primary {
+  box-shadow: none;
+  border: none;
+}
+
+.btn-primary:active,
+.btn-primary:hover,
+.btn-primary:focus {
+  color: #001625 !important;
+  background-color: gainsboro !important;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+.btn-link {
+  background-color: transparent !important;
+  border: 1px solid #cca53b;
+  border-radius: 0;
+  color: #cca53b !important;
+  padding: 0.4rem;
+  width: 100%;
+}
+
+.btn-link {
+  background-color: transparent !important;
+  border: 1px solid #cca53b;
+  border-radius: 0;
+  color: #cca53b !important;
+  padding: 0.4rem;
+  width: 100%;
+}
+.genre-view {
+  border-top: 1px dotted #cca53b;
+  padding-top: 2rem;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.genre-name {
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
+}
+
+.genre-description {
+  padding-top: 1.5rem;
+}
+
+h3 {
+  padding-top: 1.5rem;
+}
+
+.btn-primary {
+  box-shadow: none;
+  border: none;
+}
+
+.btn-primary:active,
+.btn-primary:hover,
+.btn-primary:focus {
+  color: #001625 !important;
+  background-color: gainsboro !important;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+.btn-link {
+  background-color: transparent !important;
+  border: 1px solid #cca53b;
+  border-radius: 0;
+  color: #cca53b !important;
+  padding: 0.4rem;
+  width: 100%;
+}
+
+.btn-link {
+  background-color: transparent !important;
+  border: 1px solid #cca53b;
+  border-radius: 0;
+  color: #cca53b !important;
+  padding: 0.4rem;
+  width: 100%;
+}
+.register {
+  margin-right: 0px;
+  margin-left: 0px;
+  display: grid;
+}
+
+.registration-view {
+  width: 70%;
+  justify-self: center;
+  align-self: center;
+  padding-top: 30px;
+}
+
+.btn-primary {
+  color: #001625 !important;
+  background-color: #cca53b !important;
+  box-shadow: none;
+}
+
+.btn-primary:active,
+.btn-primary:hover,
+.btn-primary:focus {
+  color: #001625 !important;
+  background-color: gainsboro !important;
+  box-shadow: none;
+}
+.main-view {
+  padding-top: 1.5rem;
+  padding-right: 0;
+  padding-left: 0;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.6;
+  background-color: #001625;
+  color: gainsboro;
+}
+
 h1 {
   font-family: "Abril Fatface", serif;
   font-size: 60px !important;
@@ -97,28 +327,28 @@ p {
   font-size: 15px !important;
 }
 
-.round {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 50% !important;
-  font-weight: 700;
+.main-view {
+  padding: 20px;
 }
 
-.movie-view {
-  border-top: 1px dotted #cca53b;
-  padding-top: 1rem;
-}
-
-.movie-title {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
 .page-header {
   display: flex;
   width: 100%;
   align-items: center;
   color: #cca53b;
   justify-content: flex-end;
+}
+
+.page-header__item {
+  background-color: #cca53b;
+  color: #cca53b;
+  margin-left: 1rem;
+}
+
+.page-header__item:last-child {
+  background-color: #cca53b;
+  color: #001625;
+  font-weight: 700;
 }
 
 .logo {
@@ -143,41 +373,26 @@ p {
 .btn-logout:active,
 .btn-logout:hover,
 .btn-logout:focus {
+  background-color: #cca53b !important;
   border: 1px solid #cca53b !important;
   box-shadow: none !important;
 }
 
-.page-header__item {
-  background-color: #cca53b;
-  color: #cca53b;
-  margin: 1rem;
-}
-
-.page-header__item:last-child {
-  background-color: #cca53b;
-  color: #001625;
-  font-weight: 700;
-}
-
 .navbar {
-  padding: 2rem 0rem;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .nav-link {
   padding: 0.5rem 1rem;
 }
-body {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 1.6;
-  background-color: #001625;
-  color: gainsboro;
-  margin: 0;
-}
 
-p {
-  font-size: 20px;
+.round {
+  color: #001625;
+  height: 4rem;
+  border-radius: 50% !important;
+  font-weight: 700;
+  width: 4rem;
 }
 
 /*# sourceMappingURL=/src.78399e21.css.map */

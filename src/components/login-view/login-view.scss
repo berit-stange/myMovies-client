@@ -1,6 +1,5 @@
 $primary-color: #cca53b;
 $secondary-color: gainsboro;
-// $dark-color: #002238;
 $dark-color: #001625;
 $font-sans: 'Montserrat', sans-serif;
 $font-serif: 'Abril Fatface', serif;
@@ -11,33 +10,55 @@ $font-p: 15px;
 $font-heavy: 700;
 $font-light: 400;
 
-.login {
-    margin-right: 0px;
-    margin-left: 0px;
-    display: grid;
-}
-
 .login-view {
-    width: 70%;
-    justify-self: center;
-    align-self: center;
-    padding-top: 30px;
+  display: grid;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-top: 2rem;
+  padding-right: 0;
+  padding-left: 0;
 }
 
+.login {
+  width: 70%;
+  justify-self: center;
+  align-self: center;
+  padding-top: 30px;
+}
 
 .nav-link {
-    padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .btn {
-    color: $dark-color;
-    background-color: $primary-color;
-    font-weight: $font-heavy;
+  color: $dark-color;
+  background-color: $primary-color;
+  font-weight: $font-heavy;
 }
 
 .btn-primary,
 .btn-primary {
-    color: $secondary-color;
-    background-color: $primary-color !important;
-    box-shadow: none;
+  color: $secondary-color;
+  background-color: $primary-color !important;
+  box-shadow: none;
 }
+
+.btn-login {
+    background-color: $primary-color !important;
+    border: 1px solid $primary-color !important;
+    border-radius: 0;
+    color: $dark-color !important;
+    padding:  0.75rem;
+    font-weight: $font-heavy;
+    margin-top: 1rem;
+  }
+  
+  .btn-login:active,
+  .btn-login:hover,
+  .btn-login:focus {
+    background-color: $dark-color !important;
+    border: 1px solid $primary-color !important;
+    box-shadow: none !important;
+    color: $secondary-color !important;
+  }
+  

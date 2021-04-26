@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Row from 'react-bootstrap/Row';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import './login-view.scss';
@@ -32,33 +30,23 @@ export function LoginView(props) {
     };
 
     return (
+        <Row className="login-view">
+            <Form className="login">
+                <Form.Group controlId="formEmail">
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control type="text" placeholder="Enter email" value={username} onChange={e => setUsername(e.target.value)} />
+                    {/* <input type="text" value={username} onChange={e => setUsername(e.target.value)} /><br /> */}
+                </Form.Group>
 
-        <div>
-            <Navbar className="">
-                <Nav.Item>
-                    <Nav.Link href="#" className="logo">
-                        myMovies
-                        </Nav.Link>
-                </Nav.Item>
-            </Navbar>
-            <Row className="login">
-                <Form className="login-view">
-                    <Form.Group controlId="formEmail">
-                        <Form.Label>Username:</Form.Label>
-                        <Form.Control type="text" placeholder="Enter email" value={username} onChange={e => setUsername(e.target.value)} />
-                        {/* <input type="text" value={username} onChange={e => setUsername(e.target.value)} /><br /> */}
-                    </Form.Group>
+                <Form.Group controlId="formPassword">
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+                    {/* <input type="password" value={password} onChange={e => setPassword(e.target.value)} /><br /> */}
+                </Form.Group>
 
-                    <Form.Group controlId="formPassword">
-                        <Form.Label>Password:</Form.Label>
-                        <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
-                        {/* <input type="password" value={password} onChange={e => setPassword(e.target.value)} /><br /> */}
-                    </Form.Group>
-
-                    <Button type="submit" onClick={handleSubmit}>Submit</Button>
-                </Form>
-            </Row>
-        </div>
+                <Button type="submit" className="btn-login" onClick={handleSubmit}>Submit</Button>
+            </Form>
+        </Row>
     );
 }
 
