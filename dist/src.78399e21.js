@@ -40998,15 +40998,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       localStorage.setItem('user', authData.user.Username);
       this.getMovies(authData.token);
       this.getUser(authData.token);
-    } // Profile update
-
-  }, {
-    key: "onProfile",
-    value: function onProfile(profile) {
-      this.setState({
-        profile: profile
-      });
-      this.componentDidMount();
     }
   }, {
     key: "onLoggedOut",

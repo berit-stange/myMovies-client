@@ -94,13 +94,6 @@ export class MainView extends React.Component { //exposing the component
         this.getUser(authData.token);
     }
 
-    // Profile update
-    onProfile(profile) {
-        this.setState({
-            profile: profile,
-        });
-        this.componentDidMount();
-    }
 
     onLoggedOut() {
         localStorage.removeItem('token');
