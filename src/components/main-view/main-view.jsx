@@ -51,6 +51,20 @@ export class MainView extends React.Component { //exposing the component
             });
     }
 
+    getUser(token) {
+        axios.get('https://movie-app-001.herokuapp.com/users', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(response => {
+                this.setState({ // Assign the result to the state
+                    users: response.data
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
@@ -58,6 +72,7 @@ export class MainView extends React.Component { //exposing the component
                 user: localStorage.getItem('user')
             });
             this.getMovies(accessToken);
+            this.getUser(accessToken);
         }
     }
 
