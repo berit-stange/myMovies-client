@@ -14,7 +14,30 @@ import './profile-view.scss';
 export function ProfileView(props) {
 
     // const { users, onBackClick } = this.props;
-    const [user, setUsername] = useState(props.user);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [birthday, setBirthday] = useState('');
+    const [email, setEmail] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(username, password);
+        // props.onRegistration(username);
+        axios.post('https://movie-app-001.herokuapp.com/users', {
+            Username: username,
+            Password: password,
+            Birthday: birthday,
+            Email: email
+        })
+            .then(response => {
+                const data = response.data;
+                console.log(data);
+                window.open('/', '_self'); //self: page will open in the current tab
+            })
+            .catch(e => {
+                console.log('error at registration')
+            });
+    };
 
 
     return (

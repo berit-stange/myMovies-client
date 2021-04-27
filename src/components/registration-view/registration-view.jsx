@@ -11,6 +11,7 @@ import './registration-view.scss';
 
 
 export function RegistrationView(props) {
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [birthday, setBirthday] = useState('');
