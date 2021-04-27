@@ -367,7 +367,6 @@ p {
   border: 1px solid #cca53b;
   border-radius: 0;
   color: #cca53b !important;
-  padding: 0.75rem;
 }
 
 .btn-logout:active,
@@ -393,6 +392,20 @@ p {
   border-radius: 50% !important;
   font-weight: 700;
   width: 4rem;
+}
+
+.btn-profile {
+  border: 1px solid #cca53b;
+  border-radius: 0;
+  color: #001625 !important;
+}
+
+.btn-profile:active,
+.btn-profile:hover,
+.btn-profile:focus {
+  background-color: gainsboro !important;
+  border: 1px solid #cca53b !important;
+  box-shadow: none !important;
 }
 
 /*# sourceMappingURL=/src.78399e21.css.map */

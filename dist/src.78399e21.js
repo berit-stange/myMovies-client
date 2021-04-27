@@ -40916,8 +40916,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       selectedMovie: null,
       //tells the application that no movie cards were clicked
       registration: null,
-      user: null,
-      users: []
+      user: null // users: []
+
     };
     return _this;
   }
@@ -40990,10 +40990,10 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     key: "onLoggedIn",
     value: function onLoggedIn(authData) {
       //parameter has been renamed - need to use both the user and the token
-      console.log(authData);
-      this.setState({
-        user: authData.user.username
-      });
+      console.log(authData); // this.setState({
+      // user: authData.user.username,
+      // });
+
       localStorage.setItem('token', authData.token);
       localStorage.setItem('user', authData.user.Username);
       this.getMovies(authData.token);
@@ -41032,15 +41032,16 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         }
       }, "LOG OUT"), /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
         href: "#",
-        className: "page-header__item"
-      }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-        to: "/users/".concat(users.Username)
-      }, /*#__PURE__*/_react.default.createElement(_Button.default, {
+        className: ""
+      }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link
+      /* to={`/users/${users.Username}`} */
+      , null, /*#__PURE__*/_react.default.createElement(_Button.default, {
         variant: "link",
+        className: "page-header__item",
         onClick: function onClick() {
           _this4.onLoggedIn();
         }
-      }, users.Username))))), /*#__PURE__*/_react.default.createElement(_Row.default, {
+      }, this.state.user))))), /*#__PURE__*/_react.default.createElement(_Row.default, {
         className: "justify-content-md-center"
       }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         exact: true,

@@ -28,7 +28,7 @@ export class MainView extends React.Component { //exposing the component
             selectedMovie: null, //tells the application that no movie cards were clicked
             registration: null,
             user: null,
-            users: []
+            // users: []
         };
     }
 
@@ -85,9 +85,9 @@ export class MainView extends React.Component { //exposing the component
 
     onLoggedIn(authData) { //parameter has been renamed - need to use both the user and the token
         console.log(authData);
-        this.setState({
-            user: authData.user.username,
-        });
+        // this.setState({
+        // user: authData.user.username,
+        // });
 
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
@@ -122,11 +122,11 @@ export class MainView extends React.Component { //exposing the component
                             </Nav.Item>
                         <Nav.Item className="page-header">
                             <Button className="page-header__item btn-logout" onClick={() => { this.onLoggedOut() }}>LOG OUT</Button>
-                            <Nav.Link href="#" className="page-header__item">
+                            <Nav.Link href="#" className="">
                                 {/* PROFILE*/}
-                                {/* <Button className="page-header__item" onClick={() => { this.onLoggedIn() }}></Button> */}
-                                <Link to={`/users/${users.Username}`}>
-                                    <Button variant="link" onClick={() => { this.onLoggedIn() }}>{users.Username}</Button>
+                                {/* <Button className="page-header__item btn-profile " onClick={() => { this.onLoggedIn() }}></Button> */}
+                                <Link /* to={`/users/${users.Username}`} */>
+                                    <Button variant="link" className="page-header__item" onClick={() => { this.onLoggedIn() }}>{this.state.user}</Button>
                                 </Link>
                             </Nav.Link>
                         </Nav.Item>
