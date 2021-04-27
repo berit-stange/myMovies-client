@@ -40690,7 +40690,7 @@ module.hot.accept(reloadCSS);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ProfileView = void 0;
+exports.ProfileView = ProfileView;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -40714,145 +40714,80 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function ProfileView(props) {
+  // const { users, onBackClick } = this.props;
+  var _useState = (0, _react.useState)(props.user),
+      _useState2 = _slicedToArray(_useState, 2),
+      user = _useState2[0],
+      setUsername = _useState2[1];
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-var ProfileView = /*#__PURE__*/function (_React$Component) {
-  _inherits(ProfileView, _React$Component);
-
-  var _super = _createSuper(ProfileView);
-
-  function ProfileView(props) {
-    var _this;
-
-    _classCallCheck(this, ProfileView);
-
-    _this = _super.call(this);
-    _this.state = {// Username: null,
-      // Password: null,
-      // Birthday: null,
-      // Email: null
-      // users: []
-    };
-    return _this;
-  }
-
-  _createClass(ProfileView, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var accessToken = localStorage.getItem('token'); // if (accessToken !== null) {
-      //     this.setState({
-      //         user: localStorage.getItem('user')
-      //     });
-
-      this.getUser(accessToken);
+  return /*#__PURE__*/_react.default.createElement(_Row.default, {
+    className: "register"
+  }, /*#__PURE__*/_react.default.createElement(_Button.default, {
+    className: "material-icons round",
+    onClick: function onClick() {
+      onBackClick(null);
     }
-  }, {
-    key: "getUser",
-    value: function getUser(token) {
-      var _this2 = this;
-
-      _axios.default.get("https://movie-app-001.herokuapp.com/users/:username", {
-        headers: {
-          Authorization: "Bearer ".concat(token)
-        } // Username: username,
-        // Password: password,
-        // Birthday: birthday,
-        // Email: email
-        // users: []
-
-      }).then(function (response) {
-        _this2.setState({
-          users: response.data
-        });
-      }).catch(function (error) {
-        console.log(error);
-      });
+  }, /*#__PURE__*/_react.default.createElement("span", null, "arrow_back")), /*#__PURE__*/_react.default.createElement("h2", {
+    className: "director-name"
+  }, "Profile of: . . .  ", " "), /*#__PURE__*/_react.default.createElement(_Form.default, {
+    className: "registration-view"
+  }, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "formGroupUser"
+  }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    type: "text",
+    placeholder: "Enter Username"
+    /* value={username} */
+    ,
+    onChange: function onChange(e) {
+      return setUsername(e.target.value);
     }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          users = _this$props.users,
-          onBackClick = _this$props.onBackClick;
-      return /*#__PURE__*/_react.default.createElement(_Row.default, {
-        className: "register"
-      }, /*#__PURE__*/_react.default.createElement(_Button.default, {
-        className: "material-icons round",
-        onClick: function onClick() {
-          onBackClick(null);
-        }
-      }, /*#__PURE__*/_react.default.createElement("span", null, "arrow_back")), /*#__PURE__*/_react.default.createElement("h2", {
-        className: "director-name"
-      }, "Profile of (username)", users.Username), /*#__PURE__*/_react.default.createElement(_Form.default, {
-        className: "registration-view"
-      }, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
-        controlId: "formGroupUser"
-      }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
-        type: "text",
-        placeholder: "Enter Username"
-        /* value={username} */
-        ,
-        onChange: function onChange(e) {
-          return setUsername(e.target.value);
-        }
-      })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
-        controlId: "formGroupPassword"
-      }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Password:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
-        type: "password",
-        placeholder: "Enter Password"
-        /* value={password} */
-        ,
-        onChange: function onChange(e) {
-          return setPassword(e.target.value);
-        }
-      })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
-        controlId: "formGroupBirthday"
-      }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Birthday:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
-        type: "",
-        placeholder: "Enter Birthday"
-        /* value={birthday} */
-        ,
-        onChange: function onChange(e) {
-          return setBirthday(e.target.value);
-        }
-      })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
-        controlId: "formGroupEmail"
-      }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Email:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
-        type: "email",
-        placeholder: "Enter Email"
-        /* value={email} */
-        ,
-        onChange: function onChange(e) {
-          return setEmail(e.target.value);
-        }
-      }))), /*#__PURE__*/_react.default.createElement("h2", {
-        className: "director-name"
-      }, "My Movie Collection:"));
+  })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "formGroupPassword"
+  }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Password:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    type: "password",
+    placeholder: "Enter Password"
+    /* value={password} */
+    ,
+    onChange: function onChange(e) {
+      return setPassword(e.target.value);
     }
-  }]);
-
-  return ProfileView;
-}(_react.default.Component); // ProfileView.propTypes = {
+  })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "formGroupBirthday"
+  }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Birthday:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    type: "",
+    placeholder: "Enter Birthday"
+    /* value={birthday} */
+    ,
+    onChange: function onChange(e) {
+      return setBirthday(e.target.value);
+    }
+  })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "formGroupEmail"
+  }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Email:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    type: "email",
+    placeholder: "Enter Email"
+    /* value={email} */
+    ,
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    }
+  }))), /*#__PURE__*/_react.default.createElement("h2", {
+    className: "director-name"
+  }, "My Movie Collection:"));
+} // ProfileView.propTypes = {
 // ProfileView: PropTypes.shape({
 //     username: PropTypes.string.isRequired,
 //     password: PropTypes.string.isRequired,
@@ -40861,9 +40796,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 //     }),
 //     handleUpdate: PropTypes.func,
 // };
-
-
-exports.ProfileView = ProfileView;
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./profile-view.scss":"components/profile-view/profile-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -40951,7 +40883,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       selectedMovie: null,
       //tells the application that no movie cards were clicked
       registration: null,
-      user: null
+      user: null,
+      profile: 'profile'
     };
     return _this;
   }
@@ -41007,11 +40940,20 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       //parameter has been renamed - need to use both the user and the token
       console.log(authData);
       this.setState({
-        user: authData.user.Username
+        user: authData.user.username
       });
       localStorage.setItem('token', authData.token);
       localStorage.setItem('user', authData.user.Username);
       this.getMovies(authData.token); // this.getUser(authData.token);
+    } // Profile update
+
+  }, {
+    key: "onProfile",
+    value: function onProfile(profile) {
+      this.setState({
+        profile: profile
+      });
+      this.componentDidMount();
     }
   }, {
     key: "onLoggedOut",
@@ -41029,7 +40971,9 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
       var _this$state = this.state,
           movies = _this$state.movies,
-          user = _this$state.user; // if (!registration) return <RegistrationView onRegistration={registration => this.onRegistration(registration)} />;
+          user = _this$state.user,
+          profile = _this$state.profile; // if (!registration) return <RegistrationView onRegistration={registration => this.onRegistration(registration)} />;
+      // if (profile) return <ProfileView user={this.state.user} />;
 
       return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement("div", {
         className: "main-view"

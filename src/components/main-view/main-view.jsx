@@ -26,7 +26,8 @@ export class MainView extends React.Component { //exposing the component
             movies: [],
             selectedMovie: null, //tells the application that no movie cards were clicked
             registration: null,
-            user: null
+            user: null,
+            profile: 'profile'
         };
     }
 
@@ -69,13 +70,21 @@ export class MainView extends React.Component { //exposing the component
     onLoggedIn(authData) { //parameter has been renamed - need to use both the user and the token
         console.log(authData);
         this.setState({
-            user: authData.user.Username
+            user: authData.user.username,
         });
 
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
         // this.getUser(authData.token);
+    }
+
+    // Profile update
+    onProfile(profile) {
+        this.setState({
+            profile: profile,
+        });
+        this.componentDidMount();
     }
 
     onLoggedOut() {
@@ -87,9 +96,12 @@ export class MainView extends React.Component { //exposing the component
     }
 
     render() {
-        const { movies, user, } = this.state;
+        const { movies, user, profile } = this.state;
 
         // if (!registration) return <RegistrationView onRegistration={registration => this.onRegistration(registration)} />;
+
+        // if (profile) return <ProfileView user={this.state.user} />;
+
 
         return (
             <Router>
@@ -106,6 +118,8 @@ export class MainView extends React.Component { //exposing the component
                             </Nav.Link>
                         </Nav.Item>
                     </Navbar>
+
+
 
 
                     <Row className="justify-content-md-center">
