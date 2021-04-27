@@ -41033,12 +41033,14 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, "LOG OUT"), /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
         href: "#",
         className: "page-header__item"
+      }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+        to: "/users/".concat(users.Username)
       }, /*#__PURE__*/_react.default.createElement(_Button.default, {
-        className: "page-header__item",
+        variant: "link",
         onClick: function onClick() {
           _this4.onLoggedIn();
         }
-      })))), /*#__PURE__*/_react.default.createElement(_Row.default, {
+      }, users.Username))))), /*#__PURE__*/_react.default.createElement(_Row.default, {
         className: "justify-content-md-center"
       }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         exact: true,

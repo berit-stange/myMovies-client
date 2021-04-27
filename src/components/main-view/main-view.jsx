@@ -1,6 +1,7 @@
 import React from 'react'; //import React into file
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -123,7 +124,10 @@ export class MainView extends React.Component { //exposing the component
                             <Button className="page-header__item btn-logout" onClick={() => { this.onLoggedOut() }}>LOG OUT</Button>
                             <Nav.Link href="#" className="page-header__item">
                                 {/* PROFILE*/}
-                                <Button className="page-header__item" onClick={() => { this.onLoggedIn() }}></Button>
+                                {/* <Button className="page-header__item" onClick={() => { this.onLoggedIn() }}></Button> */}
+                                <Link to={`/users/${users.Username}`}>
+                                    <Button variant="link" onClick={() => { this.onLoggedIn() }}>{users.Username}</Button>
+                                </Link>
                             </Nav.Link>
                         </Nav.Item>
                     </Navbar>
