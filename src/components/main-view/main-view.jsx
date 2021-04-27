@@ -91,7 +91,7 @@ export class MainView extends React.Component { //exposing the component
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
-        // this.getUser(authData.token);
+        this.getUser(authData.token);
     }
 
     // Profile update
@@ -129,7 +129,8 @@ export class MainView extends React.Component { //exposing the component
                         <Nav.Item className="page-header">
                             <Button className="page-header__item btn-logout" onClick={() => { this.onLoggedOut() }}>LOG OUT</Button>
                             <Nav.Link href="#" className="page-header__item">
-                                PROFILE
+                                {/* PROFILE*/}
+                                <Button className="page-header__item" onClick={() => { this.onLoggedIn() }}></Button>
                             </Nav.Link>
                         </Nav.Item>
                     </Navbar>
