@@ -40752,7 +40752,7 @@ function ProfileView(props) {
     e.preventDefault();
     console.log(username, password); // props.onRegistration(username);
 
-    _axios.default.post('https://movie-app-001.herokuapp.com/users', {
+    _axios.default.put('https://movie-app-001.herokuapp.com/users', {
       Username: username,
       Password: password,
       Birthday: birthday,

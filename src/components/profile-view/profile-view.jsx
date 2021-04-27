@@ -23,7 +23,7 @@ export function ProfileView(props) {
         e.preventDefault();
         console.log(username, password);
         // props.onRegistration(username);
-        axios.post('https://movie-app-001.herokuapp.com/users', {
+        axios.put('https://movie-app-001.herokuapp.com/users', {
             Username: username,
             Password: password,
             Birthday: birthday,
