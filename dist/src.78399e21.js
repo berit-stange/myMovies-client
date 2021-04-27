@@ -40917,7 +40917,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       //tells the application that no movie cards were clicked
       registration: null,
       user: null,
-      profile: 'profile'
+      users: []
     };
     return _this;
   }
@@ -41016,7 +41016,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           movies = _this$state.movies,
           user = _this$state.user,
-          profile = _this$state.profile; // if (!registration) return <RegistrationView onRegistration={registration => this.onRegistration(registration)} />;
+          users = _this$state.users; // if (!registration) return <RegistrationView onRegistration={registration => this.onRegistration(registration)} />;
       // if (profile) return <ProfileView user={this.state.user} />;
 
       return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement("div", {

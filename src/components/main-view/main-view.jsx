@@ -28,7 +28,7 @@ export class MainView extends React.Component { //exposing the component
             selectedMovie: null, //tells the application that no movie cards were clicked
             registration: null,
             user: null,
-            profile: 'profile'
+            users: []
         };
     }
 
@@ -105,7 +105,7 @@ export class MainView extends React.Component { //exposing the component
     }
 
     render() {
-        const { movies, user, profile } = this.state;
+        const { movies, user, users } = this.state;
 
         // if (!registration) return <RegistrationView onRegistration={registration => this.onRegistration(registration)} />;
 
