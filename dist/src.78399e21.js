@@ -40953,7 +40953,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     value: function getUser(token) {
       var _this3 = this;
 
-      _axios.default.get('https://movie-app-001.herokuapp.com/users', {
+      _axios.default.get('https://movie-app-001.herokuapp.com/users/:Username', {
         headers: {
           Authorization: "Bearer ".concat(token)
         }

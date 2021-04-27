@@ -52,7 +52,7 @@ export class MainView extends React.Component { //exposing the component
     }
 
     getUser(token) {
-        axios.get('https://movie-app-001.herokuapp.com/users', {
+        axios.get('https://movie-app-001.herokuapp.com/users/:Username', {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
