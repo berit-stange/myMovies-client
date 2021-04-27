@@ -32,11 +32,11 @@ export class MainView extends React.Component { //exposing the component
         };
     }
 
-    setSelectedMovie(movie) { //When movie is clicked, this function is invoked and updates the state of the `selectedMovie` property to that movie
-        this.setState({
-            selectedMovie: movie
-        });
-    }
+    // setSelectedMovie(movie) { //When movie is clicked, this function is invoked and updates the state of the `selectedMovie` property to that movie
+    //     this.setState({
+    //         selectedMovie: movie
+    //     });
+    // }
 
     getMovies(token) {
         axios.get('https://movie-app-001.herokuapp.com/movies', {
@@ -85,9 +85,9 @@ export class MainView extends React.Component { //exposing the component
 
     onLoggedIn(authData) { //parameter has been renamed - need to use both the user and the token
         console.log(authData);
-        // this.setState({
-        // user: authData.user.username,
-        // });
+        this.setState({
+            user: authData.user.username,
+        });
 
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
@@ -122,12 +122,10 @@ export class MainView extends React.Component { //exposing the component
                             </Nav.Item>
                         <Nav.Item className="page-header">
                             <Button className="page-header__item btn-logout" onClick={() => { this.onLoggedOut() }}>LOG OUT</Button>
-                            <Nav.Link href="#" className="">
+                            <Nav.Link href={`/users/${user}`} className="">
                                 {/* PROFILE*/}
                                 {/* <Button className="page-header__item btn-profile " onClick={() => { this.onLoggedIn() }}></Button> */}
-                                <Link /* to={`/users/${users.Username}`} */>
-                                    <Button variant="link" className="page-header__item" onClick={() => { this.onLoggedIn() }}>{this.state.user}</Button>
-                                </Link>
+                                <Button variant="link" className="page-header__item" onClick={() => { this.onLoggedIn() }}>{this.state.user}</Button>
                             </Nav.Link>
                         </Nav.Item>
                     </Navbar>

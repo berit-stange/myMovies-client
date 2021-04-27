@@ -40920,17 +40920,14 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
     };
     return _this;
-  }
+  } // setSelectedMovie(movie) { //When movie is clicked, this function is invoked and updates the state of the `selectedMovie` property to that movie
+  //     this.setState({
+  //         selectedMovie: movie
+  //     });
+  // }
+
 
   _createClass(MainView, [{
-    key: "setSelectedMovie",
-    value: function setSelectedMovie(movie) {
-      //When movie is clicked, this function is invoked and updates the state of the `selectedMovie` property to that movie
-      this.setState({
-        selectedMovie: movie
-      });
-    }
-  }, {
     key: "getMovies",
     value: function getMovies(token) {
       var _this2 = this;
@@ -40990,10 +40987,10 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     key: "onLoggedIn",
     value: function onLoggedIn(authData) {
       //parameter has been renamed - need to use both the user and the token
-      console.log(authData); // this.setState({
-      // user: authData.user.username,
-      // });
-
+      console.log(authData);
+      this.setState({
+        user: authData.user.username
+      });
       localStorage.setItem('token', authData.token);
       localStorage.setItem('user', authData.user.Username);
       this.getMovies(authData.token);
@@ -41031,17 +41028,15 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           _this4.onLoggedOut();
         }
       }, "LOG OUT"), /*#__PURE__*/_react.default.createElement(_Nav.default.Link, {
-        href: "#",
+        href: "/users/".concat(user),
         className: ""
-      }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link
-      /* to={`/users/${users.Username}`} */
-      , null, /*#__PURE__*/_react.default.createElement(_Button.default, {
+      }, /*#__PURE__*/_react.default.createElement(_Button.default, {
         variant: "link",
         className: "page-header__item",
         onClick: function onClick() {
           _this4.onLoggedIn();
         }
-      }, this.state.user))))), /*#__PURE__*/_react.default.createElement(_Row.default, {
+      }, this.state.user)))), /*#__PURE__*/_react.default.createElement(_Row.default, {
         className: "justify-content-md-center"
       }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         exact: true,
@@ -41277,7 +41272,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63334" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52699" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
