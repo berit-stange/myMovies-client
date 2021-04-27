@@ -40706,6 +40706,10 @@ var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
 
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
+var _Nav = _interopRequireDefault(require("react-bootstrap/Nav"));
+
+var _reactRouterDom = require("react-router-dom");
+
 require("./profile-view.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -40748,11 +40752,11 @@ function ProfileView(props) {
       email = _useState8[0],
       setEmail = _useState8[1];
 
-  var handleSubmit = function handleSubmit(e) {
+  var handleUpdate = function handleUpdate(e) {
     e.preventDefault();
-    console.log(username, password); // props.onRegistration(username);
+    console.log(username, password);
 
-    _axios.default.put('https://movie-app-001.herokuapp.com/users', {
+    _axios.default.put('https://movie-app-001.herokuapp.com/users/:Username', {
       Username: username,
       Password: password,
       Birthday: birthday,
@@ -40768,12 +40772,12 @@ function ProfileView(props) {
 
   return /*#__PURE__*/_react.default.createElement(_Row.default, {
     className: "register"
+  }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+    to: "/",
+    className: "page-header"
   }, /*#__PURE__*/_react.default.createElement(_Button.default, {
-    className: "material-icons round",
-    onClick: function onClick() {
-      onBackClick(null);
-    }
-  }, /*#__PURE__*/_react.default.createElement("span", null, "arrow_back")), /*#__PURE__*/_react.default.createElement("h2", {
+    variant: "link"
+  }, "All Movies")), /*#__PURE__*/_react.default.createElement("h2", {
     className: "director-name"
   }, "Profile of: . . .  ", " "), /*#__PURE__*/_react.default.createElement(_Form.default, {
     className: "registration-view"
@@ -40781,9 +40785,8 @@ function ProfileView(props) {
     controlId: "formGroupUser"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     type: "text",
-    placeholder: "Enter Username"
-    /* value={username} */
-    ,
+    placeholder: "Enter Username",
+    value: username,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     }
@@ -40791,9 +40794,8 @@ function ProfileView(props) {
     controlId: "formGroupPassword"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Password:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     type: "password",
-    placeholder: "Enter Password"
-    /* value={password} */
-    ,
+    placeholder: "Enter Password",
+    value: password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
@@ -40801,9 +40803,8 @@ function ProfileView(props) {
     controlId: "formGroupBirthday"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Birthday:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     type: "",
-    placeholder: "Enter Birthday"
-    /* value={birthday} */
-    ,
+    placeholder: "Enter Birthday",
+    value: birthday,
     onChange: function onChange(e) {
       return setBirthday(e.target.value);
     }
@@ -40811,13 +40812,15 @@ function ProfileView(props) {
     controlId: "formGroupEmail"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Email:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     type: "email",
-    placeholder: "Enter Email"
-    /* value={email} */
-    ,
+    placeholder: "Enter Email",
+    value: email,
     onChange: function onChange(e) {
       return setEmail(e.target.value);
     }
-  }))), /*#__PURE__*/_react.default.createElement("h2", {
+  })), /*#__PURE__*/_react.default.createElement(_Button.default, {
+    type: "submit",
+    onClick: handleUpdate
+  }, "Update")), /*#__PURE__*/_react.default.createElement("h2", {
     className: "director-name"
   }, "My Movie Collection:"));
 } // ProfileView.propTypes = {
@@ -40829,7 +40832,7 @@ function ProfileView(props) {
 //     }),
 //     handleUpdate: PropTypes.func,
 // };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./profile-view.scss":"components/profile-view/profile-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Nav":"../node_modules/react-bootstrap/esm/Nav.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./profile-view.scss":"components/profile-view/profile-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
