@@ -22,7 +22,8 @@ export class ProfileView extends React.Component {
         };
     }
 
-    handleUpdate = (e) => {
+    // handleUpdate = (e) => {
+    handleUpdate(e) {
         const [username, setUsername] = useState('');
         e.preventDefault();
         console.log(username, password);
@@ -34,9 +35,10 @@ export class ProfileView extends React.Component {
             Email: email
         })
             .then(response => {
-                const data = response.data;
-                console.log(data);
-                window.open('/', '_self'); //self: page will open in the current tab
+                // const data = response.data;
+                // console.log(data);
+                console.log('Updated!');
+                // window.open('/', '_self'); //self: page will open in the current tab
             })
             .catch(e => {
                 console.log('error at registration')
@@ -75,7 +77,7 @@ export class ProfileView extends React.Component {
                         <Form.Group controlId="formGroupUser">
                             <Form.Label>Username:</Form.Label>
                             {/* <Form.Control type="text" placeholder="Enter Username" value={this.Username} onChange={e => setUsername(e.target.value)} /> */}
-                            <Form.Control type="text" placeholder="Enter Username" value={this.Username} onChange={e => { this.setUsername(e.target.value); }} />
+                            <Form.Control type="text" placeholder="Enter Username" value={this.Username} onChange={e => { setUsername(e.target.value); }} />
                             {/* <LoginView onLoggedIn={user => this.onLoggedIn(user)} /> */}
                         </Form.Group>
 

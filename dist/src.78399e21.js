@@ -39970,6 +39970,8 @@ function LoginView(props) {
       var data = response.data; //not only username but also token
 
       props.onLoggedIn(data); //method called through props --- this method triggers the onLoggedIn method of “main-view.jsx”
+
+      window.open('/', '_self'); //self: page will open in the current tab
     }).catch(function (e) {
       console.log('no such user');
     });
@@ -40495,12 +40497,12 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/_react.default.createElement(_Image.default, {
           src: movieData.ImagePath,
           fluid: true
-        }), /*#__PURE__*/_react.default.createElement(_Button.default, {
-          className: "material-icons round",
+        })), /*#__PURE__*/_react.default.createElement(_Button.default, {
+          className: "material-icons round btn-add",
           onClick: function onClick() {
             _this2.addMovie(x);
           }
-        }, /*#__PURE__*/_react.default.createElement("span", null, "add"))))) // </Container>
+        }, /*#__PURE__*/_react.default.createElement("span", null, "add")))) // </Container>
 
       );
     }
@@ -40834,8 +40836,6 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 var ProfileView = /*#__PURE__*/function (_React$Component) {
   _inherits(ProfileView, _React$Component);
 
@@ -40848,7 +40848,20 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this); //initializes component’s state
 
-    _defineProperty(_assertThisInitialized(_this), "handleUpdate", function (e) {
+    _this.state = {
+      username: '' // selectedMovie: null, //tells the application that no movie cards were clicked
+      // registration: null,
+      // user: null,
+      // users: []
+
+    };
+    return _this;
+  } // handleUpdate = (e) => {
+
+
+  _createClass(ProfileView, [{
+    key: "handleUpdate",
+    value: function handleUpdate(e) {
       var _useState = (0, _react.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
           username = _useState2[0],
@@ -40863,25 +40876,14 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         Birthday: birthday,
         Email: email
       }).then(function (response) {
-        var data = response.data;
-        console.log(data);
-        window.open('/', '_self'); //self: page will open in the current tab
+        // const data = response.data;
+        // console.log(data);
+        console.log('Updated!'); // window.open('/', '_self'); //self: page will open in the current tab
       }).catch(function (e) {
         console.log('error at registration');
       });
-    });
-
-    _this.state = {
-      username: '' // selectedMovie: null, //tells the application that no movie cards were clicked
-      // registration: null,
-      // user: null,
-      // users: []
-
-    };
-    return _this;
-  }
-
-  _createClass(ProfileView, [{
+    }
+  }, {
     key: "render",
     value: // setUsername(u) { //When x is clicked, this function is invoked and updates the state of the `selectedMovie` property to that movie
     //     this.setState({
@@ -40889,8 +40891,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     //     });
     // }
     function render() {
-      var _this2 = this;
-
       var _this$props = this.props,
           users = _this$props.users,
           userData = _this$props.userData,
@@ -40927,7 +40927,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         placeholder: "Enter Username",
         value: this.Username,
         onChange: function onChange(e) {
-          _this2.setUsername(e.target.value);
+          setUsername(e.target.value);
         }
       })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
         controlId: "formGroupPassword"
@@ -41137,7 +41137,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       localStorage.setItem('token', authData.token);
       localStorage.setItem('user', authData.user.Username);
       this.getMovies(authData.token);
-      this.getUser(authData.token);
+      this.getUser(authData.token); // window.open('/', '_self'); //self: page will open in the current tab
     }
   }, {
     key: "onLoggedOut",

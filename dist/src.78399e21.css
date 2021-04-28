@@ -152,6 +152,10 @@ h3 {
   padding: 0.4rem;
   width: 100%;
 }
+
+.btn-add {
+  margin-top: 2rem;
+}
 .director-view {
   border-top: 1px dotted #cca53b;
   padding-top: 2rem;
