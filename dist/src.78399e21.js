@@ -40505,11 +40505,15 @@ var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
+var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
+
 var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
 
 var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
 
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
+
+var _movieCard = require("../movie-card/movie-card");
 
 require("./director-view.scss");
 
@@ -40553,9 +40557,10 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           directorData = _this$props.directorData,
+          moviesOfDirector = _this$props.moviesOfDirector,
           onBackClick = _this$props.onBackClick; //extracting the props
 
-      return /*#__PURE__*/_react.default.createElement(_Row.default, {
+      return /*#__PURE__*/_react.default.createElement(_Container.default, null, /*#__PURE__*/_react.default.createElement(_Row.default, {
         className: "director-view"
       }, /*#__PURE__*/_react.default.createElement(_Col.default, {
         sm: 12,
@@ -40572,21 +40577,34 @@ var DirectorView = /*#__PURE__*/function (_React$Component) {
         className: "director-name"
       }, directorData.Name), /*#__PURE__*/_react.default.createElement("h3", {
         className: "director-bio"
-      }, "Bio: "), /*#__PURE__*/_react.default.createElement("p", null, directorData.Bio)));
+      }, "Bio: "), /*#__PURE__*/_react.default.createElement("p", null, directorData.Bio))), /*#__PURE__*/_react.default.createElement(_Container.default, null, /*#__PURE__*/_react.default.createElement("h2", {
+        className: "value genre-name"
+      }, "More Movies from ", directorData.Name), /*#__PURE__*/_react.default.createElement(_Row.default, null, moviesOfDirector.map(function (movie) {
+        //loop through movieData (= movies-collection in DB) and use the one that has this Genre Name that we're in
+        if (movie.Director.Name === directorData.Name) return /*#__PURE__*/_react.default.createElement(_Col.default, {
+          xs: 3,
+          sm: 4,
+          md: 4,
+          lg: 3,
+          key: movie._id
+        }, /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
+          movieData: movie
+        }));
+      }))));
     }
   }]);
 
   return DirectorView;
-}(_react.default.Component);
+}(_react.default.Component); // DirectorView.propTypes = {
+//     directorData: PropTypes.shape({
+//         Name: PropTypes.string.isRequired,
+//         Bio: PropTypes.string.isRequired
+//     })
+// };
+
 
 exports.DirectorView = DirectorView;
-DirectorView.propTypes = {
-  directorData: _propTypes.default.shape({
-    Name: _propTypes.default.string.isRequired,
-    Bio: _propTypes.default.string.isRequired
-  })
-};
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./director-view.scss":"components/director-view/director-view.scss"}],"components/genre-view/genre-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","../movie-card/movie-card":"components/movie-card/movie-card.jsx","./director-view.scss":"components/director-view/director-view.scss"}],"components/genre-view/genre-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -41165,6 +41183,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             directorData: movies.find(function (m) {
               return m.Director.Name === match.params.name;
             }).Director,
+            moviesOfDirector: movies,
             onBackClick: function onBackClick() {
               return history.goBack();
             }

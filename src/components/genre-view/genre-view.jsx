@@ -6,7 +6,6 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { MovieCard } from '../movie-card/movie-card';
 
-
 import './genre-view.scss';
 
 export class GenreView extends React.Component {
