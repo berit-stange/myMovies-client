@@ -23,6 +23,7 @@ export function LoginView(props) {
             .then(response => {
                 const data = response.data; //not only username but also token
                 props.onLoggedIn(data); //method called through props --- this method triggers the onLoggedIn method of “main-view.jsx”
+                window.open('/', '_self'); //self: page will open in the current tab
             })
             .catch(e => {
                 console.log('no such user')

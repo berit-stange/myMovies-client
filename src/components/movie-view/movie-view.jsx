@@ -74,8 +74,8 @@ export class MovieView extends React.Component {
                 <Col sm={12} md={6}>
                     <div className="movie-poster" >
                         <Image src={movieData.ImagePath} fluid></Image>
-                        <Button className="material-icons round" onClick={() => { this.addMovie(x); }} ><span>add</span></Button>
                     </div>
+                    <Button className="material-icons round btn-add" onClick={() => { this.addMovie(x); }} ><span>add</span></Button>
                 </Col>
 
             </Row>

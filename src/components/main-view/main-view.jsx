@@ -93,6 +93,7 @@ export class MainView extends React.Component { //exposing the component
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
         this.getUser(authData.token);
+        // window.open('/', '_self'); //self: page will open in the current tab
     }
 
     onLoggedOut() {
