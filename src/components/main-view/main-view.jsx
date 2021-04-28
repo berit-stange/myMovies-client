@@ -182,7 +182,10 @@ export class MainView extends React.Component { //exposing the component
                             </Col>
                             if (movies.length === 0) return <div className="" />;
                             return <Col>
-                                <DirectorView directorData={movies.find(m => m.Director.Name === match.params.name).Director} onBackClick={() => history.goBack()} />
+                                <DirectorView
+                                    directorData={movies.find(m => m.Director.Name === match.params.name).Director}
+                                    moviesOfDirector={movies}
+                                    onBackClick={() => history.goBack()} />
                             </Col>
                         }} />
 
