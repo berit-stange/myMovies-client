@@ -51,6 +51,7 @@ export class MovieView extends React.Component {
 
                     <h3 className="movie-description">Description: </h3>
                     <p className="value">{movieData.Description}</p>
+                    <p className="value">{movieData._id}</p>
 
                     <h3 className="movie-director">Director:</h3>
                     <p className="value">{movieData.Director.Name}</p>

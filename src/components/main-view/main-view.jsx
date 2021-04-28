@@ -160,7 +160,6 @@ export class MainView extends React.Component { //exposing the component
                             if (user) return <Redirect to="/" /> //add alert: "you're logged in already!"
                             return <Col>
                                 <RegistrationView />
-                                {/* <Redirect to="/" /> */}
                             </Col>
                         }} />
 
@@ -217,14 +216,26 @@ export class MainView extends React.Component { //exposing the component
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                             </Col>
                             // if (users.length === 0) return <div className="" />;
+
                             return <Col>
                                 <ProfileView
-                                    userData={user}
-                                    userData={users}
+                                    // userX={this.state.user}
+                                    // userData={users}
                                     onBackClick={() => history.goBack()}
-
                                 />
-                            </Col> //userData={users.find(m => m.Username === match.params.username)}//onBackClick={() => history.goBack()}
+                            </Col>
+
+
+                            // if (user.Username === match.params.username) {
+                            //     return <Col md={10}>
+                            //         <ProfileView
+                            //             userData={user}
+                            //         // movies={movies}
+                            //         />
+                            //     </Col>
+                            // }
+
+
                         }} />
 
                     </Row>

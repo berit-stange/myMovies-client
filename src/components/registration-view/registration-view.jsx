@@ -20,7 +20,6 @@ export function RegistrationView(props) {
     const handleRegister = (e) => {
         e.preventDefault();
         console.log(username, password);
-        // props.onRegistration(username);
         axios.post('https://movie-app-001.herokuapp.com/users', {
             Username: username,
             Password: password,

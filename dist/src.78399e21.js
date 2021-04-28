@@ -39829,7 +39829,7 @@ function RegistrationView(props) {
 
   var handleRegister = function handleRegister(e) {
     e.preventDefault();
-    console.log(username, password); // props.onRegistration(username);
+    console.log(username, password);
 
     _axios.default.post('https://movie-app-001.herokuapp.com/users', {
       Username: username,
@@ -40465,7 +40465,9 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
           className: "movie-description"
         }, "Description: "), /*#__PURE__*/_react.default.createElement("p", {
           className: "value"
-        }, movieData.Description), /*#__PURE__*/_react.default.createElement("h3", {
+        }, movieData.Description), /*#__PURE__*/_react.default.createElement("p", {
+          className: "value"
+        }, movieData._id), /*#__PURE__*/_react.default.createElement("h3", {
           className: "movie-director"
         }, "Director:"), /*#__PURE__*/_react.default.createElement("p", {
           className: "value"
@@ -40776,7 +40778,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.ProfileView = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
+var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
@@ -40798,23 +40800,7 @@ require("./profile-view.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -40849,26 +40835,19 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this); //initializes component’s state
 
     _this.state = {
-      username: '' // selectedMovie: null, //tells the application that no movie cards were clicked
-      // registration: null,
-      // user: null,
-      // users: []
-
+      // username: useState(''), //error: invalid hook
+      username: '',
+      password: '',
+      birthday: '',
+      email: ''
     };
     return _this;
-  } // handleUpdate = (e) => {
-
+  }
 
   _createClass(ProfileView, [{
     key: "handleUpdate",
     value: function handleUpdate(e) {
-      var _useState = (0, _react.useState)(''),
-          _useState2 = _slicedToArray(_useState, 2),
-          username = _useState2[0],
-          setUsername = _useState2[1];
-
-      e.preventDefault();
-      console.log(username, password); // props.onRegistration(username);
+      e.preventDefault(); // console.log(username, password);
 
       _axios.default.put('https://movie-app-001.herokuapp.com/users/:Username', {
         Username: username,
@@ -40876,33 +40855,44 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         Birthday: birthday,
         Email: email
       }).then(function (response) {
-        // const data = response.data;
-        // console.log(data);
+        var data = response.data;
+        console.log(data);
         console.log('Updated!'); // window.open('/', '_self'); //self: page will open in the current tab
       }).catch(function (e) {
         console.log('error at registration');
       });
     }
   }, {
+    key: "showFavorites",
+    value: function showFavorites(token) {
+      var _this2 = this;
+
+      // = getMovies
+      _axios.default.get('https://movie-app-001.herokuapp.com/users/${userData.Username}', {
+        // axios.get('https://movie-app-001.herokuapp.com/users/:Username', {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        _this2.setState({
+          // Assign the result to the state
+          users: response.data
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
     key: "render",
-    value: // setUsername(u) { //When x is clicked, this function is invoked and updates the state of the `selectedMovie` property to that movie
-    //     this.setState({
-    //         Username: username
-    //     });
-    // }
-    function render() {
-      var _this$props = this.props,
-          users = _this$props.users,
-          userData = _this$props.userData,
-          movieData = _this$props.movieData,
-          addMovie = _this$props.addMovie,
-          onBackClick = _this$props.onBackClick,
-          handleUpdate = _this$props.handleUpdate; //extracting the props
-      // const { setUsername } = useState('');
+    value: function render() {
+      var _this$state = this.state,
+          userX = _this$state.userX,
+          user = _this$state.user,
+          users = _this$state.users,
+          userData = _this$state.userData,
+          onBackClick = _this$state.onBackClick,
+          handleUpdate = _this$state.handleUpdate; // const { users, userData, movieData, addMovie, onBackClick, handleUpdate } = this.props; //extracting the props
       // const [username, setUsername] = useState('');
-      // const [password, setPassword] = useState('');
-      // const [birthday, setBirthday] = useState('');
-      // const [email, setEmail] = useState('');
 
       return /*#__PURE__*/_react.default.createElement(_Container.default, null, /*#__PURE__*/_react.default.createElement(_Row.default, {
         className: "register"
@@ -40916,18 +40906,18 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           onBackClick(null);
         }
-      }, /*#__PURE__*/_react.default.createElement("span", null, "arrow_back")), /*#__PURE__*/_react.default.createElement("h2", {
-        className: "director-name"
-      }, "Profile of: . . .  ", this.Username, " "), /*#__PURE__*/_react.default.createElement(_Form.default, {
+      }, /*#__PURE__*/_react.default.createElement("span", null, "arrow_back")), /*#__PURE__*/_react.default.createElement(_Form.default, {
         className: "registration-view"
       }, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
         controlId: "formGroupUser"
       }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
         type: "text",
-        placeholder: "Enter Username",
-        value: this.Username,
+        placeholder: "Enter Username" // defaultValue="Ernie"
+        // defaultValue={user.Username}
+        // value={this.Username}
+        ,
         onChange: function onChange(e) {
-          setUsername(e.target.value);
+          return setUsername(e.target.value);
         }
       })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
         controlId: "formGroupPassword"
@@ -41018,8 +41008,6 @@ require("./main-view.scss");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -41318,8 +41306,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         path: "/users/:username",
         render: function render(_ref4) {
-          var _React$createElement;
-
           var match = _ref4.match,
               history = _ref4.history;
           if (!user) return /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_loginView.LoginView, {
@@ -41328,11 +41314,20 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             }
           })); // if (users.length === 0) return <div className="" />;
 
-          return /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_profileView.ProfileView, (_React$createElement = {
-            userData: user
-          }, _defineProperty(_React$createElement, "userData", users), _defineProperty(_React$createElement, "onBackClick", function onBackClick() {
-            return history.goBack();
-          }), _React$createElement))); //userData={users.find(m => m.Username === match.params.username)}//onBackClick={() => history.goBack()}
+          return /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_profileView.ProfileView // userX={this.state.user}
+          // userData={users}
+          , {
+            onBackClick: function onBackClick() {
+              return history.goBack();
+            }
+          })); // if (user.Username === match.params.username) {
+          //     return <Col md={10}>
+          //         <ProfileView
+          //             userData={user}
+          //         // movies={movies}
+          //         />
+          //     </Col>
+          // }
         }
       }))));
     }
