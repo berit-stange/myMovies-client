@@ -40421,10 +40421,11 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
     value: function addMovie(x) {
       var token = localStorage.getItem("token");
 
-      _axios.default.post('https://movie-app-001.herokuapp.com/users/:Username/favorites/:MovieID' // {
-      //     headers: { Authorization: `Bearer ${token}` }
-      // }
-      ).then(function (response) {
+      _axios.default.post('https://movie-app-001.herokuapp.com/users/:Username/favorites/:MovieID', {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
         // const data = response.data;
         console.log('Done.');
         window.open('/', '_self'); //self: page will open in the current tab
