@@ -192,7 +192,21 @@ export class MainView extends React.Component { //exposing the component
                             </Col>
                             if (movies.length === 0) return <div className="" />;
                             return <Col>
-                                <GenreView genreData={movies.find(m => m.Genre.Name === match.params.name).Genre} onBackClick={() => history.goBack()} />
+                                <GenreView
+                                    genreData={movies.find(m => m.Genre.Name === match.params.name).Genre} //use with {genreData.Name} Genre Daten (from exercise)
+                                    // genreData={movies.find((m) => m.Genre.Name === match.params.name)} //use with {genreData.Genre.Name} in GenreView //nimmt ersten Film mit diesem Genre
+                                    moviesOfGenre={movies} //function prop that can access the movies-collection in DB
+
+                                    //can I define what content to show in the view besides the Genre info above? And just place it on a certain position?
+                                    // moviesOfGenre={movies.map((movie) => {
+                                    //     if (movie.Genre.Name === this.Name)
+                                    //         return <Col xs={3} sm={4} md={4} lg={3} key={movie._id}>
+                                    //             <MovieCard />
+                                    //         </Col>
+                                    // })}
+
+                                    onBackClick={() => history.goBack()}
+                                />
                             </Col>
                         }} />
 

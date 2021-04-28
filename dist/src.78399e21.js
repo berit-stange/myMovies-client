@@ -40359,6 +40359,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
+var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
+
 var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
 
 var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
@@ -40368,6 +40370,8 @@ var _Image = _interopRequireDefault(require("react-bootstrap/Image"));
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
 var _reactRouterDom = require("react-router-dom");
+
+var _movieCard = require("../movie-card/movie-card");
 
 require("./movie-view.scss");
 
@@ -40413,55 +40417,60 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
           movieData = _this$props.movieData,
           onBackClick = _this$props.onBackClick; //extracting the props
 
-      return /*#__PURE__*/_react.default.createElement(_Row.default, {
-        className: "movie-view"
-      }, /*#__PURE__*/_react.default.createElement(_Col.default, {
-        sm: 12,
-        md: 6
-      }, /*#__PURE__*/_react.default.createElement(_Button.default, {
-        className: "material-icons round",
-        onClick: function onClick() {
-          onBackClick(null);
-        }
-      }, /*#__PURE__*/_react.default.createElement("span", null, "arrow_back")), /*#__PURE__*/_react.default.createElement("h2", {
-        className: "value movie-title"
-      }, movieData.Title), /*#__PURE__*/_react.default.createElement("h3", {
-        className: "movie-description"
-      }, "Description: "), /*#__PURE__*/_react.default.createElement("p", {
-        className: "value"
-      }, movieData.Description), /*#__PURE__*/_react.default.createElement("h3", {
-        className: "movie-director"
-      }, "Director:"), /*#__PURE__*/_react.default.createElement("p", {
-        className: "value"
-      }, movieData.Director.Name), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-        to: "/directors/".concat(movieData.Director.Name)
-      }, /*#__PURE__*/_react.default.createElement(_Button.default, {
-        variant: "link"
-      }, "see Director")), /*#__PURE__*/_react.default.createElement("h3", {
-        className: "movie-genre"
-      }, "Genre:"), /*#__PURE__*/_react.default.createElement("p", {
-        className: "value"
-      }, movieData.Genre.Name), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
-        to: "/genre/".concat(movieData.Genre.Name)
-      }, /*#__PURE__*/_react.default.createElement(_Button.default, {
-        variant: "link"
-      }, "see Genre")), /*#__PURE__*/_react.default.createElement("h3", {
-        className: "movie-genre"
-      }, "Actors:"), /*#__PURE__*/_react.default.createElement("p", {
-        className: "value"
-      }, movieData.Actors), /*#__PURE__*/_react.default.createElement("h3", {
-        className: "movie-genre"
-      }, "Release Year:"), /*#__PURE__*/_react.default.createElement("p", {
-        className: "value"
-      }, movieData.ReleaseYear)), /*#__PURE__*/_react.default.createElement(_Col.default, {
-        sm: 12,
-        md: 6
-      }, /*#__PURE__*/_react.default.createElement("div", {
-        className: "movie-poster"
-      }, /*#__PURE__*/_react.default.createElement(_Image.default, {
-        src: movieData.ImagePath,
-        fluid: true
-      }))));
+      return (
+        /*#__PURE__*/
+        // <Container>
+        _react.default.createElement(_Row.default, {
+          className: "movie-view"
+        }, /*#__PURE__*/_react.default.createElement(_Col.default, {
+          sm: 12,
+          md: 6
+        }, /*#__PURE__*/_react.default.createElement(_Button.default, {
+          className: "material-icons round",
+          onClick: function onClick() {
+            onBackClick(null);
+          }
+        }, /*#__PURE__*/_react.default.createElement("span", null, "arrow_back")), /*#__PURE__*/_react.default.createElement("h2", {
+          className: "value movie-title"
+        }, movieData.Title), /*#__PURE__*/_react.default.createElement("h3", {
+          className: "movie-description"
+        }, "Description: "), /*#__PURE__*/_react.default.createElement("p", {
+          className: "value"
+        }, movieData.Description), /*#__PURE__*/_react.default.createElement("h3", {
+          className: "movie-director"
+        }, "Director:"), /*#__PURE__*/_react.default.createElement("p", {
+          className: "value"
+        }, movieData.Director.Name), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+          to: "/directors/".concat(movieData.Director.Name)
+        }, /*#__PURE__*/_react.default.createElement(_Button.default, {
+          variant: "link"
+        }, "see Director")), /*#__PURE__*/_react.default.createElement("h3", {
+          className: "movie-genre"
+        }, "Genre:"), /*#__PURE__*/_react.default.createElement("p", {
+          className: "value"
+        }, movieData.Genre.Name), /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
+          to: "/genre/".concat(movieData.Genre.Name)
+        }, /*#__PURE__*/_react.default.createElement(_Button.default, {
+          variant: "link"
+        }, "see Genre")), /*#__PURE__*/_react.default.createElement("h3", {
+          className: "movie-genre"
+        }, "Actors:"), /*#__PURE__*/_react.default.createElement("p", {
+          className: "value"
+        }, movieData.Actors), /*#__PURE__*/_react.default.createElement("h3", {
+          className: "movie-genre"
+        }, "Release Year:"), /*#__PURE__*/_react.default.createElement("p", {
+          className: "value"
+        }, movieData.ReleaseYear)), /*#__PURE__*/_react.default.createElement(_Col.default, {
+          sm: 12,
+          md: 6
+        }, /*#__PURE__*/_react.default.createElement("div", {
+          className: "movie-poster"
+        }, /*#__PURE__*/_react.default.createElement(_Image.default, {
+          src: movieData.ImagePath,
+          fluid: true
+        })))) // </Container>
+
+      );
     }
   }]);
 
@@ -40479,7 +40488,7 @@ MovieView.propTypes = {
     })
   }).isRequired
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Image":"../node_modules/react-bootstrap/esm/Image.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./movie-view.scss":"components/movie-view/movie-view.scss"}],"components/director-view/director-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Image":"../node_modules/react-bootstrap/esm/Image.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../movie-card/movie-card":"components/movie-card/movie-card.jsx","./movie-view.scss":"components/movie-view/movie-view.scss"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -40594,13 +40603,15 @@ var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
+var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
+
 var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
 
 var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
 
-var _Image = _interopRequireDefault(require("react-bootstrap/Image"));
-
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
+
+var _movieCard = require("../movie-card/movie-card");
 
 require("./genre-view.scss");
 
@@ -40643,10 +40654,11 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
+          moviesOfGenre = _this$props.moviesOfGenre,
           genreData = _this$props.genreData,
           onBackClick = _this$props.onBackClick; //extracting the props
 
-      return /*#__PURE__*/_react.default.createElement(_Row.default, {
+      return /*#__PURE__*/_react.default.createElement(_Container.default, null, /*#__PURE__*/_react.default.createElement(_Row.default, {
         className: "genre-view"
       }, /*#__PURE__*/_react.default.createElement(_Col.default, {
         sm: 12,
@@ -40663,23 +40675,43 @@ var GenreView = /*#__PURE__*/function (_React$Component) {
         className: "value genre-name"
       }, genreData.Name), /*#__PURE__*/_react.default.createElement("h3", {
         className: "genre-description"
-      }, "Description: "), /*#__PURE__*/_react.default.createElement("p", {
+      }, "Description:  "), /*#__PURE__*/_react.default.createElement("p", {
         className: "value"
-      }, genreData.Description)));
+      }, genreData.Description))), /*#__PURE__*/_react.default.createElement(_Container.default, null, /*#__PURE__*/_react.default.createElement("h2", {
+        className: "value genre-name"
+      }, "Movies in Genre \"", genreData.Name, "\""), /*#__PURE__*/_react.default.createElement(_Row.default, null, moviesOfGenre.map(function (movie) {
+        //loop through movieData (= movies-collection in DB) and use the one that has this Genre Name that we're in
+        if (movie.Genre.Name === genreData.Name) return /*#__PURE__*/_react.default.createElement(_Col.default, {
+          xs: 3,
+          sm: 4,
+          md: 4,
+          lg: 3,
+          key: movie._id
+        }, /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
+          movieData: movie
+        }));
+      }))));
     }
   }]);
 
   return GenreView;
-}(_react.default.Component);
+}(_react.default.Component); // GenreView.propTypes = {
+//     genreData: PropTypes.shape({
+//         Name: PropTypes.string.isRequired,
+//         Description: PropTypes.string.isRequired
+//     }),
+//     movieData: PropTypes.shape({
+//         Title: PropTypes.string.isRequired,
+//         Description: PropTypes.string.isRequired,
+//         ImagePath: PropTypes.string.isRequired,
+//         Director: PropTypes.shape({
+//             Name: PropTypes.string.isRequired
+//         })
+//     };
+
 
 exports.GenreView = GenreView;
-GenreView.propTypes = {
-  genreData: _propTypes.default.shape({
-    Name: _propTypes.default.string.isRequired,
-    Description: _propTypes.default.string.isRequired
-  })
-};
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Image":"../node_modules/react-bootstrap/esm/Image.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./genre-view.scss":"components/genre-view/genre-view.scss"}],"components/profile-view/profile-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","../movie-card/movie-card":"components/movie-card/movie-card.jsx","./genre-view.scss":"components/genre-view/genre-view.scss"}],"components/profile-view/profile-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -40705,8 +40737,6 @@ var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
 
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
-
-var _Nav = _interopRequireDefault(require("react-bootstrap/Nav"));
 
 var _reactRouterDom = require("react-router-dom");
 
@@ -40832,7 +40862,7 @@ function ProfileView(props) {
 //     }),
 //     handleUpdate: PropTypes.func,
 // };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Nav":"../node_modules/react-bootstrap/esm/Nav.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./profile-view.scss":"components/profile-view/profile-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./profile-view.scss":"components/profile-view/profile-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -41156,7 +41186,18 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           return /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_genreView.GenreView, {
             genreData: movies.find(function (m) {
               return m.Genre.Name === match.params.name;
-            }).Genre,
+            }).Genre //use with {genreData.Name} Genre Daten (from exercise)
+            // genreData={movies.find((m) => m.Genre.Name === match.params.name)} //use with {genreData.Genre.Name} in GenreView //nimmt ersten Film mit diesem Genre
+            ,
+            moviesOfGenre: movies //function prop that can access the movies-collection in DB
+            //can I define what content to show in the view besides the Genre info above? And just place it on a certain position?
+            // moviesOfGenre={movies.map((movie) => {
+            //     if (movie.Genre.Name === this.Name)
+            //         return <Col xs={3} sm={4} md={4} lg={3} key={movie._id}>
+            //             <MovieCard />
+            //         </Col>
+            // })}
+            ,
             onBackClick: function onBackClick() {
               return history.goBack();
             }
@@ -41275,7 +41316,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52699" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55858" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
