@@ -95,7 +95,6 @@ export class MainView extends React.Component { //exposing the component
         this.getUser(authData.token);
     }
 
-
     onLoggedOut() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
@@ -125,13 +124,10 @@ export class MainView extends React.Component { //exposing the component
                             <Nav.Link href={`/users/${user}`} className="">
                                 {/* PROFILE*/}
                                 {/* <Button className="page-header__item btn-profile " onClick={() => { this.onLoggedIn() }}></Button> */}
-                                <Button variant="link" className="page-header__item" onClick={() => { this.onLoggedIn() }}>{this.state.user}</Button>
+                                <Button variant="link" className="page-header__item" onClick={() => { this.onLoggedIn() }}>{this.state.user}'s profile</Button>
                             </Nav.Link>
                         </Nav.Item>
                     </Navbar>
-
-
-
 
                     <Row className="justify-content-md-center">
 
@@ -160,9 +156,10 @@ export class MainView extends React.Component { //exposing the component
                         }} />
 
                         <Route path="/register" render={() => {
-                            if (user) return <Redirect to="/" />
+                            if (user) return <Redirect to="/" /> //add alert: "you're logged in already!"
                             return <Col>
                                 <RegistrationView />
+                                {/* <Redirect to="/" /> */}
                             </Col>
                         }} />
 
@@ -172,7 +169,8 @@ export class MainView extends React.Component { //exposing the component
                             </Col>
                             if (movies.length === 0) return <div className="" />;
                             return <Col>
-                                <MovieView movieData={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
+                                <MovieView movieData={movies.find(m => m._id === match.params.movieId)}
+                                    onBackClick={() => history.goBack()} />
                             </Col>
                         }} />
 
@@ -213,13 +211,18 @@ export class MainView extends React.Component { //exposing the component
                             </Col>
                         }} />
 
-                        <Route path="/users/:username" render={() => {
-                            // if (!user) return <Col>
-                            //     <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-                            // </Col>
+                        <Route path="/users/:username" render={({ match, history }) => {
+                            if (!user) return <Col>
+                                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                            </Col>
                             // if (users.length === 0) return <div className="" />;
                             return <Col>
-                                <ProfileView />
+                                <ProfileView
+                                    userData={user}
+                                    userData={users}
+                                    onBackClick={() => history.goBack()}
+
+                                />
                             </Col> //userData={users.find(m => m.Username === match.params.username)}//onBackClick={() => history.goBack()}
                         }} />
 

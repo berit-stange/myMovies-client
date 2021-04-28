@@ -280,6 +280,10 @@ h3 {
   background-color: gainsboro !important;
   box-shadow: none;
 }
+
+.user-favourites {
+  padding-top: 3rem;
+}
 .main-view {
   padding-top: 1.5rem;
   padding-right: 0;

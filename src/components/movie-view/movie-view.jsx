@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -13,8 +14,32 @@ import './movie-view.scss';
 
 export class MovieView extends React.Component {
 
+    constructor() {
+        super();
+        this.state = {};
+    }
+
+    addMovie(x) {
+        let token = localStorage.getItem("token");
+
+        axios.post('https://movie-app-001.herokuapp.com/users/:Username/favorites/:MovieID',
+            // {
+            //     headers: { Authorization: `Bearer ${token}` }
+            // }
+        )
+            .then(response => {
+                // const data = response.data;
+                console.log('Done.');
+                window.open('/', '_self'); //self: page will open in the current tab
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    };
+
+
     render() {
-        const { movieData, onBackClick } = this.props; //extracting the props
+        const { x, movieData, addMovie, onBackClick } = this.props; //extracting the props
 
         return (
             // <Container>
@@ -51,6 +76,7 @@ export class MovieView extends React.Component {
                 <Col sm={12} md={6}>
                     <div className="movie-poster" >
                         <Image src={movieData.ImagePath} fluid></Image>
+                        <Button className="material-icons round" onClick={() => { this.addMovie(x); }} ><span>add</span></Button>
                     </div>
                 </Col>
 
