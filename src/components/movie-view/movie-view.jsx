@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import { MovieCard } from '../movie-card/movie-card';
+
 
 import './movie-view.scss';
 
@@ -14,6 +17,7 @@ export class MovieView extends React.Component {
         const { movieData, onBackClick } = this.props; //extracting the props
 
         return (
+            // <Container>
             <Row className="movie-view">
 
                 <Col sm={12} md={6}>
@@ -51,6 +55,7 @@ export class MovieView extends React.Component {
                 </Col>
 
             </Row>
+            // </Container>
         );
     }
 }
