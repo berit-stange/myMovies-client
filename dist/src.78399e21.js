@@ -40445,6 +40445,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
           movieData = _this$props.movieData,
           addMovie = _this$props.addMovie,
           onBackClick = _this$props.onBackClick; //extracting the props
+      // const { x, movieData, addMovie, onBackClick } = this.state;
 
       return (
         /*#__PURE__*/
@@ -40467,7 +40468,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
           className: "value"
         }, movieData.Description), /*#__PURE__*/_react.default.createElement("p", {
           className: "value"
-        }, movieData._id), /*#__PURE__*/_react.default.createElement("h3", {
+        }, "movieID:", /*#__PURE__*/_react.default.createElement("br", null), movieData._id, " ", /*#__PURE__*/_react.default.createElement("br", null), "(only for development)"), /*#__PURE__*/_react.default.createElement("h3", {
           className: "movie-director"
         }, "Director:"), /*#__PURE__*/_react.default.createElement("p", {
           className: "value"
@@ -40835,11 +40836,12 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this); //initializes component’s state
 
     _this.state = {
-      // username: useState(''), //error: invalid hook
       username: '',
       password: '',
       birthday: '',
-      email: ''
+      email: '',
+      favoriteMovies: '',
+      movies: ''
     };
     return _this;
   }
@@ -40863,18 +40865,59 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "showFavorites",
-    value: function showFavorites(token) {
+    key: "getUserData",
+    value: function getUserData(token) {
       var _this2 = this;
 
-      // = getMovies
-      _axios.default.get('https://movie-app-001.herokuapp.com/users/${userData.Username}', {
-        // axios.get('https://movie-app-001.herokuapp.com/users/:Username', {
+      //like in MainView, but with more data 
+      _axios.default.get('https://movie-app-001.herokuapp.com/users/:Username', {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
       }).then(function (response) {
         _this2.setState({
+          // Assign the result to the state > access via this.state. .... later
+          username: response.data.Username,
+          password: response.data.Password,
+          birthday: response.data.Birthday,
+          email: response.data.Email,
+          favorites: response.data.FavoriteMovies
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: "getMovies",
+    value: function getMovies(token) {
+      var _this3 = this;
+
+      //from MainView
+      _axios.default.get('https://movie-app-001.herokuapp.com/movies', {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        _this3.setState({
+          // Assign the result to the state
+          movies: response.data
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: "getUser",
+    value: function getUser(token) {
+      var _this4 = this;
+
+      //from MainView
+      _axios.default.get('https://movie-app-001.herokuapp.com/users/:Username', {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        _this4.setState({
           // Assign the result to the state
           users: response.data
         });
@@ -40883,30 +40926,56 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var accessToken = localStorage.getItem('token');
+
+      if (accessToken !== null) {
+        this.setState({
+          user: localStorage.getItem('user') //only getting the login data and token, right?
+
+        }); // this.getMovies(accessToken);
+
+        this.getUser(accessToken); //calling the functions above + ...
+
+        this.getUserData(accessToken); //mounting all the data that the function "pulled" from DB, access via this.? this.users?
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
+      // const { userX, user, users, userData, onBackClick, handleUpdate } = this.state;
+      var _this$props = this.props,
+          movies = _this$props.movies,
+          userData = _this$props.userData,
+          setUsername = _this$props.setUsername,
+          addMovie = _this$props.addMovie,
+          onBackClick = _this$props.onBackClick,
+          handleUpdate = _this$props.handleUpdate; //extracting the props
+
       var _this$state = this.state,
-          userX = _this$state.userX,
           user = _this$state.user,
           users = _this$state.users,
-          userData = _this$state.userData,
-          onBackClick = _this$state.onBackClick,
-          handleUpdate = _this$state.handleUpdate; // const { users, userData, movieData, addMovie, onBackClick, handleUpdate } = this.props; //extracting the props
-      // const [username, setUsername] = useState('');
-
+          favoriteMovies = _this$state.favoriteMovies;
       return /*#__PURE__*/_react.default.createElement(_Container.default, null, /*#__PURE__*/_react.default.createElement(_Row.default, {
         className: "register"
       }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Link, {
         to: "/",
-        className: "page-header"
+        className: "page-header profile"
       }, /*#__PURE__*/_react.default.createElement(_Button.default, {
         variant: "link"
-      }, "All Movies")), /*#__PURE__*/_react.default.createElement(_Button.default, {
-        className: "material-icons round",
+      }, "All Movies")), /*#__PURE__*/_react.default.createElement(_Col.default, {
+        sm: 12,
+        md: 4,
+        className: "profile"
+      }, /*#__PURE__*/_react.default.createElement(_Button.default, {
+        className: "material-icons round ",
         onClick: function onClick() {
           onBackClick(null);
         }
-      }, /*#__PURE__*/_react.default.createElement("span", null, "arrow_back")), /*#__PURE__*/_react.default.createElement(_Form.default, {
+      }, /*#__PURE__*/_react.default.createElement("span", null, "arrow_back"))), /*#__PURE__*/_react.default.createElement("h2", {
+        className: "director-name"
+      }, "\"", this.state.user, "\" - from localStorage, not DB! "), /*#__PURE__*/_react.default.createElement(_Form.default, {
         className: "registration-view"
       }, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
         controlId: "formGroupUser"
@@ -40952,7 +41021,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       })), /*#__PURE__*/_react.default.createElement(_Button.default, {
         type: "submit",
         onClick: handleUpdate
-      }, "Update"))), /*#__PURE__*/_react.default.createElement(_Row.default, null));
+      }, "Update"))), /*#__PURE__*/_react.default.createElement(_Container.default, null, /*#__PURE__*/_react.default.createElement(_Row.default, null)));
     }
   }]);
 
@@ -41044,8 +41113,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
     _this.state = {
       movies: [],
-      selectedMovie: null,
-      //tells the application that no movie cards were clicked
+      // selectedMovie: null, //tells the application that no movie cards were clicked
       registration: null,
       user: null // users: []
 
@@ -41143,10 +41211,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 
       var _this$state = this.state,
           movies = _this$state.movies,
-          user = _this$state.user,
-          users = _this$state.users; // if (!registration) return <RegistrationView onRegistration={registration => this.onRegistration(registration)} />;
-      // if (profile) return <ProfileView user={this.state.user} />;
-
+          user = _this$state.user;
       return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement("div", {
         className: "main-view"
       }, /*#__PURE__*/_react.default.createElement(_Navbar.default, null, /*#__PURE__*/_react.default.createElement(_Nav.default.Item, {
@@ -41314,8 +41379,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             }
           })); // if (users.length === 0) return <div className="" />;
 
-          return /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_profileView.ProfileView // userX={this.state.user}
-          // userData={users}
+          return /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_profileView.ProfileView // userX={users}
+          // userData={user}
           , {
             onBackClick: function onBackClick() {
               return history.goBack();
@@ -41433,7 +41498,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55858" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50345" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

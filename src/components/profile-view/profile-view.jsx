@@ -16,14 +16,14 @@ export class ProfileView extends React.Component {
     constructor() {
         super(); //initializes component’s state
         this.state = {
-            // username: useState(''), //error: invalid hook
             username: '',
             password: '',
             birthday: '',
-            email: ''
+            email: '',
+            favoriteMovies: '',
+            movies: ''
         };
     }
-
 
     handleUpdate(e) {
         e.preventDefault();
@@ -45,10 +45,40 @@ export class ProfileView extends React.Component {
             });
     }
 
+    getUserData(token) { //like in MainView, but with more data 
+        axios.get('https://movie-app-001.herokuapp.com/users/:Username', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(response => {
+                this.setState({ // Assign the result to the state > access via this.state. .... later
+                    username: response.data.Username,
+                    password: response.data.Password,
+                    birthday: response.data.Birthday,
+                    email: response.data.Email,
+                    favorites: response.data.FavoriteMovies
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
-    showFavorites(token) { // = getMovies
-        axios.get('https://movie-app-001.herokuapp.com/users/${userData.Username}', {
-            // axios.get('https://movie-app-001.herokuapp.com/users/:Username', {
+    getMovies(token) { //from MainView
+        axios.get('https://movie-app-001.herokuapp.com/movies', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(response => {
+                this.setState({ // Assign the result to the state
+                    movies: response.data
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    getUser(token) { //from MainView
+        axios.get('https://movie-app-001.herokuapp.com/users/:Username', {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
@@ -61,26 +91,38 @@ export class ProfileView extends React.Component {
             });
     }
 
+    componentDidMount() {
+        let accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
+            this.setState({
+                user: localStorage.getItem('user')//only getting the login data and token, right?
+            });
+            // this.getMovies(accessToken);
+            this.getUser(accessToken); //calling the functions above + ...
+            this.getUserData(accessToken); //mounting all the data that the function "pulled" from DB, access via this.? this.users?
+        }
+    }
 
     render() {
 
-        const { userX, user, users, userData, onBackClick, handleUpdate } = this.state;
-        // const { users, userData, movieData, addMovie, onBackClick, handleUpdate } = this.props; //extracting the props
-        // const [username, setUsername] = useState('');
+        // const { userX, user, users, userData, onBackClick, handleUpdate } = this.state;
+        const { movies, userData, setUsername, addMovie, onBackClick, handleUpdate } = this.props; //extracting the props
+        const { user, users, favoriteMovies } = this.state;
 
         return (
             <Container>
                 <Row className="register" >
 
-                    <Link to={`/`} className="page-header">
+                    <Link to={`/`} className="page-header profile">
                         <Button variant="link" >All Movies</Button>
                     </Link>
-                    <Button className="material-icons round" onClick={() => { onBackClick(null); }} ><span>arrow_back</span></Button>
-                    {/* <Button className="material-icons round" onClick={() => { onBackClick={() => history.goBack(); }} ><span>arrow_back</span></Button> */}
 
-                    {/* <h2 className="director-name">Profile of: . . .  {userX.Username} </h2> */}
-                    {/* <h2 className="director-name">Profile of: . . .  {this.state.Username} </h2> */}
-                    {/* <h2 className="director-name">Profile of: . . .  {users.Username} </h2> */}
+                    <Col sm={12} md={4} className="profile">
+                        <Button className="material-icons round " onClick={() => { onBackClick(null); }} ><span>arrow_back</span></Button>
+                    </Col>
+                    {/* <h2 className="director-name">Profile of: "{userX.Username}" passed from MainView</h2> */}
+                    <h2 className="director-name">"{this.state.user}" - from localStorage, not DB! </h2>
+                    {/* <h2 className="director-name">Profile of: "{this.users.Username}" from DB (users)</h2> */}
                     <Form className="registration-view">
                         <Form.Group controlId="formGroupUser">
                             <Form.Label>Username:</Form.Label>
@@ -123,9 +165,22 @@ export class ProfileView extends React.Component {
                         <Button type="submit" onClick={handleUpdate}>Update</Button>
                     </Form>
                 </Row>
-                <Row>
 
-                </Row>
+                <Container>
+                    {/* <h2 className="value genre-name">More Movies from {directorData.Name}</h2> */}
+                    <Row>
+                        {/* { //from DirectorView */}
+                        {/* movies.map((movie) => {//loop through movieData (= movies-collection in DB) and use the one that has this Genre Name that we're in */}
+                        {/* // if (movie.Director.Name === directorData.Name) */}
+                        {/* return this.state.favoriteMovies */}
+                        {/* // return <Col xs={3} sm={4} md={4} lg={3} key={movie._id}> */}
+                        {/* //     <MovieCard movieData={movie} /> */}
+                        {/* // </Col> */}
+                        {/* // }) */}
+                        {/* // } */}
+
+                    </Row>
+                </Container>
             </Container>
         );
     }

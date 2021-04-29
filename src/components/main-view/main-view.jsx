@@ -25,7 +25,7 @@ export class MainView extends React.Component { //exposing the component
         super(); //initializes component’s state
         this.state = {
             movies: [],
-            selectedMovie: null, //tells the application that no movie cards were clicked
+            // selectedMovie: null, //tells the application that no movie cards were clicked
             registration: null,
             user: null,
             // users: []
@@ -105,12 +105,7 @@ export class MainView extends React.Component { //exposing the component
     }
 
     render() {
-        const { movies, user, users } = this.state;
-
-        // if (!registration) return <RegistrationView onRegistration={registration => this.onRegistration(registration)} />;
-
-        // if (profile) return <ProfileView user={this.state.user} />;
-
+        const { movies, user } = this.state;
 
         return (
             <Router>
@@ -219,8 +214,8 @@ export class MainView extends React.Component { //exposing the component
 
                             return <Col>
                                 <ProfileView
-                                    // userX={this.state.user}
-                                    // userData={users}
+                                    // userX={users}
+                                    // userData={user}
                                     onBackClick={() => history.goBack()}
                                 />
                             </Col>

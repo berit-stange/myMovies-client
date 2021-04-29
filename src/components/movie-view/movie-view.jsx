@@ -9,7 +9,6 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { MovieCard } from '../movie-card/movie-card';
 
-
 import './movie-view.scss';
 
 export class MovieView extends React.Component {
@@ -38,6 +37,7 @@ export class MovieView extends React.Component {
 
     render() {
         const { x, movieData, addMovie, onBackClick } = this.props; //extracting the props
+        // const { x, movieData, addMovie, onBackClick } = this.state;
 
         return (
             // <Container>
@@ -51,7 +51,10 @@ export class MovieView extends React.Component {
 
                     <h3 className="movie-description">Description: </h3>
                     <p className="value">{movieData.Description}</p>
-                    <p className="value">{movieData._id}</p>
+                    <p className="value">movieID:<br />
+                        {movieData._id} <br />
+                    (only for development)
+                    </p>
 
                     <h3 className="movie-director">Director:</h3>
                     <p className="value">{movieData.Director.Name}</p>
