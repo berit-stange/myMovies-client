@@ -29,36 +29,12 @@ $font-light: 400;
 .nav-link {
   padding: 0.5rem 1rem;
 }
-
-.btn {
-  color: $dark-color;
-  background-color: $primary-color;
-  font-weight: $font-heavy;
-}
-
-.btn-primary,
-.btn-primary {
-  color: $secondary-color;
-  background-color: $primary-color !important;
-  box-shadow: none;
-}
-
-.btn-login {
-    background-color: $primary-color !important;
-    border: 1px solid $primary-color !important;
-    border-radius: 0;
-    color: $dark-color !important;
-    padding:  0.75rem;
-    font-weight: $font-heavy;
-    margin-top: 1rem;
-  }
   
-  .btn-login:active,
-  .btn-login:hover,
-  .btn-login:focus {
-    background-color: $dark-color !important;
-    border: 1px solid $primary-color !important;
-    box-shadow: none !important;
-    color: $secondary-color !important;
-  }
+.btn-logout {
+  visibility: hidden;
+}
+
+.btn-profile{
+  visibility: hidden;
+}
   

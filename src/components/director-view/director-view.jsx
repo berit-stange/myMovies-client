@@ -15,6 +15,20 @@ export class DirectorView extends React.Component {
 
         return (
             <Container>
+
+                {/* <Navbar>
+                    <Nav.Item className="logo">
+                        myMovies
+                            </Nav.Item>
+                    <Nav.Item className="page-header">
+                        <Button className="page-header__item btn-logout" onClick={() => { this.onLoggedOut() }}>LOG OUT</Button>
+                        <Nav.Link href={`/users/${user}`} className="">
+                            <Button variant="link" className="page-header__item btn-profile" onClick={() => { this.onLoggedIn() }}>{this.state.user}</Button>
+                        </Nav.Link>
+                    </Nav.Item>
+                </Navbar> */}
+
+
                 <Row className="director-view">
                     <Col sm={12} md={4}>
                         <Button className="material-icons round" onClick={() => { onBackClick(null); }} ><span>arrow_back</span></Button>
@@ -31,11 +45,11 @@ export class DirectorView extends React.Component {
                     <h2 className="value genre-name">More Movies from {directorData.Name}</h2>
                     <Row>
                         {
-                            moviesOfDirector.map((movie) => {//loop through movieData (= movies-collection in DB) and use the one that has this Genre Name that we're in
-                                if (movie.Director.Name === directorData.Name)
-                                    return <Col xs={3} sm={4} md={4} lg={3} key={movie._id}>
-                                        <MovieCard movieData={movie} />
-                                        {/* when I use MovieCard I have to use this pro name that has been defined in the route for Movie Card? */}
+                            moviesOfDirector.map((m) => {//loop through movieData (= movies-collection in DB) and use the one that has this Genre Name that we're in
+                                if (m.Director.Name === directorData.Name)
+                                    return <Col xs={3} sm={4} md={4} lg={3} key={m._id}>
+                                        <MovieCard movieData={m} />
+                                        {/* when I use MovieCard I have to use this prop name that has been defined in the route for Movie Card? */}
                                         {/* When I display the movie info differently, I can use movieOfDirector? */}
                                         {/* <p className="value">{moviesOfDirector.Title}</p>   */}
                                         {/* this doesn't work because it's just the name of the function? */}
@@ -54,9 +68,10 @@ export class DirectorView extends React.Component {
     }
 }
 
-// DirectorView.propTypes = {
-//     directorData: PropTypes.shape({
-//         Name: PropTypes.string.isRequired,
-//         Bio: PropTypes.string.isRequired
-//     })
-// };
+DirectorView.propTypes = {
+    directorData: PropTypes.shape({
+        Name: PropTypes.string.isRequired,
+        Bio: PropTypes.string.isRequired
+    }).isRequired,
+    onBackClick: PropTypes.func.isRequired
+};

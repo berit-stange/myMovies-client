@@ -45,7 +45,7 @@ export function LoginView(props) {
                     {/* <input type="password" value={password} onChange={e => setPassword(e.target.value)} /><br /> */}
                 </Form.Group>
 
-                <Button type="submit" className="btn-login" onClick={handleSubmit}>Submit</Button>
+                <Button type="submit" className="btn-login" onClick={handleSubmit}>LOGIN</Button>
             </Form>
         </Row>
     );
