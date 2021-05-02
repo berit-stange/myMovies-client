@@ -53,16 +53,11 @@ export class GenreView extends React.Component {
     }
 }
 
-// GenreView.propTypes = {
-//     genreData: PropTypes.shape({
-//         Name: PropTypes.string.isRequired,
-//         Description: PropTypes.string.isRequired
-//     }),
-//     movieData: PropTypes.shape({
-//         Title: PropTypes.string.isRequired,
-//         Description: PropTypes.string.isRequired,
-//         ImagePath: PropTypes.string.isRequired,
-//         Director: PropTypes.shape({
-//             Name: PropTypes.string.isRequired
-//         })
-//     };
+GenreView.propTypes = {
+    genreData: PropTypes.shape({
+        Name: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired
+        // moviesOfGenre: do I have to include this and when yes - how? As a function? 
+    }).isRequired,
+    onBackClick: PropTypes.func.isRequired
+};

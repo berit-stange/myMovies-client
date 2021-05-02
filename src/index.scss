@@ -87,6 +87,25 @@ p {
   color: $primary-color;
 }
 
+.btn-primary {
+  background-color: $primary-color !important;
+    border: 1px solid $primary-color !important;
+    border-radius: 0;
+    color: $dark-color !important;
+    padding:  0.75rem;
+    font-weight: $font-heavy;
+    margin-top: 1rem;
+}
+
+.btn-primary:active,
+  .btn-primary:hover,
+  .btn-primary:focus {
+    background-color: $dark-color !important;
+    color: $primary-color !important;
+    border: 1px solid $primary-color !important;
+    box-shadow: none !important;
+  }
+
 .btn-logout {
   background-color: transparent !important;
   border: 1px solid $primary-color;
@@ -99,6 +118,7 @@ p {
 .btn-logout:hover,
 .btn-logout:focus {
   background-color: $primary-color !important;
+  color: $dark-color !important;
   border: 1px solid $primary-color !important;
   box-shadow: none !important;
 }
@@ -109,7 +129,7 @@ p {
 }
 
 .nav-link {
-  padding: 0.5rem 1rem;
+  padding: 1rem 1rem;
 }
 
 .round {

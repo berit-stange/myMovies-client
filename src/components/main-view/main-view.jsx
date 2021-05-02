@@ -118,9 +118,7 @@ export class MainView extends React.Component { //exposing the component
                         <Nav.Item className="page-header">
                             <Button className="page-header__item btn-logout" onClick={() => { this.onLoggedOut() }}>LOG OUT</Button>
                             <Nav.Link href={`/users/${user}`} className="">
-                                {/* PROFILE*/}
-                                {/* <Button className="page-header__item btn-profile " onClick={() => { this.onLoggedIn() }}></Button> */}
-                                <Button variant="link" className="page-header__item" onClick={() => { this.onLoggedIn() }}>{this.state.user}'s profile</Button>
+                                <Button variant="link" className="page-header__item btn-profil-e" onClick={() => { this.onLoggedIn() }}>{this.state.user}</Button>
                             </Nav.Link>
                         </Nav.Item>
                     </Navbar>
@@ -164,7 +162,8 @@ export class MainView extends React.Component { //exposing the component
                             </Col>
                             if (movies.length === 0) return <div className="" />;
                             return <Col>
-                                <MovieView movieData={movies.find(m => m._id === match.params.movieId)}
+                                <MovieView
+                                    movieData={movies.find(m => m._id === match.params.movieId)}
                                     onBackClick={() => history.goBack()} />
                             </Col>
                         }} />
@@ -208,29 +207,16 @@ export class MainView extends React.Component { //exposing the component
 
                         <Route path="/users/:username" render={({ match, history }) => {
                             if (!user) return <Col>
-                                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                                <LoginView
+                                    onLoggedIn={user => this.onLoggedIn(user)} />
                             </Col>
                             // if (users.length === 0) return <div className="" />;
-
                             return <Col>
                                 <ProfileView
-                                    // userX={users}
-                                    // userData={user}
+                                    movieData={movies}
                                     onBackClick={() => history.goBack()}
                                 />
                             </Col>
-
-
-                            // if (user.Username === match.params.username) {
-                            //     return <Col md={10}>
-                            //         <ProfileView
-                            //             userData={user}
-                            //         // movies={movies}
-                            //         />
-                            //     </Col>
-                            // }
-
-
                         }} />
 
                     </Row>

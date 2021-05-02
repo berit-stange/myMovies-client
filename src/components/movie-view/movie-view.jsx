@@ -15,29 +15,78 @@ export class MovieView extends React.Component {
 
     constructor() {
         super();
-        this.state = {};
+        this.state = {
+            username: '',
+            password: '',
+            birthday: '',
+            email: '',
+            favoriteMovies: '',
+            // movies: ''
+        };
     }
 
-    addMovie(x) {
-        let token = localStorage.getItem("token");
-
-        axios.post('https://movie-app-001.herokuapp.com/users/:Username/favorites/:MovieID', {
+    getUserData(token) { //like in MainView, but with more data 
+        // console.log(token);
+        axios.get(`https://movie-app-001.herokuapp.com/users/${localStorage.getItem('user')}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
-                // const data = response.data;
-                console.log('Done.');
-                window.open('/', '_self'); //self: page will open in the current tab
+                // console.log(response, '!userdata response')
+                this.setState({ // Assign the result to the state > access via this.state. .... later
+                    username: response.data.Username, //!!!!
+                    // password: response.data.Password,
+                    // birthday: response.data.Birthday,
+                    // email: response.data.Email,
+                    favoriteMovies: response.data.FavoriteMovies
+                });
             })
             .catch(function (error) {
                 console.log(error);
             });
-    };
+    }
+
+    addFavorite(e) {
+        console.log('before');
+        e.preventDefault();
+        console.log('after');
+        const { username } = this.state;
+        const { movieData } = this.props;
+        axios.post(`https://movie-app-001.herokuapp.com/users/${this.state.username}/favorites/${movieData._id}`,
+            {
+                Username: username
+            },
+            {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            })
+            .then(response => {
+                // const data = response.data;
+                // console.log(data);
+                console.log('Added!');
+                // window.open('/', '_self'); //self: page will open in the current tab
+                // localStorage.setItem('user', data.Username);
+            })
+            .catch(e => {
+                console.log('error at addMovie')
+            });
+    }
+
+    componentDidMount() {
+        let accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
+            this.setState({
+                user: localStorage.getItem('user')//only getting the login data and token, right?
+            });
+            // this.getMovies(accessToken);
+            // this.getUser(accessToken); //calling the functions above + ...
+            this.getUserData(accessToken); //mounting all the data that the function "pulled" from DB, access via this.? this.users?
+        }
+    }
 
 
     render() {
-        const { x, movieData, addMovie, onBackClick } = this.props; //extracting the props
-        // const { x, movieData, addMovie, onBackClick } = this.state;
+        const { movieData, onBackClick } = this.props; //extracting the props
+        const { username, password, birthday, email, favoriteMovies } = this.state;
+        // const { favorites } = this.state;
 
         return (
             // <Container>
@@ -51,10 +100,10 @@ export class MovieView extends React.Component {
 
                     <h3 className="movie-description">Description: </h3>
                     <p className="value">{movieData.Description}</p>
-                    <p className="value">movieID:<br />
+                    {/* <p className="value">movieID:<br />
                         {movieData._id} <br />
                     (only for development)
-                    </p>
+                    </p> */}
 
                     <h3 className="movie-director">Director:</h3>
                     <p className="value">{movieData.Director.Name}</p>
@@ -79,7 +128,7 @@ export class MovieView extends React.Component {
                     <div className="movie-poster" >
                         <Image src={movieData.ImagePath} fluid></Image>
                     </div>
-                    <Button className="material-icons round btn-add" onClick={() => { this.addMovie(x); }} ><span>add</span></Button>
+                    <Button className="material-icons round btn-add" onClick={(event) => { this.addFavorite(event); }} ><span>add</span></Button>
                 </Col>
 
             </Row>
