@@ -88,6 +88,7 @@ export class ProfileView extends React.Component {
                 const data = response.data;
                 console.log(data);
                 console.log('Updated!');
+                alert('Updated!');
                 // window.open('/', '_self'); //self: page will open in the current tab
                 localStorage.setItem('user', data.Username);
             })
@@ -153,9 +154,10 @@ export class ProfileView extends React.Component {
                             <Form.Control
                                 type="text"
                                 placeholder="Enter Username"
-                                pattern="[a-zA-Z0-9]{5}"
+                                pattern="[a-zA-Z0-9]{5,}"
                                 title="*min. 5 letters, alphanumeric"
                                 value={username}
+                                // defaultValue="Ernie"
                                 onChange={e => this.setState({ username: e.target.value })} />
                         </Form.Group>
 
@@ -164,7 +166,7 @@ export class ProfileView extends React.Component {
                             <Form.Control
                                 type="password"
                                 placeholder="Enter old password or a new one"
-                                // value={password} //shows value from DB: when used it shows the hashed password!
+                                // value={password} //shows value from DB: shows the hashed password and could submit this too!
                                 onChange={e => this.setState({ password: e.target.value })} />
                         </Form.Group>
 

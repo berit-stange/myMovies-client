@@ -26,22 +26,33 @@ export function LoginView(props) {
                 window.open('/', '_self'); //self: page will open in the current tab
             })
             .catch(e => {
-                console.log('no such user')
+                console.log('no such user');
+                alert('no such user');
             });
     };
 
     return (
         <Row className="login-view">
-            <Form className="login">
+            <Form className="login was-validated" noValidate /* validated={validated} */>
                 <Form.Group controlId="formEmail">
                     <Form.Label>Username:</Form.Label>
-                    <Form.Control type="text" placeholder="Enter email" value={username} onChange={e => setUsername(e.target.value)} />
+                    <Form.Control
+                        required
+                        type="text"
+                        placeholder="Enter email"
+                        value={username}
+                        onChange={e => setUsername(e.target.value)} />
                     {/* <input type="text" value={username} onChange={e => setUsername(e.target.value)} /><br /> */}
                 </Form.Group>
 
                 <Form.Group controlId="formPassword">
                     <Form.Label>Password:</Form.Label>
-                    <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+                    <Form.Control
+                        required
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)} />
                     {/* <input type="password" value={password} onChange={e => setPassword(e.target.value)} /><br /> */}
                 </Form.Group>
 

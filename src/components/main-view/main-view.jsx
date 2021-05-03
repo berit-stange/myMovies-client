@@ -118,10 +118,11 @@ export class MainView extends React.Component { //exposing the component
                         <Nav.Item className="page-header">
                             <Button className="page-header__item btn-logout" onClick={() => { this.onLoggedOut() }}>LOG OUT</Button>
                             <Nav.Link href={`/users/${user}`} className="">
-                                <Button variant="link" className="page-header__item btn-profil-e" onClick={() => { this.onLoggedIn() }}>{this.state.user}</Button>
+                                <Button variant="link" className="page-header__item btn-profil-e" onClick={() => { this.onLoggedIn() }}>{/* {this.state.user} */}PROFILE</Button>
                             </Nav.Link>
                         </Nav.Item>
                     </Navbar>
+
 
                     <Row className="justify-content-md-center">
 

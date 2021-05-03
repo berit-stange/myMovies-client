@@ -39784,8 +39784,6 @@ var _Navbar = _interopRequireDefault(require("react-bootstrap/Navbar"));
 
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
 
-var _FormControl = _interopRequireDefault(require("react-bootstrap/FormControl"));
-
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
 require("./registration-view.scss");
@@ -39833,7 +39831,7 @@ function RegistrationView(props) {
       _useState10 = _slicedToArray(_useState9, 2),
       validated = _useState10[0],
       setValidated = _useState10[1]; //Bootstrap form Validation
-  // const handleSubmit = (event) => {
+  // const handleSubmit = (event) => {  //Bootstrap form Validation  will delete code after call
   //     const form = event.currentTarget;
   //     if (form.checkValidity() === false) {
   //         event.preventDefault();
@@ -39844,17 +39842,8 @@ function RegistrationView(props) {
 
 
   var handleRegister = function handleRegister(e) {
-    var form = e.currentTarget; //Bootstrap form Validation
-
-    if (form.checkValidity() === false) {
-      //Bootstrap form Validation
-      e.preventDefault();
-      console.log('wrong data');
-      e.stopPropagation(); //Bootstrap form Validation
-    }
-
-    setValidated(true); //Bootstrap form Validation
-
+    // Bootstrap form Validation was inserted here and submitted twice - how can I do this?
+    e.preventDefault();
     console.log(username, password);
 
     _axios.default.post('https://movie-app-001.herokuapp.com/users', {
@@ -39864,7 +39853,8 @@ function RegistrationView(props) {
       Email: email
     }).then(function (response) {
       var data = response.data;
-      console.log(data); // window.open('/', '_self'); //self: page will open in the current tab
+      console.log(data);
+      window.open('/', '_self'); //self: page will open in the current tab
     }).catch(function (e) {
       console.log('error at registration');
     });
@@ -39873,30 +39863,33 @@ function RegistrationView(props) {
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Row.default, {
     className: "register"
   }, /*#__PURE__*/_react.default.createElement(_Form.default, {
-    className: "registration-view",
+    className: "registration-view was-validated",
     noValidate: true,
-    validated: validated,
-    onSubmit: handleRegister
+    validated: validated
     /* onSubmit={handleRegister} */
 
+    /* onSubmit={handleSubmit} */
+
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
-    controlId: "formGroupUser",
-    hasvalidation: "true"
+    controlId: "formGroupUser"
+    /* hasvalidation="true" */
+
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     required: true,
     type: "text",
-    pattern: "[a-zA-Z]" //[a-zA-Z0-9]
+    pattern: "[a-zA-Z0-9]{5,}" //[a-zA-Z0-9]+ checking if the company name consists out of alphanumeric characters
     ,
     minLength: "5",
-    placeholder: "min. 5 letters, alphanumeric",
-    value: username,
+    placeholder: "Enter Username" // defaultValue="Username"    //when set, the form isn't empty = invalid, but can't be set when value is set
+    // value={username}     //not necessary for targeting, just current input
+    ,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     }
   }), /*#__PURE__*/_react.default.createElement(_Form.default.Control.Feedback, {
     type: "invalid",
-    className: "error"
-  }, "Please choose a valid username.")), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    className: "error form-info"
+  }, "Username must have at 5 letters min + alphanumeric.")), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
     controlId: "formGroupPassword"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Password:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     required: true,
@@ -39908,7 +39901,7 @@ function RegistrationView(props) {
     }
   }), /*#__PURE__*/_react.default.createElement(_Form.default.Control.Feedback, {
     type: "invalid",
-    className: "error"
+    className: "error form-info"
   }, "Please choose a password.")), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
     controlId: "formGroupBirthday"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Birthday:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
@@ -39922,7 +39915,7 @@ function RegistrationView(props) {
     }
   }), /*#__PURE__*/_react.default.createElement(_Form.default.Control.Feedback, {
     type: "invalid",
-    className: "error"
+    className: "error form-info"
   }, "Please enter a valid date.")), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
     controlId: "formGroupEmail"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Email:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
@@ -39935,7 +39928,7 @@ function RegistrationView(props) {
     }
   }), /*#__PURE__*/_react.default.createElement(_Form.default.Control.Feedback, {
     type: "invalid",
-    className: "error"
+    className: "error form-info"
   }, "Please enter a valid emailadress.")), /*#__PURE__*/_react.default.createElement(_Button.default, {
     type: "submit",
     onClick: handleRegister
@@ -39951,7 +39944,7 @@ RegistrationView.propTypes = {
   }),
   handleRegister: _propTypes.default.func
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Nav":"../node_modules/react-bootstrap/esm/Nav.js","react-bootstrap/Navbar":"../node_modules/react-bootstrap/esm/Navbar.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/FormControl":"../node_modules/react-bootstrap/esm/FormControl.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/login-view/login-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Nav":"../node_modules/react-bootstrap/esm/Nav.js","react-bootstrap/Navbar":"../node_modules/react-bootstrap/esm/Navbar.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/login-view/login-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -40025,16 +40018,21 @@ function LoginView(props) {
       window.open('/', '_self'); //self: page will open in the current tab
     }).catch(function (e) {
       console.log('no such user');
+      alert('no such user');
     });
   };
 
   return /*#__PURE__*/_react.default.createElement(_Row.default, {
     className: "login-view"
   }, /*#__PURE__*/_react.default.createElement(_Form.default, {
-    className: "login"
+    className: "login was-validated",
+    noValidate: true
+    /* validated={validated} */
+
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
     controlId: "formEmail"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    required: true,
     type: "text",
     placeholder: "Enter email",
     value: username,
@@ -40044,6 +40042,7 @@ function LoginView(props) {
   })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
     controlId: "formPassword"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Password:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    required: true,
     type: "password",
     placeholder: "Password",
     value: password,
@@ -41033,7 +41032,8 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }).then(function (response) {
         var data = response.data;
         console.log(data);
-        console.log('Updated!'); // window.open('/', '_self'); //self: page will open in the current tab
+        console.log('Updated!');
+        alert('Updated!'); // window.open('/', '_self'); //self: page will open in the current tab
 
         localStorage.setItem('user', data.Username);
       }).catch(function (e) {
@@ -41124,9 +41124,10 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
         type: "text",
         placeholder: "Enter Username",
-        pattern: "[a-zA-Z0-9]{5}",
+        pattern: "[a-zA-Z0-9]{5,}",
         title: "*min. 5 letters, alphanumeric",
-        value: username,
+        value: username // defaultValue="Ernie"
+        ,
         onChange: function onChange(e) {
           return _this4.setState({
             username: e.target.value
@@ -41136,7 +41137,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         controlId: "formGroupPassword"
       }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Password:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
         type: "password",
-        placeholder: "Enter old password or a new one" // value={password} //shows value from DB: when used it shows the hashed password!
+        placeholder: "Enter old password or a new one" // value={password} //shows value from DB: shows the hashed password and could submit this too!
         ,
         onChange: function onChange(e) {
           return _this4.setState({
@@ -41418,7 +41419,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick() {
           _this4.onLoggedIn();
         }
-      }, this.state.user)))), /*#__PURE__*/_react.default.createElement(_Row.default, {
+      }, "PROFILE")))), /*#__PURE__*/_react.default.createElement(_Row.default, {
         className: "justify-content-md-center"
       }, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         exact: true,

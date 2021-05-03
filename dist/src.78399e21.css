@@ -24,6 +24,20 @@
   background-color: gainsboro !important;
   box-shadow: none;
 }
+
+.form-control:valid,
+.was-validated:valid {
+  color: #cca53b;
+  box-shadow: #cca53b;
+  border-color: #cca53b !important;
+}
+
+.was-validated:invalid,
+.form-control:invalid {
+  box-shadow: none;
+  border-color: transparent !important;
+  background-image: none !important;
+}
 .login-view {
   display: grid;
   margin-right: 0px;
@@ -321,9 +335,7 @@ p {
   border: 1px solid #cca53b !important;
   border-radius: 0;
   color: #001625 !important;
-  padding: 0.75rem;
   font-weight: 700;
-  margin-top: 1rem;
 }
 
 .btn-primary:active,
@@ -383,11 +395,11 @@ p {
 }
 
 .error {
-  color: #d65353;
+  color: #d67c53;
 }
 
 .form-info {
-  font-size: 11px;
+  font-size: 12px;
 }
 
 /*# sourceMappingURL=/src.78399e21.css.map */

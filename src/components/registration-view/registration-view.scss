@@ -36,3 +36,22 @@ $font-light: 400;
     background-color: $secondary-color !important;
     box-shadow: none;
 }
+
+.form-control:valid, // when all fields are valid, labels change color
+.was-validated:valid {
+    color: $primary-color;
+    box-shadow: $primary-color;
+    border-color: $primary-color !important;
+}
+
+// .was-validated:invalid{
+//     color: blue;
+// }
+
+.was-validated:invalid,
+.form-control:invalid{
+    // color: red;
+    box-shadow: none;
+    border-color: transparent !important;
+    background-image: none !important; // same as for valid state - why? 
+}
