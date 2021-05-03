@@ -1,12 +1,14 @@
 $primary-color: #cca53b;
 $secondary-color: gainsboro;
 $dark-color: #001625;
+$error-color: #d65353;
 $font-sans: 'Montserrat', sans-serif;
 $font-serif: 'Abril Fatface', serif;
 $font-big: 60px;
 $font-medium: 30px;
 $font-small: 20px;
 $font-p: 15px;
+$font-tiny: 11px;
 $font-heavy: 700;
 $font-light: 400;
 
@@ -154,4 +156,12 @@ p {
   background-color: $secondary-color !important;
   border: 1px solid $primary-color !important;
   box-shadow: none !important;
+}
+
+.error{
+  color:$error-color;
+}
+
+.form-info{
+  font-size: $font-tiny;
 }

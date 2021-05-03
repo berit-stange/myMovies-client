@@ -39784,6 +39784,8 @@ var _Navbar = _interopRequireDefault(require("react-bootstrap/Navbar"));
 
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
 
+var _FormControl = _interopRequireDefault(require("react-bootstrap/FormControl"));
+
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
 require("./registration-view.scss");
@@ -39827,8 +39829,32 @@ function RegistrationView(props) {
       email = _useState8[0],
       setEmail = _useState8[1];
 
+  var _useState9 = (0, _react.useState)(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      validated = _useState10[0],
+      setValidated = _useState10[1]; //Bootstrap form Validation
+  // const handleSubmit = (event) => {
+  //     const form = event.currentTarget;
+  //     if (form.checkValidity() === false) {
+  //         event.preventDefault();
+  //         event.stopPropagation();
+  //     }
+  //     setValidated(true);
+  // };
+
+
   var handleRegister = function handleRegister(e) {
-    e.preventDefault();
+    var form = e.currentTarget; //Bootstrap form Validation
+
+    if (form.checkValidity() === false) {
+      //Bootstrap form Validation
+      e.preventDefault();
+      console.log('wrong data');
+      e.stopPropagation(); //Bootstrap form Validation
+    }
+
+    setValidated(true); //Bootstrap form Validation
+
     console.log(username, password);
 
     _axios.default.post('https://movie-app-001.herokuapp.com/users', {
@@ -39838,8 +39864,7 @@ function RegistrationView(props) {
       Email: email
     }).then(function (response) {
       var data = response.data;
-      console.log(data);
-      window.open('/', '_self'); //self: page will open in the current tab
+      console.log(data); // window.open('/', '_self'); //self: page will open in the current tab
     }).catch(function (e) {
       console.log('error at registration');
     });
@@ -39848,44 +39873,70 @@ function RegistrationView(props) {
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Row.default, {
     className: "register"
   }, /*#__PURE__*/_react.default.createElement(_Form.default, {
-    className: "registration-view"
+    className: "registration-view",
+    noValidate: true,
+    validated: validated,
+    onSubmit: handleRegister
+    /* onSubmit={handleRegister} */
+
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
-    controlId: "formGroupUser"
+    controlId: "formGroupUser",
+    hasvalidation: "true"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    required: true,
     type: "text",
-    placeholder: "Enter Username",
+    pattern: "[a-zA-Z]" //[a-zA-Z0-9]
+    ,
+    minLength: "5",
+    placeholder: "min. 5 letters, alphanumeric",
     value: username,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+  }), /*#__PURE__*/_react.default.createElement(_Form.default.Control.Feedback, {
+    type: "invalid",
+    className: "error"
+  }, "Please choose a valid username.")), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
     controlId: "formGroupPassword"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Password:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    required: true,
     type: "password",
     placeholder: "Enter Password",
     value: password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+  }), /*#__PURE__*/_react.default.createElement(_Form.default.Control.Feedback, {
+    type: "invalid",
+    className: "error"
+  }, "Please choose a password.")), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
     controlId: "formGroupBirthday"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Birthday:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
-    type: "",
+    required: true,
+    type: "text",
+    pattern: "[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])",
     placeholder: "Enter Birthday (YYYY-MM-DD)",
     value: birthday,
     onChange: function onChange(e) {
       return setBirthday(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+  }), /*#__PURE__*/_react.default.createElement(_Form.default.Control.Feedback, {
+    type: "invalid",
+    className: "error"
+  }, "Please enter a valid date.")), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
     controlId: "formGroupEmail"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Email:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    required: true,
     type: "email",
     placeholder: "Enter Email",
     value: email,
     onChange: function onChange(e) {
       return setEmail(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement(_Button.default, {
+  }), /*#__PURE__*/_react.default.createElement(_Form.default.Control.Feedback, {
+    type: "invalid",
+    className: "error"
+  }, "Please enter a valid emailadress.")), /*#__PURE__*/_react.default.createElement(_Button.default, {
     type: "submit",
     onClick: handleRegister
   }, "Register"))));
@@ -39900,7 +39951,7 @@ RegistrationView.propTypes = {
   }),
   handleRegister: _propTypes.default.func
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Nav":"../node_modules/react-bootstrap/esm/Nav.js","react-bootstrap/Navbar":"../node_modules/react-bootstrap/esm/Navbar.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/login-view/login-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Nav":"../node_modules/react-bootstrap/esm/Nav.js","react-bootstrap/Navbar":"../node_modules/react-bootstrap/esm/Navbar.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/FormControl":"../node_modules/react-bootstrap/esm/FormControl.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"components/login-view/login-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -40896,10 +40947,19 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       email: '',
       favoriteMovies: []
     };
+    _this.form = _react.default.createRef(); //grabbing the forms reference //react form validation
+
+    _this.validate = _this.validate.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(ProfileView, [{
+    key: "validate",
+    value: function validate() {
+      //creates the validate method
+      this.form.current.reportValidity();
+    }
+  }, {
     key: "deleteFavorite",
     value: function deleteFavorite(movie) {
       _axios.default.delete("https://movie-app-001.herokuapp.com/users/".concat(this.state.username, "/favorites/").concat(movie._id), {
@@ -40951,9 +41011,10 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleUpdate",
     value: function handleUpdate(e) {
-      console.log('before');
-      e.preventDefault();
-      console.log('after');
+      // console.log('before');
+      e.preventDefault(); // console.log('after');
+
+      this.validate();
       var _this$state2 = this.state,
           username = _this$state2.username,
           password = _this$state2.password,
@@ -41033,9 +41094,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           email = _this$state3.email,
           favoriteMovies = _this$state3.favoriteMovies; //object destructuring 
       // console.log(favoriteMovies);
-      // const favoriteMovieList = movieData.filter((movie) => { //for call, will remove later
-      //     return favoriteMovies.includes(movie._id);
-      // });
 
       var favoriteMovieList = movieData.filter(function (m) {
         return favoriteMovies.includes(m._id);
@@ -41059,12 +41117,15 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/_react.default.createElement("span", null, "arrow_back"))), /*#__PURE__*/_react.default.createElement("h2", {
         className: "director-name"
       }, "Hello ", username, "!"), " ", /*#__PURE__*/_react.default.createElement(_Form.default, {
-        className: "registration-view"
+        className: "registration-view",
+        ref: this.form
       }, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
         controlId: "formGroupUser"
       }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
         type: "text",
         placeholder: "Enter Username",
+        pattern: "[a-zA-Z0-9]{5}",
+        title: "*min. 5 letters, alphanumeric",
         value: username,
         onChange: function onChange(e) {
           return _this4.setState({
@@ -41076,7 +41137,6 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Password:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
         type: "password",
         placeholder: "Enter old password or a new one" // value={password} //shows value from DB: when used it shows the hashed password!
-        // onChange={e => setPassword(e.target.value)} //syntax only for function components!
         ,
         onChange: function onChange(e) {
           return _this4.setState({
@@ -41087,8 +41147,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         controlId: "formGroupBirthday"
       }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Birthday:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
         type: "text",
-        placeholder: "yyyy-mm-dd" // value={birthday} // shows value from DB: when used it shows the transformed data format!
+        placeholder: "YYYY-MM-DD" // value={birthday} // shows value from DB: when used it shows the transformed data format!
         ,
+        pattern: "[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])",
         onChange: function onChange(e) {
           return _this4.setState({
             birthday: e.target.value
@@ -41116,7 +41177,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         onClick: function onClick(event) {
           return _this4.handleDelete(event);
         }
-      }, "DELETE ", username))), /*#__PURE__*/_react.default.createElement(_Container.default, null, /*#__PURE__*/_react.default.createElement("h2", {
+      }, "DELETE ", localStorage.getItem('user'), " "))), /*#__PURE__*/_react.default.createElement(_Container.default, null, /*#__PURE__*/_react.default.createElement("h2", {
         className: "value genre-name"
       }, "These are your favorite movies:"), /*#__PURE__*/_react.default.createElement(_Row.default, null, favoriteMovieList.map(function (movie) {
         return /*#__PURE__*/_react.default.createElement(_Col.default
@@ -41139,23 +41200,20 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return ProfileView;
-}(_react.default.Component); // ProfileView.propTypes = {
-//     movieData: PropTypes.shape({
-//         Title: PropTypes.string.isRequired,
-//         Description: PropTypes.string.isRequired,
-//         ImagePath: PropTypes.string.isRequired,
-//         Director: PropTypes.shape({
-//             Name: PropTypes.string.isRequired
-//         })
-//     }).isRequired
-// };
-
+}(_react.default.Component);
 
 exports.ProfileView = ProfileView;
 ProfileView.propTypes = {
-  // username: PropTypes.string.isRequired,
-  // password: PropTypes.string.isRequired,
-  onBackClick: _propTypes.default.func.isRequired
+  ProfileView: _propTypes.default.shape({
+    username: _propTypes.default.string.isRequired,
+    password: _propTypes.default.string.isRequired,
+    birthday: _propTypes.default.string.isRequired,
+    email: _propTypes.default.string.isRequired
+  }),
+  onBackClick: _propTypes.default.func.isRequired // handleUpdate: PropTypes.func.isRequired,   // props transmit data between components
+  // deleteFavorite: PropTypes.func.isRequired, // these are only used inside this one
+  // handleDelete: PropTypes.func.isRequired
+
 };
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../movie-card/movie-card":"components/movie-card/movie-card.jsx","./profile-view.scss":"components/profile-view/profile-view.scss"}],"components/main-view/main-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
@@ -41618,7 +41676,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50313" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56524" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

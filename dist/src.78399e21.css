@@ -382,4 +382,12 @@ p {
   box-shadow: none !important;
 }
 
+.error {
+  color: #d65353;
+}
+
+.form-info {
+  font-size: 11px;
+}
+
 /*# sourceMappingURL=/src.78399e21.css.map */
