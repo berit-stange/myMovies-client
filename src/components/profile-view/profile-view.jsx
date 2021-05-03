@@ -23,8 +23,13 @@ export class ProfileView extends React.Component {
             email: '',
             favoriteMovies: []
         };
+        this.form = React.createRef(); //grabbing the forms reference //react form validation
+        this.validate = this.validate.bind(this);
     }
 
+    validate() { //creates the validate method
+        this.form.current.reportValidity();
+    }
 
     deleteFavorite(movie) {
         axios.delete(`https://movie-app-001.herokuapp.com/users/${this.state.username}/favorites/${movie._id}`,
@@ -66,9 +71,10 @@ export class ProfileView extends React.Component {
     }
 
     handleUpdate(e) {
-        console.log('before');
+        // console.log('before');
         e.preventDefault();
-        console.log('after');
+        // console.log('after');
+        this.validate();
         const { username, password, birthday, email } = this.state;
         axios.put(`https://movie-app-001.herokuapp.com/users/${this.state.username}`, {
             Username: username,
@@ -126,10 +132,6 @@ export class ProfileView extends React.Component {
         const { movieData, onBackClick } = this.props; //extracting the props
         const { username, email, favoriteMovies } = this.state; //object destructuring 
         // console.log(favoriteMovies);
-
-        // const favoriteMovieList = movieData.filter((movie) => { //for call, will remove later
-        //     return favoriteMovies.includes(movie._id);
-        // });
         const favoriteMovieList = movieData.filter(m => favoriteMovies.includes(m._id));
 
         return (
@@ -144,11 +146,15 @@ export class ProfileView extends React.Component {
                         <Button className="material-icons round " onClick={() => { onBackClick(null); }} ><span>arrow_back</span></Button>
                     </Col>
                     <h2 className="director-name">Hello {username}!</h2> {/* from localStorage, not DB! */}
-                    <Form className="registration-view">
+
+                    <Form className="registration-view" ref={this.form}>
                         <Form.Group controlId="formGroupUser">
                             <Form.Label>Username:</Form.Label>
-                            <Form.Control type="text"
+                            <Form.Control
+                                type="text"
                                 placeholder="Enter Username"
+                                pattern="[a-zA-Z0-9]{5}"
+                                title="*min. 5 letters, alphanumeric"
                                 value={username}
                                 onChange={e => this.setState({ username: e.target.value })} />
                         </Form.Group>
@@ -159,28 +165,30 @@ export class ProfileView extends React.Component {
                                 type="password"
                                 placeholder="Enter old password or a new one"
                                 // value={password} //shows value from DB: when used it shows the hashed password!
-                                // onChange={e => setPassword(e.target.value)} //syntax only for function components!
                                 onChange={e => this.setState({ password: e.target.value })} />
                         </Form.Group>
 
                         <Form.Group controlId="formGroupBirthday">
                             <Form.Label>Birthday:</Form.Label>
-                            <Form.Control type="text"
-                                placeholder="yyyy-mm-dd"
+                            <Form.Control
+                                type="text"
+                                placeholder="YYYY-MM-DD"
                                 // value={birthday} // shows value from DB: when used it shows the transformed data format!
+                                pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"
                                 onChange={e => this.setState({ birthday: e.target.value })} />
                         </Form.Group>
 
                         <Form.Group controlId="formGroupEmail">
                             <Form.Label>Email:</Form.Label>
-                            <Form.Control type="email"
+                            <Form.Control
+                                type="email"
                                 placeholder="Enter Email"
                                 value={email}
                                 onChange={e => this.setState({ email: e.target.value })} />
                         </Form.Group>
 
                         <Button type="submit" onClick={event => this.handleUpdate(event)}>Update</Button>
-                        <Button type="submit" className="btn-delete" onClick={event => this.handleDelete(event)}>DELETE {username}</Button>
+                        <Button type="submit" className="btn-delete" onClick={event => this.handleDelete(event)}>DELETE {localStorage.getItem('user')} {/* {username} */}</Button>
                     </Form>
                 </Row>
 
@@ -202,19 +210,15 @@ export class ProfileView extends React.Component {
     }
 }
 
-// ProfileView.propTypes = {
-//     movieData: PropTypes.shape({
-//         Title: PropTypes.string.isRequired,
-//         Description: PropTypes.string.isRequired,
-//         ImagePath: PropTypes.string.isRequired,
-//         Director: PropTypes.shape({
-//             Name: PropTypes.string.isRequired
-//         })
-//     }).isRequired
-// };
-
 ProfileView.propTypes = {
-    // username: PropTypes.string.isRequired,
-    // password: PropTypes.string.isRequired,
-    onBackClick: PropTypes.func.isRequired
+    ProfileView: PropTypes.shape({
+        username: PropTypes.string.isRequired,
+        password: PropTypes.string.isRequired,
+        birthday: PropTypes.string.isRequired,
+        email: PropTypes.string.isRequired
+    }),
+    onBackClick: PropTypes.func.isRequired,
+    // handleUpdate: PropTypes.func.isRequired,   // props transmit data between components
+    // deleteFavorite: PropTypes.func.isRequired, // these are only used inside this one
+    // handleDelete: PropTypes.func.isRequired
 };
