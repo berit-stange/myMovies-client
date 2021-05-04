@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import { MovieCard } from '../movie-card/movie-card';
+import { MovieCardFavs } from '../movie-card-favs/movie-card-favs';
 import './profile-view.scss';
 
 
@@ -22,13 +23,7 @@ export class ProfileView extends React.Component {
             birthday: '',
             email: '',
             favoriteMovies: []
-        };
-        this.form = React.createRef(); //grabbing the forms reference //react form validation
-        this.validate = this.validate.bind(this);
-    }
-
-    validate() { //creates the validate method
-        this.form.current.reportValidity();
+        }
     }
 
     deleteFavorite(movie) {
@@ -46,9 +41,10 @@ export class ProfileView extends React.Component {
     }
 
     handleDelete(e) {
-        console.log('before');
+        // console.log('before');
         e.preventDefault();
-        console.log('after');
+        // console.log('after');
+        alert('Are you sure?');
         const { username, password, birthday, email } = this.state;
         axios.delete(`https://movie-app-001.herokuapp.com/users/${this.state.username}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
@@ -137,18 +133,31 @@ export class ProfileView extends React.Component {
 
         return (
             <Container>
-                <Row className="profile-row" >
-
-                    <Link to={`/`} className="page-header profile">
-                        <Button variant="link" >All Movies</Button>
-                    </Link>
-
-                    <Col sm={12} md={4} className="profile">
-                        <Button className="material-icons round " onClick={() => { onBackClick(null); }} ><span>arrow_back</span></Button>
+                <Row className="profile-row">
+                    <Col /* sm={12} md={4} */ className="profil">
+                        <Button className="material-icons round btn-full" onClick={() => { onBackClick(null); }} ><span>arrow_back</span></Button>
                     </Col>
-                    <h2 className="director-name">Hello {username}!</h2> {/* from localStorage, not DB! */}
+                    <Col>
+                        <h2 className="director-name">Hello {username}!</h2> {/* from localStorage */}
+                    </Col>
+                </Row>
 
-                    <Form className="registration-view" ref={this.form}>
+                <Container>
+                    <h3 className="value genre-name">These are your favorite movies:</h3>
+                    <Row>
+                        {favoriteMovieList.map((movie) => {
+                            return (
+                                <Col /* xs={12} */ sm={6} md={4} lg={3} key={movie._id}>
+                                    <MovieCard movieData={movie} />
+                                    <Button className="material-icons round delete-favorite" onClick={() => this.deleteFavorite(movie)}><span>remove</span></Button>
+                                </Col>
+                            );
+                        })}
+                    </Row>
+                </Container>
+
+                <Row className="profile-row">
+                    <Form ref={this.form}>
                         <Form.Group controlId="formGroupUser">
                             <Form.Label>Username:</Form.Label>
                             <Form.Control
@@ -157,7 +166,6 @@ export class ProfileView extends React.Component {
                                 pattern="[a-zA-Z0-9]{5,}"
                                 title="*min. 5 letters, alphanumeric"
                                 value={username}
-                                // defaultValue="Ernie"
                                 onChange={e => this.setState({ username: e.target.value })} />
                         </Form.Group>
 
@@ -189,24 +197,16 @@ export class ProfileView extends React.Component {
                                 onChange={e => this.setState({ email: e.target.value })} />
                         </Form.Group>
 
-                        <Button type="submit" onClick={event => this.handleUpdate(event)}>Update</Button>
-                        <Button type="submit" className="btn-delete" onClick={event => this.handleDelete(event)}>DELETE {localStorage.getItem('user')} {/* {username} */}</Button>
+                        <Button type="submit" className="btn-update" onClick={event => this.handleUpdate(event)}>Update</Button>
                     </Form>
                 </Row>
 
-                <Container>
-                    <h2 className="value genre-name">These are your favorite movies:</h2>
-                    <Row>
-                        {favoriteMovieList.map((movie) => {
-                            return (
-                                <Col /* xs={12} */ sm={6} md={4} lg={3} key={movie._id}>
-                                    <MovieCard movieData={movie} />
-                                    <Button className="btn-delete" onClick={() => this.deleteFavorite(movie)}>DELETE</Button>
-                                </Col>
-                            );
-                        })}
-                    </Row>
-                </Container>
+                <Row className="delete-row">
+                    <Button type="submit" onClick={event => this.handleDelete(event)}>DELETE {localStorage.getItem('user')} {/* {username} */}</Button>
+                </Row>
+
+
+
             </Container >
         );
     }

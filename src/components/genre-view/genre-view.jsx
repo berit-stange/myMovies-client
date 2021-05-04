@@ -17,7 +17,7 @@ export class GenreView extends React.Component {
             <Container>
                 <Row className="genre-view">
                     <Col sm={12} md={4}>
-                        <Button className="material-icons round" onClick={() => { onBackClick(null); }} ><span>arrow_back</span></Button>
+                        <Button className="material-icons round btn-full" onClick={() => { onBackClick(null); }} ><span>arrow_back</span></Button>
                     </Col>
                     <Col sm={12} md={8}>
                         <h2 className="value genre-name">{genreData.Name}</h2>

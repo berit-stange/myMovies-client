@@ -14,14 +14,16 @@ export class MovieCard extends React.Component {
 
         return (
             <Card>
-                <Card.Img variant="top" src={movieData.ImagePath} />
-                <Card.Body>
-                    <Card.Title>{movieData.Title}</Card.Title>
-                    {/* <Card.Text>{movieData.Description}</Card.Text> */}
-                    <Link to={`/movies/${movieData._id}`}>
-                        <Button variant="link" className="btn-card">Open</Button>
-                    </Link>
-                </Card.Body>
+                <Link to={`/movies/${movieData._id}`}>
+                    <Card.Img variant="top" src={movieData.ImagePath} />
+                    <Card.Body>
+                        {/* <Card.Title>{movieData.Title}</Card.Title> */}
+                    </Card.Body>
+                </Link>
+                {/* <Link to={`/movies/${movieData._id}`}> */}
+                {/* <Button variant="link" className="material-icons round"><span>open_in_full</span></Button> */}
+                {/* </Link> */}
+
             </Card>
         );
     }

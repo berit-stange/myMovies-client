@@ -2,9 +2,11 @@ import React, { useState } from 'react'; //Hook used to add state to function co
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 import './login-view.scss';
 
 
@@ -32,33 +34,41 @@ export function LoginView(props) {
     };
 
     return (
-        <Row className="login-view">
-            <Form className="login was-validated" noValidate /* validated={validated} */>
-                <Form.Group controlId="formEmail">
-                    <Form.Label>Username:</Form.Label>
-                    <Form.Control
-                        required
-                        type="text"
-                        placeholder="Enter email"
-                        value={username}
-                        onChange={e => setUsername(e.target.value)} />
-                    {/* <input type="text" value={username} onChange={e => setUsername(e.target.value)} /><br /> */}
-                </Form.Group>
+        <Container className="login-view">
+            <Row >
+                <Form className="login was-validated" noValidate /* validated={validated} */>
+                    <Form.Group controlId="formEmail">
+                        <Form.Label>Username:</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            placeholder="Enter email"
+                            value={username}
+                            onChange={e => setUsername(e.target.value)} />
+                        {/* <input type="text" value={username} onChange={e => setUsername(e.target.value)} /><br /> */}
+                    </Form.Group>
 
-                <Form.Group controlId="formPassword">
-                    <Form.Label>Password:</Form.Label>
-                    <Form.Control
-                        required
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)} />
-                    {/* <input type="password" value={password} onChange={e => setPassword(e.target.value)} /><br /> */}
-                </Form.Group>
+                    <Form.Group controlId="formPassword">
+                        <Form.Label>Password:</Form.Label>
+                        <Form.Control
+                            required
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)} />
+                        {/* <input type="password" value={password} onChange={e => setPassword(e.target.value)} /><br /> */}
+                    </Form.Group>
+                    <Button type="submit" className="btn-login" onClick={handleSubmit}>LOGIN</Button>
+                </Form>
+            </Row>
 
-                <Button type="submit" className="btn-login" onClick={handleSubmit}>LOGIN</Button>
-            </Form>
-        </Row>
+            <Row>
+                <Link to={`/register`} className="link-register">
+                    {/* <p>No account yet? Register now!</p> */}
+                    <Button variant="link" className="">No account yet? Register now!</Button>
+                </Link>
+            </Row>
+        </Container>
     );
 }
 

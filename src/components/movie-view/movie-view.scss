@@ -1,12 +1,15 @@
 $primary-color: #cca53b;
 $secondary-color: gainsboro;
-$dark-color: #001625;
+// $dark-color: #001625;
+$dark-color: #000d25;
+$error-color: #d67c53;
 $font-sans: 'Montserrat', sans-serif;
 $font-serif: 'Abril Fatface', serif;
 $font-big: 60px;
 $font-medium: 30px;
 $font-small: 20px;
 $font-p: 15px;
+$font-tiny: 12px;
 $font-heavy: 700;
 $font-light: 400;
 
@@ -15,6 +18,10 @@ $font-light: 400;
   padding-top: 2rem;
   padding-right: 0;
   padding-left: 0;
+}
+
+.movie-poster {
+  display: grid;
 }
 
 .movie-title {
@@ -26,35 +33,7 @@ h3 {
   padding-top: 1.5rem;
 }
 
-.btn-primary {
-  box-shadow: none;
-  border: none;
-}
-  
-.btn-primary:active,
-.btn-primary:hover,
-.btn-primary:focus {
-  color: $dark-color !important;
-  background-color: $secondary-color !important;
-  box-shadow: none;
-  text-decoration: none;
-}
-
-.btn-link{
-  background-color: transparent !important;
-  border: 1px solid $primary-color;
-  border-radius: 0;
-  color: $primary-color !important;
-  padding:  0.4rem;
-  width: 100%;
-}
-
-// .movie-poster{
-//   display: flex;
-//   justify-content: space-between;
-// }
-
 .btn-add{
   margin-top: 2rem;
-  // justify-self: flex-end;
+  justify-self:end;
 }

@@ -2,11 +2,11 @@ import React, { useState } from 'react'; //Hook used to add state to function co
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 import './registration-view.scss';
 
 
@@ -47,10 +47,10 @@ export function RegistrationView(props) {
     };
 
     return (
-        <div>
-            <Row className="register">
+        <Container>
+            <Row className="">
 
-                <Form className="registration-view was-validated" noValidate validated={validated} /* onSubmit={handleRegister} */  /* onSubmit={handleSubmit} */  >
+                <Form className="registration-form was-validated" noValidate validated={validated} /* onSubmit={handleRegister} */  /* onSubmit={handleSubmit} */  >
                     <Form.Group controlId="formGroupUser" /* hasvalidation="true" */>
                         <Form.Label>Username:</Form.Label>
                         <Form.Control
@@ -105,10 +105,17 @@ export function RegistrationView(props) {
                         </Form.Control.Feedback>
                     </Form.Group>
 
-                    <Button type="submit" onClick={handleRegister} >Register</Button>
+                    <Button type="submit" className="btn-register" onClick={handleRegister} >Register</Button>
                 </Form>
             </Row >
-        </div >
+
+            <Row>
+                <Link to={`/login`} className="link-register">
+                    {/* <p>No account yet? Register now!</p> */}
+                    <Button variant="link" className="">Already registered? Login now!</Button>
+                </Link>
+            </Row>
+        </Container>
     );
 }
 

@@ -1,6 +1,7 @@
 $primary-color: #cca53b;
 $secondary-color: gainsboro;
-$dark-color: #001625;
+// $dark-color: #001625;
+$dark-color: #000d25;
 $error-color: #d67c53;
 $font-sans: 'Montserrat', sans-serif;
 $font-serif: 'Abril Fatface', serif;
@@ -28,7 +29,7 @@ h1 {
   
 h2 {
   font-family: $font-serif;
-  font-size:  $font-medium !important;
+  font-size: $font-medium !important;
 }
   
 h3 {
@@ -69,7 +70,7 @@ p {
 .page-header__item {
   background-color: $primary-color;
   color: $primary-color;
-  margin-left: 1rem;
+  // margin-left: 1rem;
 }
 
 .page-header__item:last-child {
@@ -89,31 +90,56 @@ p {
   color: $primary-color;
 }
 
-.btn-primary {
-  background-color: $primary-color !important;
-    border: 1px solid $primary-color !important;
-    border-radius: 0;
-    color: $dark-color !important;
-    // padding:  0.75rem;
-    font-weight: $font-heavy;
-    // margin-top: 1rem;
-}
+// .btn-primary {
+//   background-color: $primary-color !important;
+//     border: 1px solid $primary-color !important;
+//     border-radius: 0;
+//     color: $dark-color !important;
+//     // padding:  0.75rem;
+//     font-weight: $font-heavy;
+//     // margin-top: 1rem;
+// }
+
+// .btn-primary:active,
+// .btn-primary:hover,
+// .btn-primary:focus {
+//   background-color: $dark-color !important;
+//   color: $primary-color !important;
+//   border: 1px solid $primary-color !important;
+//   box-shadow: none !important;
+//   }
 
 .btn-primary:active,
-  .btn-primary:hover,
-  .btn-primary:focus {
-    background-color: $dark-color !important;
-    color: $primary-color !important;
-    border: 1px solid $primary-color !important;
-    box-shadow: none !important;
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: $primary-color !important;
+      border: 1px solid $primary-color !important;
+      border-radius: 0;
+      color: $dark-color !important;
+      font-weight: $font-heavy;
   }
+  
+.btn-primary {
+  background-color: $dark-color !important;
+  color: $primary-color !important;
+  border: 1px solid $primary-color !important;
+  box-shadow: none !important;
+}
+
+
+.btn-full {
+  background-color: $primary-color !important;
+  border: 1px solid $primary-color !important;
+  border-radius: 0;
+  color: $dark-color !important;
+  font-weight: $font-heavy;
+}
 
 .btn-logout {
   background-color: transparent !important;
   border: 1px solid $primary-color;
   border-radius: 0;
   color: $primary-color !important;
-  // padding:  0.75rem;
 }
 
 .btn-logout:active,
@@ -125,13 +151,23 @@ p {
   box-shadow: none !important;
 }
 
+.btn-update {
+  background-color: $primary-color !important;
+  color: $dark-color !important;
+  border: 1px solid $primary-color !important;
+  border-radius: 0;
+  box-shadow: none !important;
+  font-weight: $font-heavy;
+}
+
 .navbar {
   padding: 0  !important;
   margin: 0  !important;
 }
 
 .nav-link {
-  padding: 1rem 1rem;
+  padding: 0 !important;
+  padding-left: 1rem !important;
 }
 
 .round {
@@ -164,4 +200,12 @@ p {
 
 .form-info{
   font-size: $font-tiny;
+}
+
+.btn-link{
+  background-color: transparent !important;
+  border: 1px solid $primary-color;
+  border-radius: 0;
+  color: $primary-color !important;
+  font-weight: $font-heavy;
 }

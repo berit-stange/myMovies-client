@@ -1,23 +1,26 @@
 $primary-color: #cca53b;
 $secondary-color: gainsboro;
-$dark-color: #001625;
+// $dark-color: #001625;
+$dark-color: #000d25;
+$error-color: #d67c53;
 $font-sans: 'Montserrat', sans-serif;
 $font-serif: 'Abril Fatface', serif;
 $font-big: 60px;
 $font-medium: 30px;
 $font-small: 20px;
 $font-p: 15px;
+$font-tiny: 12px;
 $font-heavy: 700;
 $font-light: 400;
 
-.register {
-    margin-right: 0px;
-    margin-left: 0px;
-    display: grid;
-}
+// .registration-view { //Row
+//     margin-right: 0px;
+//     margin-left: 0px;
+//     display: grid;
+// }
 
-.registration-view {
-    width: 70%;
+.registration-form { //Form
+    width: 100%;
     justify-self: center;
     align-self: center;
     padding-top: 30px;
@@ -55,3 +58,10 @@ $font-light: 400;
     border-color: transparent !important;
     background-image: none !important; // same as for valid state - why? 
 }
+
+.btn-register{
+    width: 100% !important;
+    margin: 0 auto;
+    margin-top: 2rem !important;
+    // color: $primary-color;
+  }

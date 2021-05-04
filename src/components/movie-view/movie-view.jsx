@@ -62,6 +62,7 @@ export class MovieView extends React.Component {
                 // const data = response.data;
                 // console.log(data);
                 console.log('Added!');
+                alert('Added!');
                 // window.open('/', '_self'); //self: page will open in the current tab
                 // localStorage.setItem('user', data.Username);
             })
@@ -85,8 +86,7 @@ export class MovieView extends React.Component {
 
     render() {
         const { movieData, onBackClick } = this.props; //extracting the props
-        const { username, password, birthday, email, favoriteMovies } = this.state;
-        // const { favorites } = this.state;
+        // const { username, password, birthday, email, favoriteMovies } = this.state;
 
         return (
             // <Container>
@@ -94,16 +94,12 @@ export class MovieView extends React.Component {
 
                 <Col sm={12} md={6}>
 
-                    <Button className="material-icons round" onClick={() => { onBackClick(null); }} ><span>arrow_back</span></Button>
+                    <Button className="material-icons round btn-full" onClick={() => { onBackClick(null); }} ><span>arrow_back</span></Button>
 
                     <h2 className="value movie-title">{movieData.Title}</h2>
 
                     <h3 className="movie-description">Description: </h3>
                     <p className="value">{movieData.Description}</p>
-                    {/* <p className="value">movieID:<br />
-                        {movieData._id} <br />
-                    (only for development)
-                    </p> */}
 
                     <h3 className="movie-director">Director:</h3>
                     <p className="value">{movieData.Director.Name}</p>
@@ -124,11 +120,9 @@ export class MovieView extends React.Component {
                     <p className="value">{movieData.ReleaseYear}</p>
                 </Col>
 
-                <Col sm={12} md={6}>
-                    <div className="movie-poster" >
-                        <Image src={movieData.ImagePath} fluid></Image>
-                    </div>
-                    <Button className="material-icons round btn-add" onClick={(event) => { this.addFavorite(event); }} ><span>add</span></Button>
+                <Col sm={12} md={6} className="movie-poster">
+                    <Image src={movieData.ImagePath} fluid></Image>
+                    <Button className="material-icons round btn-add btn-full" onClick={(event) => { this.addFavorite(event); }} ><span>add</span></Button>
                 </Col>
 
             </Row>

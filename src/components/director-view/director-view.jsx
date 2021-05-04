@@ -16,22 +16,9 @@ export class DirectorView extends React.Component {
         return (
             <Container>
 
-                {/* <Navbar>
-                    <Nav.Item className="logo">
-                        myMovies
-                            </Nav.Item>
-                    <Nav.Item className="page-header">
-                        <Button className="page-header__item btn-logout" onClick={() => { this.onLoggedOut() }}>LOG OUT</Button>
-                        <Nav.Link href={`/users/${user}`} className="">
-                            <Button variant="link" className="page-header__item btn-profile" onClick={() => { this.onLoggedIn() }}>{this.state.user}</Button>
-                        </Nav.Link>
-                    </Nav.Item>
-                </Navbar> */}
-
-
                 <Row className="director-view">
                     <Col sm={12} md={4}>
-                        <Button className="material-icons round" onClick={() => { onBackClick(null); }} ><span>arrow_back</span></Button>
+                        <Button className="material-icons round btn-full" onClick={() => { onBackClick(null); }} ><span>arrow_back</span></Button>
                     </Col>
 
                     <Col sm={12} md={8}>

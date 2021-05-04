@@ -16,6 +16,7 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
+import { Navigation } from '../navigation/navigation';
 
 import './main-view.scss';
 
@@ -32,11 +33,6 @@ export class MainView extends React.Component { //exposing the component
         };
     }
 
-    // setSelectedMovie(movie) { //When movie is clicked, this function is invoked and updates the state of the `selectedMovie` property to that movie
-    //     this.setState({
-    //         selectedMovie: movie
-    //     });
-    // }
 
     getMovies(token) {
         axios.get('https://movie-app-001.herokuapp.com/movies', {
@@ -88,7 +84,6 @@ export class MainView extends React.Component { //exposing the component
         this.setState({
             user: authData.user.username,
         });
-
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
@@ -111,18 +106,7 @@ export class MainView extends React.Component { //exposing the component
             <Router>
                 <div className="main-view">
 
-                    <Navbar>
-                        <Nav.Item className="logo">
-                            myMovies
-                            </Nav.Item>
-                        <Nav.Item className="page-header">
-                            <Button className="page-header__item btn-logout" onClick={() => { this.onLoggedOut() }}>LOG OUT</Button>
-                            <Nav.Link href={`/users/${user}`} className="">
-                                <Button variant="link" className="page-header__item btn-profil-e" onClick={() => { this.onLoggedIn() }}>{/* {this.state.user} */}PROFILE</Button>
-                            </Nav.Link>
-                        </Nav.Item>
-                    </Navbar>
-
+                    <Navigation user={user} logOut={() => this.onLoggedOut()} />
 
                     <Row className="justify-content-md-center">
 
@@ -211,7 +195,6 @@ export class MainView extends React.Component { //exposing the component
                                 <LoginView
                                     onLoggedIn={user => this.onLoggedIn(user)} />
                             </Col>
-                            // if (users.length === 0) return <div className="" />;
                             return <Col>
                                 <ProfileView
                                     movieData={movies}
@@ -223,7 +206,7 @@ export class MainView extends React.Component { //exposing the component
                     </Row>
 
                 </div>
-            </Router>
+            </Router >
         );
     }
 

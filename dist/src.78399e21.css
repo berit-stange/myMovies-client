@@ -1,18 +1,12 @@
-.register {
-  margin-right: 0px;
-  margin-left: 0px;
-  display: grid;
-}
-
-.registration-view {
-  width: 70%;
+.registration-form {
+  width: 100%;
   justify-self: center;
   align-self: center;
   padding-top: 30px;
 }
 
 .btn-primary {
-  color: #001625 !important;
+  color: #000d25 !important;
   background-color: #cca53b !important;
   box-shadow: none;
 }
@@ -20,7 +14,7 @@
 .btn-primary:active,
 .btn-primary:hover,
 .btn-primary:focus {
-  color: #001625 !important;
+  color: #000d25 !important;
   background-color: gainsboro !important;
   box-shadow: none;
 }
@@ -38,6 +32,12 @@
   border-color: transparent !important;
   background-image: none !important;
 }
+
+.btn-register {
+  width: 100% !important;
+  margin: 0 auto;
+  margin-top: 2rem !important;
+}
 .login-view {
   display: grid;
   margin-right: 0px;
@@ -48,33 +48,30 @@
 }
 
 .login {
-  width: 70%;
-  justify-self: center;
-  align-self: center;
+  width: 100%;
   padding-top: 30px;
 }
 
-.nav-link {
-  padding: 0.5rem 1rem;
+.link-register {
+  width: 100% !important;
+  margin: 0 auto;
+  margin-top: 4rem !important;
+  color: #cca53b;
 }
 
-.btn-logout {
-  visibility: hidden;
-}
-
-.btn-profile {
-  visibility: hidden;
+.btn-login {
+  width: 100% !important;
+  margin: 0 auto;
+  margin-top: 2rem !important;
 }
 .card {
-  background-color: #001625;
+  background-color: #000d25;
   border: none;
   margin-top: 1rem;
 }
 
 .card-body {
   padding: 0.5rem;
-  align-content: space-between;
-  display: grid;
 }
 
 .h5 {
@@ -90,7 +87,7 @@
 .btn:active,
 .btn:hover,
 .btn:focus {
-  color: #001625 !important;
+  color: #000d25 !important;
   background-color: #cca53b !important;
   box-shadow: none;
   text-decoration: none;
@@ -102,13 +99,16 @@
   border-radius: 0;
   color: #cca53b !important;
   padding: 0.4rem;
-  width: 100%;
 }
 .movie-view {
   border-top: 1px dotted #cca53b;
   padding-top: 2rem;
   padding-right: 0;
   padding-left: 0;
+}
+
+.movie-poster {
+  display: grid;
 }
 
 .movie-title {
@@ -120,31 +120,9 @@ h3 {
   padding-top: 1.5rem;
 }
 
-.btn-primary {
-  box-shadow: none;
-  border: none;
-}
-
-.btn-primary:active,
-.btn-primary:hover,
-.btn-primary:focus {
-  color: #001625 !important;
-  background-color: gainsboro !important;
-  box-shadow: none;
-  text-decoration: none;
-}
-
-.btn-link {
-  background-color: transparent !important;
-  border: 1px solid #cca53b;
-  border-radius: 0;
-  color: #cca53b !important;
-  padding: 0.4rem;
-  width: 100%;
-}
-
 .btn-add {
   margin-top: 2rem;
+  justify-self: end;
 }
 .director-view {
   border-top: 1px dotted #cca53b;
@@ -165,24 +143,6 @@ h3 {
 h3 {
   padding-top: 1.5rem;
 }
-
-.btn-link {
-  background-color: transparent !important;
-  border: 1px solid #cca53b;
-  border-radius: 0;
-  color: #cca53b !important;
-  padding: 0.4rem;
-  width: 100%;
-}
-
-.btn-link {
-  background-color: transparent !important;
-  border: 1px solid #cca53b;
-  border-radius: 0;
-  color: #cca53b !important;
-  padding: 0.4rem;
-  width: 100%;
-}
 .genre-view {
   border-top: 1px dotted #cca53b;
   padding-top: 2rem;
@@ -202,27 +162,47 @@ h3 {
 h3 {
   padding-top: 1.5rem;
 }
-
-.btn-link {
-  background-color: transparent !important;
-  border: 1px solid #cca53b;
-  border-radius: 0;
-  color: #cca53b !important;
-  padding: 0.4rem;
-  width: 100%;
+.card {
+  background-color: #000d25;
+  border: none;
+  margin-top: 1rem;
 }
 
-.btn-link {
-  background-color: transparent !important;
+.card-body {
+  padding: 0.5rem;
+  display: grid;
+}
+
+.h5 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px !important;
+}
+
+.btn {
+  box-shadow: none;
+  border: none;
+}
+
+.btn:active,
+.btn:hover,
+.btn:focus {
+  color: #000d25 !important;
+  background-color: #cca53b !important;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+.delete-favorite {
+  background-color: #000d25 !important;
   border: 1px solid #cca53b;
   border-radius: 0;
   color: #cca53b !important;
-  padding: 0.4rem;
-  width: 100%;
+  font-weight: 700;
 }
 .profile-row {
   margin-right: 0px;
   margin-left: 0px;
+  padding-top: 4rem;
   display: grid;
 }
 
@@ -233,32 +213,30 @@ h3 {
   padding-top: 30px;
 }
 
+.delete-row {
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-top: 2rem;
+  display: grid;
+}
+
 .profile {
   padding-top: 2rem;
 }
-
-.btn-delete {
-  margin-left: 2rem;
+.navbar {
+  padding-top: 30px;
 }
 .main-view {
   padding-top: 1.5rem;
   padding-right: 0;
   padding-left: 0;
 }
-
-.btn-logout {
-  visibility: visible;
-}
-
-.btn-profile {
-  visibility: visible;
-}
 body {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 1.6;
-  background-color: #001625;
+  background-color: #000d25;
   color: gainsboro;
 }
 
@@ -310,12 +288,11 @@ p {
 .page-header__item {
   background-color: #cca53b;
   color: #cca53b;
-  margin-left: 1rem;
 }
 
 .page-header__item:last-child {
   background-color: #cca53b;
-  color: #001625;
+  color: #000d25;
   font-weight: 700;
 }
 
@@ -330,21 +307,29 @@ p {
   color: #cca53b;
 }
 
-.btn-primary {
-  background-color: #cca53b !important;
-  border: 1px solid #cca53b !important;
-  border-radius: 0;
-  color: #001625 !important;
-  font-weight: 700;
-}
-
 .btn-primary:active,
 .btn-primary:hover,
 .btn-primary:focus {
-  background-color: #001625 !important;
+  background-color: #cca53b !important;
+  border: 1px solid #cca53b !important;
+  border-radius: 0;
+  color: #000d25 !important;
+  font-weight: 700;
+}
+
+.btn-primary {
+  background-color: #000d25 !important;
   color: #cca53b !important;
   border: 1px solid #cca53b !important;
   box-shadow: none !important;
+}
+
+.btn-full {
+  background-color: #cca53b !important;
+  border: 1px solid #cca53b !important;
+  border-radius: 0;
+  color: #000d25 !important;
+  font-weight: 700;
 }
 
 .btn-logout {
@@ -358,9 +343,18 @@ p {
 .btn-logout:hover,
 .btn-logout:focus {
   background-color: #cca53b !important;
-  color: #001625 !important;
+  color: #000d25 !important;
   border: 1px solid #cca53b !important;
   box-shadow: none !important;
+}
+
+.btn-update {
+  background-color: #cca53b !important;
+  color: #000d25 !important;
+  border: 1px solid #cca53b !important;
+  border-radius: 0;
+  box-shadow: none !important;
+  font-weight: 700;
 }
 
 .navbar {
@@ -369,11 +363,12 @@ p {
 }
 
 .nav-link {
-  padding: 1rem 1rem;
+  padding: 0 !important;
+  padding-left: 1rem !important;
 }
 
 .round {
-  color: #001625;
+  color: #000d25;
   height: 4rem;
   border-radius: 50% !important;
   font-weight: 700;
@@ -383,7 +378,7 @@ p {
 .btn-profile {
   border: 1px solid #cca53b;
   border-radius: 0;
-  color: #001625 !important;
+  color: #000d25 !important;
 }
 
 .btn-profile:active,
@@ -400,6 +395,14 @@ p {
 
 .form-info {
   font-size: 12px;
+}
+
+.btn-link {
+  background-color: transparent !important;
+  border: 1px solid #cca53b;
+  border-radius: 0;
+  color: #cca53b !important;
+  font-weight: 700;
 }
 
 /*# sourceMappingURL=/src.78399e21.css.map */
