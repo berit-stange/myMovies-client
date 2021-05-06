@@ -1,0 +1,44 @@
+$primary-color: #cca53b;
+$secondary-color: gainsboro;
+// $dark-color: #001625;
+$dark-color: #000d25;
+$error-color: #d67c53;
+$font-sans: 'Montserrat', sans-serif;
+$font-serif: 'Abril Fatface', serif;
+$font-big: 60px;
+$font-medium: 30px;
+$font-small: 20px;
+$font-p: 15px;
+$font-tiny: 12px;
+$font-heavy: 700;
+$font-light: 400;
+
+.login-view {
+  display: grid;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-top: 2rem;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.login {
+  width: 100%;
+  // justify-self: center;
+  // align-self: center;
+  padding-top: 30px;
+}
+  
+.link-register{
+  width: 100% !important;
+  margin: 0 auto;
+  margin-top: 4rem !important;
+  color: $primary-color;
+}
+
+.btn-login{
+  width: 100% !important;
+  margin: 0 auto;
+  margin-top: 2rem !important;
+  // color: $primary-color;
+}

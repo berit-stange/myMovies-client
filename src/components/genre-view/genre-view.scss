@@ -13,27 +13,22 @@ $font-tiny: 12px;
 $font-heavy: 700;
 $font-light: 400;
 
-.movie-view {
+.genre-view {
   border-top: 1px dotted $primary-color;
   padding-top: 2rem;
   padding-right: 0;
   padding-left: 0;
 }
 
-.movie-poster {
-  display: grid;
-}
-
-.movie-title {
+.genre-name {
   padding-top: 2rem;
   padding-bottom: 1.5rem;
 }
 
+.genre-description {
+    padding-top: 1.5rem;
+  }
+
 h3 {
   padding-top: 1.5rem;
-}
-
-.btn-add{
-  margin-top: 2rem;
-  justify-self:end;
 }

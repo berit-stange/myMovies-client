@@ -1,0 +1,67 @@
+$primary-color: #cca53b;
+$secondary-color: gainsboro;
+// $dark-color: #001625;
+$dark-color: #000d25;
+$error-color: #d67c53;
+$font-sans: 'Montserrat', sans-serif;
+$font-serif: 'Abril Fatface', serif;
+$font-big: 60px;
+$font-medium: 30px;
+$font-small: 20px;
+$font-p: 15px;
+$font-tiny: 12px;
+$font-heavy: 700;
+$font-light: 400;
+
+// .registration-view { //Row
+//     margin-right: 0px;
+//     margin-left: 0px;
+//     display: grid;
+// }
+
+.registration-form { //Form
+    width: 100%;
+    justify-self: center;
+    align-self: center;
+    padding-top: 30px;
+}
+
+.btn-primary {
+    color: $dark-color !important;
+    background-color: $primary-color !important;
+    box-shadow: none;
+}
+
+.btn-primary:active,
+.btn-primary:hover,
+.btn-primary:focus {
+    color: $dark-color !important;
+    background-color: $secondary-color !important;
+    box-shadow: none;
+}
+
+.form-control:valid, // when all fields are valid, labels change color
+.was-validated:valid {
+    color: $primary-color;
+    box-shadow: $primary-color;
+    border-color: $primary-color !important;
+}
+
+// .was-validated:invalid{
+//     color: blue;
+// }
+
+.was-validated:invalid,
+.form-control:invalid{
+    // color: red;
+    box-shadow: none;
+    border-color: transparent !important;
+    background-image: none !important; // same as for valid state - why? 
+}
+
+.btn-register{
+    width: 100% !important;
+    margin: 0 auto;
+    margin-top: 2rem !important;
+    // color: $primary-color;
+  }

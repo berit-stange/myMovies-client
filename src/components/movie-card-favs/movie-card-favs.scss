@@ -21,8 +21,9 @@ $font-light: 400;
 
 .card-body {
   padding: 0.5rem;
+  display: grid;
   // align-content: space-between;
-  // display: grid;
+  // justify-content: space-between;
 }
 
 .h5 {
@@ -43,12 +44,19 @@ $font-light: 400;
   box-shadow: none;
   text-decoration: none;
 }
-  
-.btn-card{
-  background-color: transparent !important;
+
+// .btn-card{
+//   background-color: transparent !important;
+//   border: 1px solid $primary-color;
+//   border-radius: 0;
+//   color: $primary-color !important;
+//   padding:  0.4rem;
+// }
+
+.delete-favorite {
+  background-color: $dark-color !important;
   border: 1px solid $primary-color;
   border-radius: 0;
   color: $primary-color !important;
-  padding:  0.4rem;
-  // width: 100%;
+  font-weight: $font-heavy;
 }
