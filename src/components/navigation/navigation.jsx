@@ -9,16 +9,6 @@ import { Link } from "react-router-dom";
 
 export function Navigation({ user, logOut }) {
 
-    // const { user } = useState('');
-
-    // const handleSubmit = (event) => {  //Bootstrap form Validation  will delete code after call
-    //     const form = event.currentTarget;
-    //     if (form.checkValidity() === false) {
-    //         event.preventDefault();
-    //         event.stopPropagation();
-    //     }
-    //     setValidated(true);
-    // };
 
     return (
         <Navbar> {
