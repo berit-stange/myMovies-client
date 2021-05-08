@@ -1,7 +1,20 @@
-import React from 'react'; //import React into file
+import React from 'react';
 import axios from 'axios';
+
+import { connect } from 'react-redux';  // allows to connect setMovies? 
+
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { Link } from 'react-router-dom';
+// #0 new
+import { setMovies } from '../../actions/actions';
+
+import MoviesList from '../movies-list/movies-list'; // kommt noch
+
+/* 
+  #1 The rest of components import statements but without the MovieCard's 
+  because it will be imported and used in the MoviesList component rather
+  than in here. 
+*/
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -20,16 +33,15 @@ import { Navigation } from '../navigation/navigation';
 
 import './main-view.scss';
 
-export class MainView extends React.Component { //exposing the component
+// #2 new: export keyword removed
+/* export */ class MainView extends React.Component {
 
     constructor() {
-        super(); //initializes component’s state
+        super();
         this.state = {
-            movies: [],
-            // selectedMovie: null, //tells the application that no movie cards were clicked
+            // movies: [], // #3 new 
             registration: null,
-            user: null,
-            // users: []
+            user: null
         };
     }
 
@@ -39,9 +51,10 @@ export class MainView extends React.Component { //exposing the component
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
-                this.setState({ // Assign the result to the state
-                    movies: response.data
-                });
+                // this.setState({ // Assign the result to the state
+                //     movies: response.data
+                // });
+                this.props.setMovies(response.data);  // #4 new > redux > connected via the import {connect} ?
             })
             .catch(function (error) {
                 console.log(error);
@@ -53,7 +66,7 @@ export class MainView extends React.Component { //exposing the component
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
-                this.setState({ // Assign the result to the state
+                this.setState({
                     users: response.data
                 });
             })
@@ -79,7 +92,7 @@ export class MainView extends React.Component { //exposing the component
         });
     }
 
-    onLoggedIn(authData) { //parameter has been renamed - need to use both the user and the token
+    onLoggedIn(authData) {
         console.log(authData);
         this.setState({
             user: authData.user.username,
@@ -88,7 +101,6 @@ export class MainView extends React.Component { //exposing the component
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
         this.getUser(authData.token);
-        // window.open('/', '_self'); //self: page will open in the current tab
     }
 
     onLoggedOut() {
@@ -100,7 +112,14 @@ export class MainView extends React.Component { //exposing the component
     }
 
     render() {
-        const { movies, user } = this.state;
+        // const { movies, user } = this.state; (old, before redux )
+
+        // In the section of code marked #0, you imported the relevant actions (setMovies). 
+        // This action will be used in code section #5, 
+        // where you connect it to the MainView using, again, the connect() function, 
+        // which returns another function. >>>? 
+        let { movies } = this.props; // #5 new
+        let { user } = this.state;
 
         return (
             <Router>
@@ -115,11 +134,14 @@ export class MainView extends React.Component { //exposing the component
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                             </Col>
                             if (movies.length === 0) return <div className="" />;
-                            return movies.map(m => (
-                                <Col xs={12} sm={6} md={4} lg={3} key={m._id}>
-                                    <MovieCard movieData={m} />
-                                </Col>
-                            ))
+                            // return movies.map(m => (
+                            //     <Col xs={12} sm={6} md={4} lg={3} key={m._id}>
+                            //         <MovieCard movieData={m} />
+                            //     </Col>
+                            // ))
+
+                            //#6 new
+                            return <MoviesList movies={movies} />
                         }} />
 
                         <Route path="/login" render={() => {
@@ -211,3 +233,12 @@ export class MainView extends React.Component { //exposing the component
     }
 
 }
+
+// #7 new    //movieData?
+let mapStateToProps = state => {
+    return { movies: state.movies }
+    // return { movieData: state.movies }
+}
+
+// #8 new
+export default connect(mapStateToProps, { setMovies })(MainView);
