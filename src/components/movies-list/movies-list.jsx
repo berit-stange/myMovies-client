@@ -33,6 +33,7 @@ function MoviesList(props) {
             </Col>
         ))}
     </>;
+
     // return filteredMovies.map(m => (
     //     <Col md={3} key={m._id}>
     //         <MovieCard movieData={m} />
