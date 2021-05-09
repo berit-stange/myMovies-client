@@ -18,7 +18,7 @@ export function RegistrationView(props) {
     const [email, setEmail] = useState('');
     const [validated, setValidated] = useState(false); //Bootstrap form Validation
 
-    // const handleSubmit = (event) => {  //Bootstrap form Validation  will delete code after call
+    // const handleSubmit = (event) => {  //Bootstrap form Validation will delete code after call
     //     const form = event.currentTarget;
     //     if (form.checkValidity() === false) {
     //         event.preventDefault();

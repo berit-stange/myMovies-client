@@ -5,16 +5,22 @@ import { connect } from 'react-redux';  // allows to connect setMovies?
 
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { Link } from 'react-router-dom';
-// #0 new
-import { setMovies } from '../../actions/actions';
 
-import MoviesList from '../movies-list/movies-list'; // kommt noch
+import { setMovies } from '../../actions/actions'; // #0 new > Redux //importing the actions
+import { setUser } from '../../actions/actions';
 
-/* 
-  #1 The rest of components import statements but without the MovieCard's 
-  because it will be imported and used in the MoviesList component rather
-  than in here. 
-*/
+import Navigation from '../navigation/navigation';
+import MoviesList from '../movies-list/movies-list';
+
+//   #1 The rest of components import statements but without the MovieCard's because it will be 
+//   imported and used in the MoviesList component rather than in here. 
+import { RegistrationView } from '../registration-view/registration-view';
+import LoginView from '../login-view/login-view';
+import ProfileView from '../profile-view/profile-view';
+// import { MovieCard } from '../movie-card/movie-card'; //imported and used in MoviesList component
+import { MovieView } from '../movie-view/movie-view';
+import { DirectorView } from '../director-view/director-view';
+import { GenreView } from '../genre-view/genre-view';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -22,26 +28,17 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 
-import { RegistrationView } from '../registration-view/registration-view';
-import { LoginView } from '../login-view/login-view';
-import { MovieCard } from '../movie-card/movie-card';
-import { MovieView } from '../movie-view/movie-view';
-import { DirectorView } from '../director-view/director-view';
-import { GenreView } from '../genre-view/genre-view';
-import { ProfileView } from '../profile-view/profile-view';
-import { Navigation } from '../navigation/navigation';
-
 import './main-view.scss';
 
 // #2 new: export keyword removed
-/* export */ class MainView extends React.Component {
+class MainView extends React.Component {
 
     constructor() {
         super();
         this.state = {
             // movies: [], // #3 new 
             registration: null,
-            user: null
+            // user: null
         };
     }
 
@@ -61,19 +58,20 @@ import './main-view.scss';
             });
     }
 
-    getUser(token) {
-        axios.get('https://movie-app-001.herokuapp.com/users/:Username', {
-            headers: { Authorization: `Bearer ${token}` }
-        })
-            .then(response => {
-                this.setState({
-                    users: response.data
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
+    // getUser(token) {
+    //     axios.get('https://movie-app-001.herokuapp.com/users/:Username', {
+    //         headers: { Authorization: `Bearer ${token}` }
+    //     })
+    //         .then(response => {
+    //             this.setState({
+    //                 users: response.data  // I never used "users" 
+    //             });
+    //             // this.props.setUser(response.data);
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
+    // }
 
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
@@ -81,8 +79,11 @@ import './main-view.scss';
             this.setState({
                 user: localStorage.getItem('user')
             });
+            // this.props.setUser({
+            //     user: localStorage.getItem('user')  // ????
+            // })
             this.getMovies(accessToken);
-            this.getUser(accessToken);
+            // this.getUser(accessToken); // is commented out above / can be deleted
         }
     }
 
@@ -94,13 +95,20 @@ import './main-view.scss';
 
     onLoggedIn(authData) {
         console.log(authData);
-        this.setState({
-            user: authData.user.username,
-        });
+        // this.setState({
+        //     user: authData.user.username,
+        // });
+        this.props.setUser({
+            username: authData.user.Username,
+            password: authData.user.Password,
+            email: authData.user.Email,
+            birthday: authData.user.Birthday,
+            favoriteMovies: authData.user.FavoriteMovies
+        })
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
-        this.getUser(authData.token);
+        // this.getUser(authData.token);
     }
 
     onLoggedOut() {
@@ -109,6 +117,7 @@ import './main-view.scss';
         this.setState({
             user: null
         });
+        // this.props.setUser({}); // not right! storage is cleared, but view doesnt change
     }
 
     render() {
@@ -118,8 +127,10 @@ import './main-view.scss';
         // This action will be used in code section #5, 
         // where you connect it to the MainView using, again, the connect() function, 
         // which returns another function. >>>? 
-        let { movies } = this.props; // #5 new
-        let { user } = this.state;
+        let { movies/* , user */ } = this.props; // #5 new  >>> movies durch setMovies?
+        let accessToken = localStorage.getItem('token');
+        // let user = localStorage.getItem('user'); // I can't get the user ...
+        let { user } = this.state; // local storage > onLoggedIn 
 
         return (
             <Router>
@@ -130,7 +141,7 @@ import './main-view.scss';
                     <Row className="justify-content-md-center">
 
                         <Route exact path="/" render={() => {
-                            if (!user) return <Col>
+                            if (!accessToken) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                             </Col>
                             if (movies.length === 0) return <div className="" />;
@@ -141,11 +152,11 @@ import './main-view.scss';
                             // ))
 
                             //#6 new
-                            return <MoviesList movies={movies} />
+                            return <MoviesList movies={movies} user={user} />
                         }} />
 
                         <Route path="/login" render={() => {
-                            if (!user) return <Col>
+                            if (!accessToken) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                             </Col>
                             if (movies.length === 0) return <div className="" />;
@@ -157,14 +168,14 @@ import './main-view.scss';
                         }} />
 
                         <Route path="/register" render={() => {
-                            if (user) return <Redirect to="/" /> //add alert: "you're logged in already!"
+                            if (accessToken) return <Redirect to="/" /> //add alert: "you're logged in already!"
                             return <Col>
                                 <RegistrationView />
                             </Col>
                         }} />
 
                         <Route path="/movies/:movieId" render={({ match, history }) => {
-                            if (!user) return <Col>
+                            if (!accessToken) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                             </Col>
                             if (movies.length === 0) return <div className="" />;
@@ -176,7 +187,7 @@ import './main-view.scss';
                         }} />
 
                         <Route path="/directors/:name" render={({ match, history }) => {
-                            if (!user) return <Col>
+                            if (!accessToken) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                             </Col>
                             if (movies.length === 0) return <div className="" />;
@@ -189,7 +200,7 @@ import './main-view.scss';
                         }} />
 
                         <Route path="/genre/:name" render={({ match, history }) => {
-                            if (!user) return <Col>
+                            if (!accessToken) return <Col>
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                             </Col>
                             if (movies.length === 0) return <div className="" />;
@@ -213,7 +224,7 @@ import './main-view.scss';
                         }} />
 
                         <Route path="/users/:username" render={({ match, history }) => {
-                            if (!user) return <Col>
+                            if (!accessToken) return <Col>
                                 <LoginView
                                     onLoggedIn={user => this.onLoggedIn(user)} />
                             </Col>
@@ -234,11 +245,19 @@ import './main-view.scss';
 
 }
 
-// #7 new    //movieData?
+// #7 new    
 let mapStateToProps = state => {
-    return { movies: state.movies }
-    // return { movieData: state.movies }
+    return {
+        movies: state.movies,
+        user: state.user
+    }
 }
 
-// #8 new
-export default connect(mapStateToProps, { setMovies })(MainView);
+let mapDispatchToProps = state => {
+    return { user: state.user }
+}
+
+// #8 new  //connecting to the store
+export default connect(mapStateToProps, /* mapDispatchToProps, */ { setMovies, setUser })(MainView);
+//mapDispatchToProps :
+// Invalid value of type object for mergeProps argument when connecting component MainView.

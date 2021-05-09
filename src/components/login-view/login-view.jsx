@@ -2,6 +2,9 @@ import React, { useState } from 'react'; //Hook used to add state to function co
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import { connect } from 'react-redux';
+import { setUser } from '../../actions/actions'; //importing the actions
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
@@ -10,26 +13,32 @@ import { Link } from 'react-router-dom';
 import './login-view.scss';
 
 
-export function LoginView(props) {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+function LoginView(props) {
+    // const [username, setUsername] = useState('');
+    // const [password, setPassword] = useState('');
+    const { user } = props;
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log(username, password);
         // props.onLoggedIn(username);// send request to server for authentication, then call props.onLoggedIn(username)
         axios.post('https://movie-app-001.herokuapp.com/login', { //POST request
-            Username: username,
-            Password: password
+            // Username: username,
+            // Password: password
+            Username: user.Username, // redux? >>> 400 bad request
+            Password: user.Password
+            // Username: props.user.Username, // redux? >>> 400 bad request
+            // Password: props.user.Password
         })
             .then(response => {
                 const data = response.data; //not only username but also token
                 props.onLoggedIn(data); //method called through props --- this method triggers the onLoggedIn method of “main-view.jsx”
+                // console.log(user.Username);
                 window.open('/', '_self'); //self: page will open in the current tab
             })
             .catch(e => {
-                console.log('no such user');
-                alert('no such user');
+                console.log('LoginView - handleSubmit - no such user');
+                // alert('LoginView - handleSubmit - no such user');
             });
     };
 
@@ -43,9 +52,13 @@ export function LoginView(props) {
                             required
                             type="text"
                             placeholder="Enter email"
-                            value={username}
-                            onChange={e => setUsername(e.target.value)} />
-                        {/* <input type="text" value={username} onChange={e => setUsername(e.target.value)} /><br /> */}
+                            // value={username}  // before redux
+                            // onChange={e => setUsername(e.target.value)} // before redux
+                            value={user.Username}
+                            onChange={e => props.setUser(e.target.value)}
+                        // value={props.visibilityFilter}  //from VisibilityFilter
+                        // onChange={e => props.setFilter(e.target.value)} //from VisibilityFilter
+                        />
                     </Form.Group>
 
                     <Form.Group controlId="formPassword">
@@ -54,9 +67,11 @@ export function LoginView(props) {
                             required
                             type="password"
                             placeholder="Password"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)} />
-                        {/* <input type="password" value={password} onChange={e => setPassword(e.target.value)} /><br /> */}
+                            // value={password} // before redux
+                            // onChange={e => setPassword(e.target.value)} // before redux
+                            value={user.Password}
+                            onChange={e => props.setUser(e.target.value.Password)}
+                        />
                     </Form.Group>
                     <Button type="submit" className="btn-login" onClick={handleSubmit}>LOGIN</Button>
                 </Form>
@@ -72,10 +87,22 @@ export function LoginView(props) {
     );
 }
 
-LoginView.propTypes = {
-    onLoggedIn: PropTypes.shape({
-        username: PropTypes.string.isRequired,
-        password: PropTypes.string.isRequired
-    }).isRequired,
-    onLoggedIn: PropTypes.func.isRequired
-};
+// LoginView.propTypes = {
+//     onLoggedIn: PropTypes.shape({
+//         username: PropTypes.string.isRequired,
+//         password: PropTypes.string.isRequired
+//     }).isRequired,
+//     onLoggedIn: PropTypes.func.isRequired
+// };
+
+const mapStateToProps = state => {  // read from the store
+    const { user } = state;
+    return { user };
+}
+
+const mapDispatchToProps = state => {  // write to the store 
+    const { user } = state;
+    return { user };
+}
+
+export default connect(mapDispatchToProps, { setUser })(LoginView); //connecting to the store

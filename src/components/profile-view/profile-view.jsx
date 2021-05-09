@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import { connect } from 'react-redux';
+import { setUser } from '../../actions/actions'; //importing the actions
+import { setMovies } from '../../actions/actions';
+
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -9,12 +13,13 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
+
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieCardFavs } from '../movie-card-favs/movie-card-favs';
 import './profile-view.scss';
 
 
-export class ProfileView extends React.Component {
+class ProfileView extends React.Component {
     constructor() {
         super(); //initializes component’s state
         this.state = {
@@ -99,7 +104,7 @@ export class ProfileView extends React.Component {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
-                // console.log(response, '!userdata response');
+                console.log(response, '!userdata response - ProfileView');
                 this.setState({ // Assign the result to the state > access via this.state. .... later
                     username: response.data.Username, //!!!!
                     password: response.data.Password,
@@ -107,6 +112,7 @@ export class ProfileView extends React.Component {
                     email: response.data.Email,
                     favoriteMovies: response.data.FavoriteMovies
                 });
+                this.props.setUser(response.data);
             })
             .catch(function (error) {
                 console.log(error);
@@ -126,7 +132,7 @@ export class ProfileView extends React.Component {
     render() {
 
         // console.log(this.props, 'props');
-        const { movieData, onBackClick } = this.props; //extracting the props
+        const { movieData, onBackClick, user } = this.props; //extracting the props
         const { username, email, favoriteMovies } = this.state; //object destructuring 
         // console.log(favoriteMovies);
         const favoriteMovieList = movieData.filter(m => favoriteMovies.includes(m._id));
@@ -138,7 +144,7 @@ export class ProfileView extends React.Component {
                         <Button className="material-icons round btn-full" onClick={() => { onBackClick(null); }} ><span>arrow_back</span></Button>
                     </Col>
                     <Col>
-                        <h2 className="director-name">Hello {username}!</h2> {/* from localStorage */}
+                        <h2 className="director-name">Hello {user.Username}!</h2> {/* from this.props */}
                     </Col>
                 </Row>
 
@@ -147,7 +153,7 @@ export class ProfileView extends React.Component {
                     <Row>
                         {favoriteMovieList.map((movie) => {
                             return (
-                                <Col /* xs={12} */ sm={6} md={4} lg={3} key={movie._id}>
+                                <Col sm={4} md={4} lg={3} key={movie._id}>
                                     <MovieCard movieData={movie} />
                                     <Button className="material-icons round" onClick={() => this.deleteFavorite(movie)}><span>remove</span></Button>
                                 </Col>
@@ -205,22 +211,43 @@ export class ProfileView extends React.Component {
                     <Button type="submit" onClick={event => this.handleDelete(event)}>DELETE {localStorage.getItem('user')} {/* {username} */}</Button>
                 </Row>
 
-
-
             </Container >
         );
     }
 }
 
-ProfileView.propTypes = {
-    ProfileView: PropTypes.shape({
-        username: PropTypes.string.isRequired,
-        password: PropTypes.string.isRequired,
-        birthday: PropTypes.string.isRequired,
-        email: PropTypes.string.isRequired
-    }),
-    onBackClick: PropTypes.func.isRequired,
-    // handleUpdate: PropTypes.func.isRequired,   // props transmit data between components
-    // deleteFavorite: PropTypes.func.isRequired, // these are only used inside this one
-    // handleDelete: PropTypes.func.isRequired
-};
+// ProfileView.propTypes = {
+//     ProfileView: PropTypes.shape({
+//         username: PropTypes.string.isRequired,
+//         password: PropTypes.string.isRequired,
+//         birthday: PropTypes.string.isRequired,
+//         email: PropTypes.string.isRequired
+//     }),
+//     onBackClick: PropTypes.func.isRequired,
+
+// handleUpdate: PropTypes.func.isRequired,   // props transmit data between components
+// deleteFavorite: PropTypes.func.isRequired, // these are only used inside this one
+// handleDelete: PropTypes.func.isRequired
+// };
+
+// #7 new    
+// let mapStateToProps = state => {
+//     return { user: state.user }
+// }
+let mapStateToProps = state => {
+    const { user, movies } = state;
+    return {
+        movies: state.movies,
+        user: state.user
+    }
+}
+
+const mapDispatchToProps = state => {  // write to the store 
+    const { user, movies } = state;
+    return { user, movies };
+}
+
+// export default connect(mapDispatchToProps, { setUser })(LoginView);
+
+// #8 new
+export default connect(mapStateToProps, { /* setMovies, */ setUser })(ProfileView);

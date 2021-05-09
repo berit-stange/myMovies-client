@@ -1,6 +1,7 @@
 // defining the actions / action types
 export const SET_MOVIES = 'SET_MOVIES'; // initilizes the the list with movies
 export const SET_FILTER = 'SET_FILTER'; // filter the movies list
+export const SET_USER = 'SET_USER'; //setting the user
 
 // action creators
 export function setMovies(value) {
@@ -9,6 +10,10 @@ export function setMovies(value) {
 
 export function setFilter(value) {
     return { type: SET_FILTER, value };
+}
+
+export function setUser(value) {
+    return { type: SET_USER, value };
 }
 
 // explititly naming the the actions
