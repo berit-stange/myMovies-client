@@ -25,7 +25,7 @@ function LoginView(props) {
         axios.post('https://movie-app-001.herokuapp.com/login', { //POST request
             // Username: username, // before redux
             // Password: password
-            Username: user.Username, // redux? 
+            Username: user.Username, // redux
             Password: user.Password
         })
             .then(response => {
@@ -53,10 +53,10 @@ function LoginView(props) {
                             // value={username}  // before redux
                             // onChange={e => setUsername(e.target.value)} // before redux
                             // value={user.Username}
-                            // onChange={e => props.setUser(e.target.value)}
+                            // onChange={e => props.setUser(e.target.value)} // first try
                             onChange={e => props.setUser({ Username: e.target.value })}
-                        // value={props.visibilityFilter}  //from VisibilityFilter
-                        // onChange={e => props.setFilter(e.target.value)} //from VisibilityFilter
+                        // value={props.visibilityFilter}  //syntax from VisibilityFilter
+                        // onChange={e => props.setFilter(e.target.value)} //syntax from VisibilityFilter
                         />
                     </Form.Group>
 
@@ -69,8 +69,8 @@ function LoginView(props) {
                             // value={password} // before redux
                             // onChange={e => setPassword(e.target.value)} // before redux
                             // value={user.Password}
-                            // onChange={e => props.setUser(e.target.value)}
-                            onChange={e => props.setUser({ ...user, Password: e.target.value })} //what is this syntax???
+                            // onChange={e => props.setUser(e.target.value)} // first try
+                            onChange={e => props.setUser({ ...user, Password: e.target.value })} //Spread-Operator: entpackt ein Object in einem anderen
                         // onChange={e => props.setUser({ Password: e.target.value })} // why does this not work? like for Username?
                         />
                     </Form.Group>
@@ -106,10 +106,6 @@ let mapStateToProps = state => {
         movies: state.movies,
         user: state.user
     }
-}
-const mapDispatchToProps = state => {  // write to the store 
-    const { user } = state;
-    return { user };
 }
 
 export default connect(mapStateToProps, { setUser })(LoginView); //connecting to the store

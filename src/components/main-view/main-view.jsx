@@ -14,7 +14,7 @@ import MoviesList from '../movies-list/movies-list';
 
 //   #1 The rest of components import statements but without the MovieCard's because it will be 
 //   imported and used in the MoviesList component rather than in here. 
-import { RegistrationView } from '../registration-view/registration-view';
+import RegistrationView from '../registration-view/registration-view';
 import LoginView from '../login-view/login-view';
 import ProfileView from '../profile-view/profile-view';
 // import { MovieCard } from '../movie-card/movie-card'; //imported and used in MoviesList component
@@ -35,11 +35,11 @@ class MainView extends React.Component {
 
     constructor() {
         super();
-        this.state = {
-            // movies: [], // #3 new 
-            registration: null,
-            // user: null
-        };
+        // this.state = {
+        // movies: [], // #3 new 
+        // registration: null,
+        // user: null
+        // };
     }
 
 
@@ -58,45 +58,32 @@ class MainView extends React.Component {
             });
     }
 
-    // getUser(token) {
-    //     axios.get('https://movie-app-001.herokuapp.com/users/:Username', {
-    //         headers: { Authorization: `Bearer ${token}` }
-    //     })
-    //         .then(response => {
-    //             this.setState({
-    //                 users: response.data  // I never used "users" 
-    //             });
-    //             // this.props.setUser(response.data);
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //         });
-    // }
 
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
-            this.setState({
+            // this.setState({
+            //     user: localStorage.getItem('user')
+            // });
+            this.props.setUser({
                 user: localStorage.getItem('user')
             });
-            // this.props.setUser({
-            //     user: localStorage.getItem('user')  // ????
-            // })
             this.getMovies(accessToken);
-            // this.getUser(accessToken); // is commented out above / can be deleted
         }
     }
 
-    onRegistration(registration) {
-        this.setState({
-            registration
-        });
+    onRegistration() {
+        // onRegistration(registration) {
+        // this.setState({        //before redux
+        //     registration       // this.state > registration: null,
+        // });
+        this.props.setUser({});
     }
 
     onLoggedIn(authData) {
         console.log(authData);
-        // this.setState({
-        //     user: authData.user.username, //before redux
+        // this.setState({       //before redux
+        //     user: authData.user.username, 
         // });
         this.props.setUser({
             username: authData.user.Username,
@@ -114,10 +101,10 @@ class MainView extends React.Component {
     onLoggedOut() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        // this.setState({
+        // this.setState({ // before redux
         //     user: null
         // });
-        this.props.setUser({}); // not right! storage is cleared, but view doesnt change
+        this.props.setUser({});
     }
 
     render() {
@@ -201,17 +188,7 @@ class MainView extends React.Component {
                             return <Col>
                                 <GenreView
                                     genreData={movies.find(m => m.Genre.Name === match.params.name).Genre} //use with {genreData.Name} Genre Daten (from exercise)
-                                    // genreData={movies.find((m) => m.Genre.Name === match.params.name)} //use with {genreData.Genre.Name} in GenreView //nimmt ersten Film mit diesem Genre
-                                    moviesOfGenre={movies} //function prop that can access the movies-collection in DB
-
-                                    //can I define what content to show in the view besides the Genre info above? And just place it on a certain position?
-                                    // moviesOfGenre={movies.map((movie) => {
-                                    //     if (movie.Genre.Name === this.Name)
-                                    //         return <Col xs={3} sm={4} md={4} lg={3} key={movie._id}>
-                                    //             <MovieCard />
-                                    //         </Col>
-                                    // })}
-
+                                    moviesOfGenre={movies} //function prop to access the movies-collection in DB
                                     onBackClick={() => history.goBack()}
                                 />
                             </Col>

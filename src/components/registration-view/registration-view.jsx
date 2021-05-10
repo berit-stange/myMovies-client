@@ -1,6 +1,9 @@
-import React, { useState } from 'react'; //Hook used to add state to function components
+import React from 'react'; //before redux: , { useState } Hook used to add state to function components
 import PropTypes from 'prop-types';
 import axios from 'axios';
+
+import { connect } from 'react-redux';
+import { setUser } from '../../actions/actions'; //importing the actions
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -10,13 +13,15 @@ import { Link } from 'react-router-dom';
 import './registration-view.scss';
 
 
-export function RegistrationView(props) {
+function RegistrationView(props) {
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [birthday, setBirthday] = useState('');
-    const [email, setEmail] = useState('');
-    const [validated, setValidated] = useState(false); //Bootstrap form Validation
+    // const [username, setUsername] = useState(''); // before redux
+    // const [password, setPassword] = useState('');
+    // const [birthday, setBirthday] = useState('');
+    // const [email, setEmail] = useState('');
+    // const [validated, setValidated] = useState(false); //Bootstrap form Validation
+
+    const { user } = props;
 
     // const handleSubmit = (event) => {  //Bootstrap form Validation will delete code after call
     //     const form = event.currentTarget;
@@ -29,12 +34,16 @@ export function RegistrationView(props) {
 
     const handleRegister = (e) => {  // Bootstrap form Validation was inserted here and submitted twice - how can I do this?
         e.preventDefault();
-        console.log(username, password);
+        // console.log(username, password);
         axios.post('https://movie-app-001.herokuapp.com/users', {
-            Username: username,
-            Password: password,
-            Birthday: birthday,
-            Email: email
+            // Username: username,
+            // Password: password,
+            // Birthday: birthday,
+            // Email: email
+            Username: user.Username, // redux
+            Password: user.Password,
+            Birthday: user.Birthday,
+            Email: user.Email
         })
             .then(response => {
                 const data = response.data;
@@ -50,7 +59,7 @@ export function RegistrationView(props) {
         <Container>
             <Row className="">
 
-                <Form className="registration-form was-validated" noValidate validated={validated} /* onSubmit={handleRegister} */  /* onSubmit={handleSubmit} */  >
+                <Form className="registration-form was-validated" noValidate validated={user.validated} /* onSubmit={handleRegister} */  /* onSubmit={handleSubmit} */  >
                     <Form.Group controlId="formGroupUser" /* hasvalidation="true" */>
                         <Form.Label>Username:</Form.Label>
                         <Form.Control
@@ -61,7 +70,9 @@ export function RegistrationView(props) {
                             placeholder="Enter Username"
                             // defaultValue="Username"    //when set, the form isn't empty = invalid, but can't be set when value is set
                             // value={username}     //not necessary for targeting, just current input
-                            onChange={e => setUsername(e.target.value)} />
+                            // onChange={e => setUsername(e.target.value)} // before redux
+                            onChange={e => props.setUser({ ...user, Username: e.target.value })} //Spread-Operator: entpackt ein Object in einem anderen
+                        />
                         {/* // onChange={e => setUsername(e.target.value.username)} /> */}
                         <Form.Control.Feedback type="invalid" className="error form-info">
                             Username must have at 5 letters min + alphanumeric.
@@ -73,8 +84,10 @@ export function RegistrationView(props) {
                         <Form.Control
                             required type="password"
                             placeholder="Enter Password"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)} />
+                            // value={password}
+                            // onChange={e => setPassword(e.target.value)} // before redux
+                            onChange={e => props.setUser({ ...user, Password: e.target.value })} //Spread-Operator
+                        />
                         <Form.Control.Feedback type="invalid" className="error form-info">
                             Please choose a password.
                         </Form.Control.Feedback>
@@ -86,8 +99,10 @@ export function RegistrationView(props) {
                             required type="text"
                             pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"
                             placeholder="Enter Birthday (YYYY-MM-DD)"
-                            value={birthday}
-                            onChange={e => setBirthday(e.target.value)} />
+                            // value={birthday}
+                            // onChange={e => setBirthday(e.target.value)} 
+                            onChange={e => props.setUser({ ...user, Birthday: e.target.value })} //Spread-Operator
+                        />
                         <Form.Control.Feedback type="invalid" className="error form-info">
                             Please enter a valid date.
                         </Form.Control.Feedback>
@@ -98,8 +113,10 @@ export function RegistrationView(props) {
                         <Form.Control
                             required type="email"
                             placeholder="Enter Email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)} />
+                            // value={email}
+                            // onChange={e => setEmail(e.target.value)} 
+                            onChange={e => props.setUser({ ...user, Email: e.target.value })} //Spread-Operator
+                        />
                         <Form.Control.Feedback type="invalid" className="error form-info">
                             Please enter a valid emailadress.
                         </Form.Control.Feedback>
@@ -120,12 +137,25 @@ export function RegistrationView(props) {
 }
 
 
-RegistrationView.propTypes = {
-    RegistrationView: PropTypes.shape({
-        username: PropTypes.string.isRequired,
-        password: PropTypes.string.isRequired,
-        birthday: PropTypes.string.isRequired,
-        email: PropTypes.string.isRequired
-    }),
-    handleRegister: PropTypes.func,
-};
+// RegistrationView.propTypes = {
+//     RegistrationView: PropTypes.shape({
+//         username: PropTypes.string.isRequired,
+//         password: PropTypes.string.isRequired,
+//         birthday: PropTypes.string.isRequired,
+//         email: PropTypes.string.isRequired
+//     }),
+//     handleRegister: PropTypes.func,
+// };
+
+let mapStateToProps = state => {
+    const { user } = state;
+    return { user }
+}
+
+const mapDispatchToProps = state => {  // write to the store 
+    const { user, movies } = state;
+    return { user, movies };
+}
+
+// #8 new
+export default connect(mapDispatchToProps, { setUser })(RegistrationView);

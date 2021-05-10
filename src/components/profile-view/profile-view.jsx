@@ -22,7 +22,7 @@ import './profile-view.scss';
 class ProfileView extends React.Component {
     constructor() {
         super(); //initializes component’s state
-        // this.state = {
+        // this.state = {        // before redux
         //     username: '',
         //     password: '',
         //     birthday: '',
@@ -32,13 +32,13 @@ class ProfileView extends React.Component {
     }
 
     deleteFavorite(movie) {
-        axios.delete(`https://movie-app-001.herokuapp.com/users/${this.state.username}/favorites/${movie._id}`,
+        axios.delete(`https://movie-app-001.herokuapp.com/users/${localStorage.getItem('user')}/favorites/${movie._id}`,
             {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
             .then(response => {
                 console.log('Deleted!');
-                window.open('/users/${this.state.username}', '_self'); //self: page will open in the current tab
+                window.open(`/users/${localStorage.getItem('user')}`, '_self'); //self: page will open in the current tab
             })
             .catch(e => {
                 console.log('error at deleteFavorite');
@@ -46,25 +46,20 @@ class ProfileView extends React.Component {
     }
 
     handleDelete(e) {
-        // console.log('before');
         e.preventDefault();
-        // console.log('after');
         alert('Are you sure?');
-        const { username, password, birthday, email } = this.state;
-        axios.delete(`https://movie-app-001.herokuapp.com/users/${this.state.username}`, {
+        axios.delete(`https://movie-app-001.herokuapp.com/users/${localStorage.getItem('user')}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
             .then(response => {
-                // const data = response.data;
-                // console.log(data);
                 localStorage.removeItem('token');
                 localStorage.removeItem('user');
-                this.setState({
-                    user: null
-                });
+                // this.setState({  //before redux
+                //     user: null
+                // });
+                this.props.setUser({ user: null });
                 console.log('Deleted!');
                 window.open('/', '_self'); //self: page will open in the current tab
-                // localStorage.setItem('user', data.Username);
             })
             .catch(e => {
                 console.log('error at delete user')
@@ -72,60 +67,46 @@ class ProfileView extends React.Component {
     }
 
     handleUpdate(e) {
-        // console.log('before');
         e.preventDefault();
-        // console.log('after');
         // const { username, password, birthday, email } = this.state; //before redux
         const { user } = this.props;
-        axios.put(`https://movie-app-001.herokuapp.com/users/${localStorage.getItem('user')}`
-            ,
-            { //this.props.setUser
-                // Username: username,
-                // Password: password,
-                // Birthday: birthday,
-                // Email: email
-                Username: user.username,
-                Password: user.password,
-                Birthday: user.birthday,
-                Email: user.email
-                // Username: user.Username, // from LoginView
-                // Password: user.Password,
-                // Birthday: user.Birthday,
-                // Email: user.Email
-            }
-            ,
-            {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-            })
+        axios.put(`https://movie-app-001.herokuapp.com/users/${localStorage.getItem('user')}`, {
+            Username: user.username, // like LoginView
+            Password: user.password,
+            Birthday: user.birthday,
+            Email: user.email
+        }, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        })
             .then(response => {
-                // const data = response.data;
-                // console.log(data);
+                const data = response.data;
+                console.log(data);
                 console.log('Updated!');
-                // alert('Updated!');
-                // window.open('/', '_self'); //self: page will open in the current tab
-                localStorage.setItem('user', data.Username);
+                // localStorage.setItem('user', data.username); // before redux
+                localStorage.setItem('user', user.username);
+                window.open(`/users/${localStorage.getItem('user')}`, '_self'); //self: page will open in the current tab
             })
             .catch(e => {
                 console.log('ProfileView - handleUpdate - error at update')
             });
     }
 
-    getUserData(token) { //like in MainView, but with more data 
+    getUserData(token) {
         // console.log(token);
-        // const { user } = this.props;
+        // const { user } = this.props;  // before redux
         axios.get(`https://movie-app-001.herokuapp.com/users/${localStorage.getItem('user')}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
+                const data = response.data;
                 console.log(response, '!userdata response - ProfileView');
-                // this.setState({ // Assign the result to the state > access via this.state. .... later
+                // this.setState({ // before redux // Assign the result to the state > access via this.state
                 //     username: response.data.Username, //!!!!
                 //     password: response.data.Password,
                 //     birthday: response.data.Birthday,
                 //     email: response.data.Email,
                 //     favoriteMovies: response.data.FavoriteMovies
                 // });
-                // this.props.setUser(response.data);
                 this.props.setUser({
                     username: response.data.Username,
                     password: response.data.Password,
@@ -151,11 +132,9 @@ class ProfileView extends React.Component {
 
     render() {
 
-        // console.log(this.props, 'props');
         const { movieData, onBackClick, user } = this.props; //extracting the props
-        const { username, email, favoriteMovies } = this.props; //object destructuring 
         // console.log(favoriteMovies);
-        // const favoriteMovieList = movieData.filter(m => user.favoriteMovies.includes(m._id));
+        const favoriteMovieList = movieData.filter(m => user.favoriteMovies.includes(m._id));
 
         return (
             <Container>
@@ -168,7 +147,7 @@ class ProfileView extends React.Component {
                     </Col>
                 </Row>
 
-                {/* <Container>
+                <Container>
                     <h3 className="value genre-name">These are your favorite movies:</h3>
                     <Row>
                         {favoriteMovieList.map((movie) => {
@@ -180,7 +159,7 @@ class ProfileView extends React.Component {
                             );
                         })}
                     </Row>
-                </Container> */}
+                </Container>
 
                 <Row className="profile-row">
                     <Form ref={this.form}>
@@ -193,7 +172,7 @@ class ProfileView extends React.Component {
                                 title="*min. 5 letters, alphanumeric"
                                 // value={username}
                                 // onChange={e => this.setState({ username: e.target.value })} //before redux
-                                onChange={e => this.props.setUser({ ...user, username: e.target.value })} // from LoginView
+                                onChange={e => this.props.setUser({ ...user, username: e.target.value })} //Spread-Operator: entpackt ein Object in einem anderen
                             />
                         </Form.Group>
 
@@ -204,7 +183,7 @@ class ProfileView extends React.Component {
                                 placeholder="Enter old password or a new one"
                                 // value={password} //shows value from DB: shows the hashed password and could submit this too!
                                 // onChange={e => this.setState({ password: e.target.value })} // before redux
-                                onChange={e => this.props.setUser({ ...user, password: e.target.value })} //what is this syntax???
+                                onChange={e => this.props.setUser({ ...user, password: e.target.value })} //Spread-Operator
                             />
                         </Form.Group>
 
@@ -216,7 +195,7 @@ class ProfileView extends React.Component {
                                 // value={birthday} // shows value from DB: when used it shows the transformed data format!
                                 pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"
                                 // onChange={e => this.setState({ birthday: e.target.value })} // before redux
-                                onChange={e => this.props.setUser({ ...user, birthday: e.target.value })} //what is this syntax???
+                                onChange={e => this.props.setUser({ ...user, birthday: e.target.value })} //Spread-Operator
                             />
                         </Form.Group>
 
@@ -227,7 +206,7 @@ class ProfileView extends React.Component {
                                 placeholder="Enter Email"
                                 // value={email}
                                 // onChange={e => this.setState({ email: e.target.value })} // before redux
-                                onChange={e => this.props.setUser({ ...user, email: e.target.value })} //what is this syntax???
+                                onChange={e => this.props.setUser({ ...user, email: e.target.value })} //Spread-Operator
                             />
                         </Form.Group>
 
@@ -276,4 +255,4 @@ const mapDispatchToProps = state => {  // write to the store
 }
 
 // #8 new
-export default connect(mapStateToProps, { /* setMovies, */ setUser })(ProfileView);
+export default connect(mapStateToProps, { setUser })(ProfileView);
