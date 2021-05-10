@@ -133,8 +133,8 @@ class ProfileView extends React.Component {
     render() {
 
         const { movieData, onBackClick, user } = this.props; //extracting the props
-        // console.log(favoriteMovies);
-        const favoriteMovieList = movieData.filter(m => user.favoriteMovies.includes(m._id));
+        console.log(user.favoriteMovies);
+        const favoriteMovieList = movieData.filter(m => user.favoriteMovies.includes(m._id)); // sometimes errors at rendering, ok after refresh page
 
         return (
             <Container>
@@ -223,24 +223,17 @@ class ProfileView extends React.Component {
     }
 }
 
-// ProfileView.propTypes = {
-//     ProfileView: PropTypes.shape({
-//         username: PropTypes.string.isRequired,
-//         password: PropTypes.string.isRequired,
-//         birthday: PropTypes.string.isRequired,
-//         email: PropTypes.string.isRequired
-//     }),
-//     onBackClick: PropTypes.func.isRequired,
-
-// handleUpdate: PropTypes.func.isRequired,   // props transmit data between components
-// deleteFavorite: PropTypes.func.isRequired, // these are only used inside this one
-// handleDelete: PropTypes.func.isRequired
-// };
+ProfileView.propTypes = {
+    user: PropTypes.shape({
+        username: PropTypes.string,
+        password: PropTypes.string,
+        birthday: PropTypes.string,
+        email: PropTypes.string
+    }).isRequired,
+    onBackClick: PropTypes.func.isRequired
+};
 
 // #7 new    
-// let mapStateToProps = state => {
-//     return { user: state.user }
-// }
 let mapStateToProps = state => {
     const { user, movies } = state;
     return {

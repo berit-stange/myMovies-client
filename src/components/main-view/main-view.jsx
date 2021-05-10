@@ -3,8 +3,7 @@ import axios from 'axios';
 
 import { connect } from 'react-redux';  // allows to connect setMovies? 
 
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, BrowserHistory } from "react-router-dom"; // for goBack() ? 
 
 import { setMovies } from '../../actions/actions'; // #0 new > Redux //importing the actions
 import { setUser } from '../../actions/actions';
@@ -105,6 +104,7 @@ class MainView extends React.Component {
         //     user: null
         // });
         this.props.setUser({});
+        window.open(`/`, '_self');
     }
 
     render() {
@@ -116,14 +116,13 @@ class MainView extends React.Component {
         // which returns another function. >>>? 
         let { movies, user } = this.props; // #5 new  >>> movies durch setMovies? und user durch setUser?
         let accessToken = localStorage.getItem('token');
-        // let user = localStorage.getItem('user'); // I can't get the user ...
-        // let { user } = this.state; // local storage > onLoggedIn 
+
 
         return (
-            <Router>
+            <Router history={BrowserHistory}>
                 <div className="main-view">
 
-                    <Navigation token={accessToken} logOut={() => this.onLoggedOut()} />
+                    <Navigation token={accessToken} logOut={() => this.onLoggedOut()} onBackClick={() => history.goBack()} />
 
                     <Row className="justify-content-md-center">
 
@@ -194,7 +193,7 @@ class MainView extends React.Component {
                             </Col>
                         }} />
 
-                        <Route path="/users/:username" render={(history) => {
+                        <Route path="/users/:username" render={({ history }) => {
                             if (!accessToken) return <Col>
                                 <LoginView
                                     onLoggedIn={user => this.onLoggedIn(user)} />
@@ -202,6 +201,7 @@ class MainView extends React.Component {
                             return <Col>
                                 <ProfileView
                                     movieData={movies}
+                                    // onBackClick={() => props.history.goBack()}
                                     onBackClick={() => history.goBack()}
                                 />
                             </Col>
@@ -229,6 +229,4 @@ let mapDispatchToProps = state => {
 }
 
 // #8 new  //connecting to the store
-export default connect(mapStateToProps, /* mapDispatchToProps, */ { setMovies, setUser })(MainView);
-//mapDispatchToProps :
-// Invalid value of type object for mergeProps argument when connecting component MainView.
+export default connect(mapStateToProps, { setMovies, setUser })(MainView);

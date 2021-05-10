@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 
@@ -11,6 +12,11 @@ function VisibilityFilterInput(props) { //function component is basically a wrap
         placeholder="filter"
     />;
 }
+
+VisibilityFilterInput.propTypes = {
+    visibilityFilter: PropTypes.string,
+    setFilter: PropTypes.func.isRequired
+};
 
 export default connect( //connecting to the store
     null,

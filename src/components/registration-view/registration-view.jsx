@@ -137,20 +137,15 @@ function RegistrationView(props) {
 }
 
 
-// RegistrationView.propTypes = {
-//     RegistrationView: PropTypes.shape({
-//         username: PropTypes.string.isRequired,
-//         password: PropTypes.string.isRequired,
-//         birthday: PropTypes.string.isRequired,
-//         email: PropTypes.string.isRequired
-//     }),
-//     handleRegister: PropTypes.func,
-// };
+RegistrationView.propTypes = {
+    user: PropTypes.shape({
+        username: PropTypes.string,
+        password: PropTypes.string,
+        birthday: PropTypes.string,
+        email: PropTypes.string
+    }).isRequired
+};
 
-let mapStateToProps = state => {
-    const { user } = state;
-    return { user }
-}
 
 const mapDispatchToProps = state => {  // write to the store 
     const { user, movies } = state;

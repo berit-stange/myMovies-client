@@ -1,7 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import { connect } from 'react-redux';
-
 import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
 import { MovieCard } from '../movie-card/movie-card';
 
@@ -32,6 +32,12 @@ function MoviesList(props) {
         ))}
     </>;
 }
+
+MoviesList.propTypes = {
+    movies: PropTypes.array,
+    visibilityFilter: PropTypes.string,
+    filteredMovies: PropTypes.array
+};
 
 //connected to the store using connect()
 //uses only one argument: mapStateToProps  >>> function that converts/transforms 

@@ -88,18 +88,16 @@ function LoginView(props) {
     );
 }
 
-// LoginView.propTypes = {
-//     onLoggedIn: PropTypes.shape({
-//         username: PropTypes.string.isRequired,
-//         password: PropTypes.string.isRequired
-//     }).isRequired,
-//     onLoggedIn: PropTypes.func.isRequired
-// };
 
-// const mapStateToProps = state => {  // read from the store
-//     const { user } = state;
-//     return { user };
-// }
+LoginView.propTypes = {
+    user: PropTypes.shape({
+        username: PropTypes.string,
+        password: PropTypes.string
+    }).isRequired,
+    onLoggedIn: PropTypes.func.isRequired
+};
+
+
 let mapStateToProps = state => {
     const { user, movies } = state;
     return {
@@ -107,5 +105,6 @@ let mapStateToProps = state => {
         user: state.user
     }
 }
+
 
 export default connect(mapStateToProps, { setUser })(LoginView); //connecting to the store

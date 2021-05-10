@@ -15,27 +15,25 @@ function Navigation(props) {
     const { token, logOut } = props; //passed through MainView
 
     return (
-        <Navbar> {
+        <Navbar expand="md"> {
             token ? ( // use 'token' to show the logged out navigation
                 <>
-                    <Nav.Link href='/' className="logo">
-                        myMovies
-                    </Nav.Link>
+                    <Navbar.Brand href="/" className="logo">myMovies</Navbar.Brand>
 
-                    <Nav.Item className="page-header">
-
-                        <Button className="page-header__item btn-logout" onClick={() => { logOut() }}>LOG OUT</Button>
-
-                        {/* <Nav.Link href={`/users/${user.username}`} > */}
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" className="nav-toggle" >III</Navbar.Toggle>
+                    <Navbar.Collapse className="page-header">
+                        {/* <Nav className="page-header"> */}
+                        <Nav.Link>
+                            <Button className="page-header__item btn-logout" onClick={() => { logOut() }}>LOG OUT</Button>
+                        </Nav.Link>
                         <Nav.Link href={`/users/${localStorage.getItem('user')}`} >
                             <Button variant="link" className="page-header__item" onClick={() => { this.onLoggedIn(); }}>PROFILE</Button>
                         </Nav.Link>
-
                         <Nav.Link href="/" className="x">
                             <Button variant="link" >All Movies</Button>
                         </Nav.Link>
-
-                    </Nav.Item>
+                        {/* </Nav> */}
+                    </Navbar.Collapse>
                 </>
             ) : (
                 <>
