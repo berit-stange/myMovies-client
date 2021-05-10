@@ -22,13 +22,13 @@ import './profile-view.scss';
 class ProfileView extends React.Component {
     constructor() {
         super(); //initializes component’s state
-        this.state = {
-            username: '',
-            password: '',
-            birthday: '',
-            email: '',
-            favoriteMovies: []
-        }
+        // this.state = {
+        //     username: '',
+        //     password: '',
+        //     birthday: '',
+        //     email: '',
+        //     favoriteMovies: []
+        // }
     }
 
     deleteFavorite(movie) {
@@ -75,44 +75,64 @@ class ProfileView extends React.Component {
         // console.log('before');
         e.preventDefault();
         // console.log('after');
-        this.validate();
-        const { username, password, birthday, email } = this.state;
-        axios.put(`https://movie-app-001.herokuapp.com/users/${this.state.username}`, {
-            Username: username,
-            Password: password,
-            Birthday: birthday,
-            Email: email
-        }, {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        })
+        // const { username, password, birthday, email } = this.state; //before redux
+        const { user } = this.props;
+        axios.put(`https://movie-app-001.herokuapp.com/users/${localStorage.getItem('user')}`
+            ,
+            { //this.props.setUser
+                // Username: username,
+                // Password: password,
+                // Birthday: birthday,
+                // Email: email
+                Username: user.username,
+                Password: user.password,
+                Birthday: user.birthday,
+                Email: user.email
+                // Username: user.Username, // from LoginView
+                // Password: user.Password,
+                // Birthday: user.Birthday,
+                // Email: user.Email
+            }
+            ,
+            {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            })
             .then(response => {
-                const data = response.data;
-                console.log(data);
+                // const data = response.data;
+                // console.log(data);
                 console.log('Updated!');
-                alert('Updated!');
+                // alert('Updated!');
                 // window.open('/', '_self'); //self: page will open in the current tab
                 localStorage.setItem('user', data.Username);
             })
             .catch(e => {
-                console.log('error at registration')
+                console.log('ProfileView - handleUpdate - error at update')
             });
     }
 
     getUserData(token) { //like in MainView, but with more data 
         // console.log(token);
+        // const { user } = this.props;
         axios.get(`https://movie-app-001.herokuapp.com/users/${localStorage.getItem('user')}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
                 console.log(response, '!userdata response - ProfileView');
-                this.setState({ // Assign the result to the state > access via this.state. .... later
-                    username: response.data.Username, //!!!!
+                // this.setState({ // Assign the result to the state > access via this.state. .... later
+                //     username: response.data.Username, //!!!!
+                //     password: response.data.Password,
+                //     birthday: response.data.Birthday,
+                //     email: response.data.Email,
+                //     favoriteMovies: response.data.FavoriteMovies
+                // });
+                // this.props.setUser(response.data);
+                this.props.setUser({
+                    username: response.data.Username,
                     password: response.data.Password,
-                    birthday: response.data.Birthday,
                     email: response.data.Email,
+                    birthday: response.data.Birthday,
                     favoriteMovies: response.data.FavoriteMovies
-                });
-                this.props.setUser(response.data);
+                })
             })
             .catch(function (error) {
                 console.log(error);
@@ -133,9 +153,9 @@ class ProfileView extends React.Component {
 
         // console.log(this.props, 'props');
         const { movieData, onBackClick, user } = this.props; //extracting the props
-        const { username, email, favoriteMovies } = this.state; //object destructuring 
+        const { username, email, favoriteMovies } = this.props; //object destructuring 
         // console.log(favoriteMovies);
-        const favoriteMovieList = movieData.filter(m => favoriteMovies.includes(m._id));
+        // const favoriteMovieList = movieData.filter(m => user.favoriteMovies.includes(m._id));
 
         return (
             <Container>
@@ -144,11 +164,11 @@ class ProfileView extends React.Component {
                         <Button className="material-icons round btn-full" onClick={() => { onBackClick(null); }} ><span>arrow_back</span></Button>
                     </Col>
                     <Col>
-                        <h2 className="director-name">Hello {user.Username}!</h2> {/* from this.props */}
+                        <h2 className="director-name">Hello {user.username}!</h2> {/* from this.props */}
                     </Col>
                 </Row>
 
-                <Container>
+                {/* <Container>
                     <h3 className="value genre-name">These are your favorite movies:</h3>
                     <Row>
                         {favoriteMovieList.map((movie) => {
@@ -160,7 +180,7 @@ class ProfileView extends React.Component {
                             );
                         })}
                     </Row>
-                </Container>
+                </Container> */}
 
                 <Row className="profile-row">
                     <Form ref={this.form}>
@@ -171,8 +191,10 @@ class ProfileView extends React.Component {
                                 placeholder="Enter Username"
                                 pattern="[a-zA-Z0-9]{5,}"
                                 title="*min. 5 letters, alphanumeric"
-                                value={username}
-                                onChange={e => this.setState({ username: e.target.value })} />
+                                // value={username}
+                                // onChange={e => this.setState({ username: e.target.value })} //before redux
+                                onChange={e => this.props.setUser({ ...user, username: e.target.value })} // from LoginView
+                            />
                         </Form.Group>
 
                         <Form.Group controlId="formGroupPassword">
@@ -181,7 +203,9 @@ class ProfileView extends React.Component {
                                 type="password"
                                 placeholder="Enter old password or a new one"
                                 // value={password} //shows value from DB: shows the hashed password and could submit this too!
-                                onChange={e => this.setState({ password: e.target.value })} />
+                                // onChange={e => this.setState({ password: e.target.value })} // before redux
+                                onChange={e => this.props.setUser({ ...user, password: e.target.value })} //what is this syntax???
+                            />
                         </Form.Group>
 
                         <Form.Group controlId="formGroupBirthday">
@@ -191,7 +215,9 @@ class ProfileView extends React.Component {
                                 placeholder="YYYY-MM-DD"
                                 // value={birthday} // shows value from DB: when used it shows the transformed data format!
                                 pattern="[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])"
-                                onChange={e => this.setState({ birthday: e.target.value })} />
+                                // onChange={e => this.setState({ birthday: e.target.value })} // before redux
+                                onChange={e => this.props.setUser({ ...user, birthday: e.target.value })} //what is this syntax???
+                            />
                         </Form.Group>
 
                         <Form.Group controlId="formGroupEmail">
@@ -199,8 +225,10 @@ class ProfileView extends React.Component {
                             <Form.Control
                                 type="email"
                                 placeholder="Enter Email"
-                                value={email}
-                                onChange={e => this.setState({ email: e.target.value })} />
+                                // value={email}
+                                // onChange={e => this.setState({ email: e.target.value })} // before redux
+                                onChange={e => this.props.setUser({ ...user, email: e.target.value })} //what is this syntax???
+                            />
                         </Form.Group>
 
                         <Button type="submit" className="btn-update" onClick={event => this.handleUpdate(event)}>Update</Button>
@@ -246,8 +274,6 @@ const mapDispatchToProps = state => {  // write to the store
     const { user, movies } = state;
     return { user, movies };
 }
-
-// export default connect(mapDispatchToProps, { setUser })(LoginView);
 
 // #8 new
 export default connect(mapStateToProps, { /* setMovies, */ setUser })(ProfileView);

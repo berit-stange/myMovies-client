@@ -10,16 +10,13 @@ import Button from 'react-bootstrap/Button';
 import './navigation.scss'
 import { Link } from "react-router-dom";
 
-const mapStateToProps = state => {
-    const { user } = state;
-    return { user };
-}
 
-function Navigation({ user, logOut }) {
+function Navigation(props) {
+    const { token, logOut } = props; //passed through MainView
 
     return (
         <Navbar> {
-            user ? ( // use 'token' to show the logged out navigation? no - with token, nothing works!
+            token ? ( // use 'token' to show the logged out navigation
                 <>
                     <Nav.Link href='/' className="logo">
                         myMovies
@@ -49,6 +46,11 @@ function Navigation({ user, logOut }) {
             )}
         </Navbar>
     )
+}
+
+const mapStateToProps = state => {
+    const { user } = state;
+    return { user };
 }
 
 export default connect(mapStateToProps)(Navigation);

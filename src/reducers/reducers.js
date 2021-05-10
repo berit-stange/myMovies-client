@@ -20,7 +20,7 @@ function movies(state = [], action) {
     }
 }
 
-function user(state = '', action) { //{} because user is an object not an array? or string '' because of input ?
+function user(state = {}, action) { //{} because user is an object not an array? or string '' because of input ?
     switch (action.type) {
         case SET_USER:
             return action.value;

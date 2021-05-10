@@ -96,7 +96,7 @@ class MainView extends React.Component {
     onLoggedIn(authData) {
         console.log(authData);
         // this.setState({
-        //     user: authData.user.username,
+        //     user: authData.user.username, //before redux
         // });
         this.props.setUser({
             username: authData.user.Username,
@@ -114,10 +114,10 @@ class MainView extends React.Component {
     onLoggedOut() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        this.setState({
-            user: null
-        });
-        // this.props.setUser({}); // not right! storage is cleared, but view doesnt change
+        // this.setState({
+        //     user: null
+        // });
+        this.props.setUser({}); // not right! storage is cleared, but view doesnt change
     }
 
     render() {
@@ -127,16 +127,16 @@ class MainView extends React.Component {
         // This action will be used in code section #5, 
         // where you connect it to the MainView using, again, the connect() function, 
         // which returns another function. >>>? 
-        let { movies/* , user */ } = this.props; // #5 new  >>> movies durch setMovies?
+        let { movies, user } = this.props; // #5 new  >>> movies durch setMovies? und user durch setUser?
         let accessToken = localStorage.getItem('token');
         // let user = localStorage.getItem('user'); // I can't get the user ...
-        let { user } = this.state; // local storage > onLoggedIn 
+        // let { user } = this.state; // local storage > onLoggedIn 
 
         return (
             <Router>
                 <div className="main-view">
 
-                    <Navigation user={user} logOut={() => this.onLoggedOut()} />
+                    <Navigation token={accessToken} logOut={() => this.onLoggedOut()} />
 
                     <Row className="justify-content-md-center">
 
@@ -145,14 +145,8 @@ class MainView extends React.Component {
                                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                             </Col>
                             if (movies.length === 0) return <div className="" />;
-                            // return movies.map(m => (
-                            //     <Col xs={12} sm={6} md={4} lg={3} key={m._id}>
-                            //         <MovieCard movieData={m} />
-                            //     </Col>
-                            // ))
 
-                            //#6 new
-                            return <MoviesList movies={movies} user={user} />
+                            return <MoviesList movies={movies} user={user} /> //#6 new >>> Redux
                         }} />
 
                         <Route path="/login" render={() => {
@@ -223,7 +217,7 @@ class MainView extends React.Component {
                             </Col>
                         }} />
 
-                        <Route path="/users/:username" render={({ match, history }) => {
+                        <Route path="/users/:username" render={(history) => {
                             if (!accessToken) return <Col>
                                 <LoginView
                                     onLoggedIn={user => this.onLoggedIn(user)} />
