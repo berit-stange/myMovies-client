@@ -14,3 +14,11 @@ npm install -g parcel-bundler
 + Axios
 + PropTypes
 + Redux
+
+## API
+movie_api
+https://github.com/berit-stange/movie_api
+
+## DB
+MongoDB Atlas
+collections: movies, user
