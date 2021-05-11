@@ -123,9 +123,12 @@ class ProfileView extends React.Component {
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
-            this.setState({
-                user: localStorage.getItem('user')//only getting the login data and token, right?
-            });
+            // this.setState({
+            //     user: localStorage.getItem('user')//only getting the login data and token, right?
+            // });
+            this.props.setUser({
+                user: localStorage.getItem('user')
+            })
             this.getUserData(accessToken); //calling the functions above + mounting all the data that the function "pulled" from DB, access via this.? this.users?
         }
     }
