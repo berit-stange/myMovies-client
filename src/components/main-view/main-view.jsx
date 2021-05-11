@@ -119,7 +119,7 @@ class MainView extends React.Component {
 
 
         return (
-            <Router history={BrowserHistory}>
+            <Router >
                 <div className="main-view">
 
                     <Navigation token={accessToken} logOut={() => this.onLoggedOut()} onBackClick={() => history.goBack()} />
@@ -201,6 +201,7 @@ class MainView extends React.Component {
                             return <Col>
                                 <ProfileView
                                     movieData={movies}
+                                    token={accessToken}
                                     // onBackClick={() => props.history.goBack()}
                                     onBackClick={() => history.goBack()}
                                 />
