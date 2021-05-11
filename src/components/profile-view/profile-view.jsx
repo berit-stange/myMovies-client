@@ -95,7 +95,8 @@ class ProfileView extends React.Component {
         // console.log(token);
         // const { user } = this.props;  // before redux
         axios.get(`https://movie-app-001.herokuapp.com/users/${localStorage.getItem('user')}`, {
-            headers: { Authorization: `Bearer ${token}` }
+            // headers: { Authorization: `Bearer ${accessToken}` }
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
             .then(response => {
                 const data = response.data;
@@ -122,15 +123,18 @@ class ProfileView extends React.Component {
 
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
+        console.log('componentDidMount 1');
         if (accessToken !== null) {
             // this.setState({
             //     user: localStorage.getItem('user')//only getting the login data and token, right?
             // });
             this.props.setUser({
-                user: localStorage.getItem('user')
+                user: localStorage.getItem('user'),
+                accessToken: localStorage.getItem('token')
             })
             this.getUserData(accessToken); //calling the functions above + mounting all the data that the function "pulled" from DB, access via this.? this.users?
         }
+        console.log('componentDidMount 2');
     }
 
     render() {

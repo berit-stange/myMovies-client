@@ -43500,8 +43500,9 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       // console.log(token);
       // const { user } = this.props;  // before redux
       _axios.default.get("https://movie-app-001.herokuapp.com/users/".concat(localStorage.getItem('user')), {
+        // headers: { Authorization: `Bearer ${accessToken}` }
         headers: {
-          Authorization: "Bearer ".concat(token)
+          Authorization: "Bearer ".concat(localStorage.getItem('token'))
         }
       }).then(function (response) {
         var data = response.data;
@@ -43528,14 +43529,20 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var accessToken = localStorage.getItem('token');
+      console.log('componentDidMount 1');
 
       if (accessToken !== null) {
-        this.setState({
-          user: localStorage.getItem('user') //only getting the login data and token, right?
-
+        // this.setState({
+        //     user: localStorage.getItem('user')//only getting the login data and token, right?
+        // });
+        this.props.setUser({
+          user: localStorage.getItem('user'),
+          accessToken: localStorage.getItem('token')
         });
         this.getUserData(accessToken); //calling the functions above + mounting all the data that the function "pulled" from DB, access via this.? this.users?
       }
+
+      console.log('componentDidMount 2');
     }
   }, {
     key: "render",
@@ -44563,7 +44570,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
             }
           }));
           return /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement(_profileView.default, {
-            movieData: movies // onBackClick={() => props.history.goBack()}
+            movieData: movies,
+            token: accessToken // onBackClick={() => props.history.goBack()}
             ,
             onBackClick: function onBackClick() {
               return history.goBack();
@@ -44706,7 +44714,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56298" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58222" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
