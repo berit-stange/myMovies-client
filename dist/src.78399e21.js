@@ -43582,12 +43582,14 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           key: movie._id
         }, /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
           movieData: movie
-        }), /*#__PURE__*/_react.default.createElement(_Button.default, {
-          className: "material-icons round",
+        }), /*#__PURE__*/_react.default.createElement(_Col.default, {
+          className: "delete-fav"
+        }, /*#__PURE__*/_react.default.createElement(_Button.default, {
+          className: "material-icons round btn-delete-fav",
           onClick: function onClick() {
             return _this3.deleteFavorite(movie);
           }
-        }, /*#__PURE__*/_react.default.createElement("span", null, "remove")));
+        }, /*#__PURE__*/_react.default.createElement("span", null, "remove"))));
       }))), /*#__PURE__*/_react.default.createElement(_Row.default, {
         className: "profile-row"
       }, /*#__PURE__*/_react.default.createElement(_Form.default, {
@@ -44712,7 +44714,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58222" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61730" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

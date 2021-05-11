@@ -161,7 +161,9 @@ class ProfileView extends React.Component {
                             return (
                                 <Col sm={4} md={4} lg={3} key={movie._id}>
                                     <MovieCard movieData={movie} />
-                                    <Button className="material-icons round" onClick={() => this.deleteFavorite(movie)}><span>remove</span></Button>
+                                    <Col className="delete-fav">
+                                        <Button className="material-icons round btn-delete-fav" onClick={() => this.deleteFavorite(movie)}><span>remove</span></Button>
+                                    </Col>
                                 </Col>
                             );
                         })}

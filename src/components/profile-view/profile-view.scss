@@ -34,6 +34,15 @@ $font-light: 400;
     display: grid;
 }
 
+.btn-delete-fav {
+    justify-self: center;
+}
+
+.delete-fav {
+    padding: .5rem;
+    display: grid;
+}
+
 .profile {
     padding-top: 2rem;
 }

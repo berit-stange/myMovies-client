@@ -161,6 +161,15 @@
   display: grid;
 }
 
+.btn-delete-fav {
+  justify-self: center;
+}
+
+.delete-fav {
+  padding: 0.5rem;
+  display: grid;
+}
+
 .profile {
   padding-top: 2rem;
 }
