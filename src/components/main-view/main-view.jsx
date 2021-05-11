@@ -201,6 +201,7 @@ class MainView extends React.Component {
                             return <Col>
                                 <ProfileView
                                     movieData={movies}
+                                    token={accessToken}
                                     // onBackClick={() => props.history.goBack()}
                                     onBackClick={() => history.goBack()}
                                 />
