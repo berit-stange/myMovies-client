@@ -16,9 +16,11 @@ npm install -g parcel-bundler
 + Redux
 
 ## API
-movie_api
-https://github.com/berit-stange/movie_api
+movie_api > https://github.com/berit-stange/movie_api
 
 ## DB
 MongoDB Atlas
 collections: movies, user
+
+## Deployment
+Netlify > https://mymovies-app.netlify.app/
