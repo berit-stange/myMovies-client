@@ -43500,7 +43500,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
       // console.log(token);
       // const { user } = this.props;  // before redux
       _axios.default.get("https://movie-app-001.herokuapp.com/users/".concat(localStorage.getItem('user')), {
-        // headers: { Authorization: `Bearer ${accessToken}` }
+        // headers: { Authorization: `Bearer ${token}` }
         headers: {
           Authorization: "Bearer ".concat(localStorage.getItem('token'))
         }
@@ -43554,10 +43554,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
           onBackClick = _this$props.onBackClick,
           user = _this$props.user; //extracting the props
 
-      console.log(user.favoriteMovies);
-      var favoriteMovieList = movieData.filter(function (m) {
-        return user.favoriteMovies.includes(m._id);
-      }); // sometimes errors at rendering, ok after refresh page
+      console.log(user.favoriteMovies); // const favoriteMovieList = movieData.filter(m => user.favoriteMovies.includes(m._id)); // sometimes errors at rendering, ok after refresh page
 
       return /*#__PURE__*/_react.default.createElement(_Container.default, null, /*#__PURE__*/_react.default.createElement(_Row.default, {
         className: "profile-row"
@@ -43572,23 +43569,7 @@ var ProfileView = /*#__PURE__*/function (_React$Component) {
         }
       }, /*#__PURE__*/_react.default.createElement("span", null, "arrow_back"))), /*#__PURE__*/_react.default.createElement(_Col.default, null, /*#__PURE__*/_react.default.createElement("h2", {
         className: "director-name"
-      }, "Hello ", user.username, "!"), " ")), /*#__PURE__*/_react.default.createElement(_Container.default, null, /*#__PURE__*/_react.default.createElement("h3", {
-        className: "value genre-name"
-      }, "These are your favorite movies:"), /*#__PURE__*/_react.default.createElement(_Row.default, null, favoriteMovieList.map(function (movie) {
-        return /*#__PURE__*/_react.default.createElement(_Col.default, {
-          sm: 4,
-          md: 4,
-          lg: 3,
-          key: movie._id
-        }, /*#__PURE__*/_react.default.createElement(_movieCard.MovieCard, {
-          movieData: movie
-        }), /*#__PURE__*/_react.default.createElement(_Button.default, {
-          className: "material-icons round",
-          onClick: function onClick() {
-            return _this3.deleteFavorite(movie);
-          }
-        }, /*#__PURE__*/_react.default.createElement("span", null, "remove")));
-      }))), /*#__PURE__*/_react.default.createElement(_Row.default, {
+      }, "Hello ", user.username, "!"), " ")), /*#__PURE__*/_react.default.createElement(_Row.default, {
         className: "profile-row"
       }, /*#__PURE__*/_react.default.createElement(_Form.default, {
         ref: this.form
@@ -44427,9 +44408,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           user = _this$props.user; // #5 new  >>> movies durch setMovies? und user durch setUser?
 
       var accessToken = localStorage.getItem('token');
-      return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, {
-        history: _reactRouterDom.BrowserHistory
-      }, /*#__PURE__*/_react.default.createElement("div", {
+      return /*#__PURE__*/_react.default.createElement(_reactRouterDom.BrowserRouter, null, /*#__PURE__*/_react.default.createElement("div", {
         className: "main-view"
       }, /*#__PURE__*/_react.default.createElement(_navigation.default, {
         token: accessToken,

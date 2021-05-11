@@ -119,7 +119,7 @@ class MainView extends React.Component {
 
 
         return (
-            <Router history={BrowserHistory}>
+            <Router >
                 <div className="main-view">
 
                     <Navigation token={accessToken} logOut={() => this.onLoggedOut()} onBackClick={() => history.goBack()} />

@@ -95,7 +95,7 @@ class ProfileView extends React.Component {
         // console.log(token);
         // const { user } = this.props;  // before redux
         axios.get(`https://movie-app-001.herokuapp.com/users/${localStorage.getItem('user')}`, {
-            // headers: { Authorization: `Bearer ${accessToken}` }
+            // headers: { Authorization: `Bearer ${token}` }
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
             .then(response => {
@@ -141,7 +141,7 @@ class ProfileView extends React.Component {
 
         const { movieData, onBackClick, user } = this.props; //extracting the props
         console.log(user.favoriteMovies);
-        const favoriteMovieList = movieData.filter(m => user.favoriteMovies.includes(m._id)); // sometimes errors at rendering, ok after refresh page
+        // const favoriteMovieList = movieData.filter(m => user.favoriteMovies.includes(m._id)); // sometimes errors at rendering, ok after refresh page
 
         return (
             <Container>
@@ -154,7 +154,7 @@ class ProfileView extends React.Component {
                     </Col>
                 </Row>
 
-                <Container>
+                {/* <Container>
                     <h3 className="value genre-name">These are your favorite movies:</h3>
                     <Row>
                         {favoriteMovieList.map((movie) => {
@@ -166,7 +166,7 @@ class ProfileView extends React.Component {
                             );
                         })}
                     </Row>
-                </Container>
+                </Container> */}
 
                 <Row className="profile-row">
                     <Form ref={this.form}>
