@@ -1,0 +1,213 @@
+$primary-color: #cca53b;
+$secondary-color: gainsboro;
+// $dark-color: #001625;
+$dark-color: #000d25;
+$error-color: #d67c53;
+$font-sans: 'Montserrat', sans-serif;
+$font-serif: 'Abril Fatface', serif;
+$font-big: 60px;
+$font-medium: 30px;
+$font-small: 20px;
+$font-p: 15px;
+$font-tiny: 12px;
+$font-heavy: 700;
+$font-light: 400;
+
+body {
+  font-family: $font-sans;
+  font-weight: $font-light;
+  font-size: $font-small;
+  line-height: 1.6;
+  background-color: $dark-color;
+  color: $secondary-color;
+}
+
+h1 {
+  font-family: $font-serif;
+  font-size:  $font-big !important;
+}
+  
+h2 {
+  font-family: $font-serif;
+  font-size: $font-medium !important;
+}
+  
+h3 {
+  font-family: $font-sans;
+  font-size:  $font-small !important; 
+  color: $primary-color;
+}
+
+h4 {
+    font-family: $font-sans;
+    font-size:  $font-small !important; 
+    color: $primary-color;
+}
+
+h5 {
+    font-family: $font-sans;
+    font-size:  $font-small !important; 
+    color: $primary-color;
+}
+  
+p {
+  font-family: $font-sans;
+  font-size:  $font-p !important; 
+}
+
+.main-view{
+  padding: 20px;
+}
+
+.page-header {
+  display: flex;
+  width: 100%;
+  align-items: center; 
+  color: $primary-color;
+  justify-content: flex-end
+  // align-content: flex-end;
+}
+
+.page-header__item {
+  background-color: $primary-color;
+  color: $primary-color;
+  // margin-left: 1rem;
+}
+
+.page-header__item:last-child {
+  background-color: $primary-color;
+  color: $dark-color;
+  font-weight: $font-heavy;
+}
+
+.logo{
+  font-family: $font-serif;
+  font-size: $font-big;
+  line-height: 1.6;
+  color: $primary-color !important;
+}
+
+.logo:hover {
+  color: $primary-color;
+}
+
+.btn-primary:active,
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: $primary-color !important;
+      border: 1px solid $primary-color !important;
+      border-radius: 0;
+      color: $dark-color !important;
+      font-weight: $font-heavy;
+  }
+  
+.btn-primary {
+  background-color: $dark-color !important;
+  color: $primary-color !important;
+  border: 1px solid $primary-color !important;
+  box-shadow: none !important;
+}
+
+.btn-full {
+  background-color: $primary-color !important;
+  border: 1px solid $primary-color !important;
+  border-radius: 0;
+  color: $dark-color !important;
+  font-weight: $font-heavy;
+}
+
+.btn-logout {
+  background-color: transparent !important;
+  border: 1px solid $primary-color;
+  border-radius: 0;
+  color: $primary-color !important;
+}
+
+.btn-logout:active,
+.btn-logout:hover,
+.btn-logout:focus {
+  background-color: $primary-color !important;
+  color: $dark-color !important;
+  border: 1px solid $primary-color !important;
+  box-shadow: none !important;
+}
+
+.btn-update {
+  background-color: $primary-color !important;
+  color: $dark-color !important;
+  border: 1px solid $primary-color !important;
+  border-radius: 0;
+  box-shadow: none !important;
+  font-weight: $font-heavy;
+}
+
+button:focus,
+button:focus-visible {
+outline: none;
+}
+
+.nav-toggle {
+  background-color: transparent !important;
+  border: 1px solid $primary-color;
+  border-radius: 0;
+  color: $primary-color !important;
+  font-size:  $font-big !important;
+  transform: rotate(90deg);
+}
+
+.navbar {
+  padding: 0  !important;
+  margin: 0  !important;
+}
+
+.nav-link {
+  padding: 0 !important;
+  padding-left: 1rem !important;
+}
+
+.round {
+  color: $dark-color;
+  height: 4rem;
+  border-radius: 50% !important;
+  font-weight: $font-heavy;
+  width: 4rem;
+}
+
+.btn-profile {
+  // background-color: transparent !important;
+  border: 1px solid $primary-color;
+  border-radius: 0;
+  color: $dark-color !important;
+  // padding:  0.75rem;
+}
+
+.btn-profile:active,
+.btn-profile:hover,
+.btn-profile:focus {
+  background-color: $secondary-color !important;
+  border: 1px solid $primary-color !important;
+  box-shadow: none !important;
+}
+
+.error{
+  color:$error-color;
+}
+
+.form-info{
+  font-size: $font-tiny;
+}
+
+.btn-link{
+  background-color: transparent !important;
+  border: 1px solid $primary-color;
+  border-radius: 0;
+  color: $primary-color !important;
+  font-weight: $font-heavy;
+}
+
+.form-control,
+.form-control:valid, 
+.was-validated:valid {
+  background-color: $secondary-color;
+  border-radius: 0;
+}
