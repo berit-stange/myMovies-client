@@ -1,4 +1,4 @@
-import React from 'react'; //before redux: , { useState } Hook used to add state to function components
+import React, { useState } from 'react'; //before redux:  Hook used to add state to function components
 import PropTypes from 'prop-types';
 import axios from 'axios';
 

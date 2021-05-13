@@ -43,7 +43,7 @@ function LoginView(props) {
     return (
         <Container className="login-view">
             <Row >
-                <Form className="login was-validated" noValidate /* validated={validated} */>
+                <Form className="login was-validated" noValidate validated={user.validated}>
                     <Form.Group controlId="formEmail">
                         <Form.Label>Username:</Form.Label>
                         <Form.Control
@@ -54,7 +54,7 @@ function LoginView(props) {
                             // onChange={e => setUsername(e.target.value)} // before redux
                             // value={user.Username}
                             // onChange={e => props.setUser(e.target.value)} // first try
-                            onChange={e => props.setUser({ Username: e.target.value })}
+                            onChange={e => props.setUser({ ...user, Username: e.target.value })}
                         // value={props.visibilityFilter}  //syntax from VisibilityFilter
                         // onChange={e => props.setFilter(e.target.value)} //syntax from VisibilityFilter
                         />

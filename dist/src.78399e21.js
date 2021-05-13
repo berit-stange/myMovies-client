@@ -42863,7 +42863,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
@@ -42886,6 +42886,10 @@ var _reactRouterDom = require("react-router-dom");
 require("./registration-view.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -43129,9 +43133,8 @@ function LoginView(props) {
     className: "login-view"
   }, /*#__PURE__*/_react.default.createElement(_Row.default, null, /*#__PURE__*/_react.default.createElement(_Form.default, {
     className: "login was-validated",
-    noValidate: true
-    /* validated={validated} */
-
+    noValidate: true,
+    validated: user.validated
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
     controlId: "formEmail"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username:"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
@@ -43143,9 +43146,9 @@ function LoginView(props) {
     // onChange={e => props.setUser(e.target.value)} // first try
     ,
     onChange: function onChange(e) {
-      return props.setUser({
+      return props.setUser(_objectSpread(_objectSpread({}, user), {}, {
         Username: e.target.value
-      });
+      }));
     } // value={props.visibilityFilter}  //syntax from VisibilityFilter
     // onChange={e => props.setFilter(e.target.value)} //syntax from VisibilityFilter
 
@@ -44714,7 +44717,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61730" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53092" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

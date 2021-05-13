@@ -431,7 +431,6 @@ button:focus-visible {
 .form-control,
 .form-control:valid,
 .was-validated:valid {
-  background-color: gainsboro;
   border-radius: 0;
 }
 
