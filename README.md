@@ -10,7 +10,9 @@ its existing server-side code (REST API and database) using React
 Loading movie data via the REST API: [github.com/berit-stange/movie_api](https://https://github.com/berit-stange/movie_api/blob/comments-and-documentation/README.md)
 
 ## Database
-MongoDB 
+MongoDB Atlas
+
+Collections: movies, user
 
 ## Dependencies 
 Install dependencies: 
@@ -40,12 +42,7 @@ http://localhost:1234/
 + PropTypes
 + Redux
 
-## API
-movie_api > https://github.com/berit-stange/movie_api
-
-## DB
-MongoDB Atlas
-collections: movies, user
 
 ## Deployment
 Netlify > https://mymovies-app.netlify.app/
+Hosted on Netlify: [ mymovies-app.netlify.app ](https://mymovies-app.netlify.app/) 
