@@ -44,5 +44,4 @@ http://localhost:1234/
 
 
 ## Deployment
-Netlify > https://mymovies-app.netlify.app/
 Hosted on Netlify: [ mymovies-app.netlify.app ](https://mymovies-app.netlify.app/) 
