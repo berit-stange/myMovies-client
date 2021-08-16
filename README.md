@@ -4,6 +4,8 @@
 Building the client-side for an application called myMovies based on
 its existing server-side code (REST API and database) using React
 
+![myMovies-client](./src/img/my-movies-app-in-use-2_1.gif)
+
 ## Setting up parcel
 npm install -g parcel-bundler
 
