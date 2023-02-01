@@ -35,7 +35,7 @@ function RegistrationView(props) {
     const handleRegister = (e) => {  // Bootstrap form Validation was inserted here and submitted twice - how can I do this?
         e.preventDefault();
         // console.log(username, password);
-        axios.post('https://berit-stange.de/test/users', {
+        axios.post('https://movie-app-001.herokuapp.com/users', {
             // Username: username,
             // Password: password,
             // Birthday: birthday,

@@ -24,7 +24,7 @@ export class MovieCardFavs extends React.Component {
     }
 
     deleteFavorite(movie) {
-        axios.delete(`https://berit-stange.de/test/users/${this.state.username}/favorites/${movie._id}`,
+        axios.delete(`https://movie-app-001.herokuapp.com/users/${this.state.username}/favorites/${movie._id}`,
             {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })

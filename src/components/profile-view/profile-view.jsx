@@ -32,7 +32,7 @@ class ProfileView extends React.Component {
     }
 
     deleteFavorite(movie) {
-        axios.delete(`https://berit-stange.de/test/users/${localStorage.getItem('user')}/favorites/${movie._id}`,
+        axios.delete(`https://movie-app-001.herokuapp.com/users/${localStorage.getItem('user')}/favorites/${movie._id}`,
             {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             })
@@ -48,7 +48,7 @@ class ProfileView extends React.Component {
     handleDelete(e) {
         e.preventDefault();
         alert('Are you sure?');
-        axios.delete(`https://berit-stange.de/test/users/${localStorage.getItem('user')}`, {
+        axios.delete(`https://movie-app-001.herokuapp.com/users/${localStorage.getItem('user')}`, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
             .then(response => {
@@ -70,7 +70,7 @@ class ProfileView extends React.Component {
         e.preventDefault();
         // const { username, password, birthday, email } = this.state; //before redux
         const { user } = this.props;
-        axios.put(`https://berit-stange.de/test/users/${localStorage.getItem('user')}`, {
+        axios.put(`https://movie-app-001.herokuapp.com/users/${localStorage.getItem('user')}`, {
             Username: user.username, // like LoginView
             Password: user.password,
             Birthday: user.birthday,
@@ -94,7 +94,7 @@ class ProfileView extends React.Component {
     getUserData(token) {
         // console.log(token);
         // const { user } = this.props;  // before redux
-        axios.get(`https://berit-stange.de/test/users/${localStorage.getItem('user')}`, {
+        axios.get(`https://movie-app-001.herokuapp.com/users/${localStorage.getItem('user')}`, {
             // headers: { Authorization: `Bearer ${token}` }
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })

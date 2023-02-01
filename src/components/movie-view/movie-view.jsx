@@ -27,7 +27,7 @@ export class MovieView extends React.Component {
 
     getUserData(token) { //like in MainView, but with more data 
         // console.log(token);
-        axios.get(`https://berit-stange.de/test/users/${localStorage.getItem('user')}`, {
+        axios.get(`https://movie-app-001.herokuapp.com/users/${localStorage.getItem('user')}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
@@ -51,7 +51,7 @@ export class MovieView extends React.Component {
         console.log('after');
         const { username } = this.state;
         const { movieData } = this.props;
-        axios.post(`https://berit-stange.de/test/users/${this.state.username}/favorites/${movieData._id}`,
+        axios.post(`https://movie-app-001.herokuapp.com/users/${this.state.username}/favorites/${movieData._id}`,
             {
                 Username: username
             },
