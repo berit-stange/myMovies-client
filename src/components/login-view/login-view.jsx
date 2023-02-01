@@ -22,7 +22,7 @@ function LoginView(props) {
         e.preventDefault();
         // console.log(username, password);
         // props.onLoggedIn(username);// send request to server for authentication, then call props.onLoggedIn(username)
-        axios.post('https://movie-app-001.herokuapp.com/login', { //POST request
+        axios.post('https://berit-stange.de/test/login', { //POST request
             // Username: username, // before redux
             // Password: password
             Username: user.Username, // redux
